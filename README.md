@@ -1,6 +1,8 @@
 （只有中文的废话碎碎念；除了这些下面都是大模型生成的，欧耶）
-大二上学计算物理2。顺道跟着一个python教程写了Conway's Life Game,那个学期也在扒拉着看一些复杂系统的东西
+大二上学计算物理2。顺道跟着一个python教程写了Conway's Life Game,那个学期也在扒拉着看一些复杂系统的东西，也在上一门大概叫VR游戏设计与开发的课程，于是碎碎地看了很多游戏创作的技术、哲学之类......当时每天都在YY要做什么样的游戏。后来我的UE5学习中道崩殂在调天空的材质和光线时，版本跟我看的教程不一样，于是怎么也调的不像人类。后来这段有点入魔的经历给我留下的大概就是很多有意思的故事和idea，机核这个博主，和这个当时被我掰弯成某种游戏的CUBE GO。在后来一年多断断续续地把这个小东西拿出来玩一玩，改一改，修一修。在尝试这个小项目的初期，我就已经意识到，idea很美妙，看着它的实现更美妙，甚至写程序写代码本身，略显大逆不道地讲，比做物理题OR推公式（虽然w我也不会，可能两个都不会）更有让人享受的一面。但Debug，实在是会人在几分钟或者几十秒之内意识到坚持完成它是一件非常需要毅力的事儿，对我这个会懒到不清游戏日活，不签到领月卡的人来说太地狱了。不过今年Vibe Coding的出现让我的各种进程都轻巧容易了很多，尤其是针对这样弱资源，弱代码，强IDEA的小游戏的实现，如虎添翼，再造之恩，值得磕俩，舒服舒服......
+没空写太多，其实这个小小项目远远没打磨到可以让我自信推出的程度，也跟很多朋友唠了之后有一些尝试的方向，和一些显然的小BUG存在NOTE里还没琢磨。但因为想顺便给CV里一个除了邮箱以外能点开的链接想着先上架了，如果有人尝试配置游玩了它（ZZ将感动），欢迎找我唠嗑聊聊。想要接着试着在这个框架下接着开发也欢迎联系我，我将给小IDEA找新的家。
 
+2026/01/13 0:46 宿舍楼道洗衣机上坐着
 
 
 # Cellular Cube Go / 细胞自动机游戏
@@ -14,14 +16,14 @@ A Pygame-based cellular automaton game with player movement, bullets, rewards, a
 ## Features / 功能特性
 - Cellular automaton world with configurable rules (`GameConfig`)
 - Player, bullets, and reward cells rendering
-- Pattern library with multiple sizes and shapes
+- **Expanded Pattern Library**: Includes patterns from Golly's collection and PlayGameOfLife.com
 - Progressive patterns that move over time
 - Size diversity in pattern selection (recent sizes penalty + variety bonus)
 - Configurable difficulty presets and weights (`PatternConfig`)
 
 - 可配置的细胞自动机世界与规则（`GameConfig`）
 - 玩家、子弹与奖励细胞渲染
-- 多尺寸与形状的图案库（`PatternLibrary`）
+- **扩展图案库**：包含来自 Golly 集合与 PlayGameOfLife.com 的海量图案
 - 随时间移动的渐进式图案
 - 尺寸选择多样性（最近尺寸惩罚 + 面积差异奖励）
 - 难度预设与权重可配置（`PatternConfig`）
@@ -319,6 +321,3 @@ Deliverables:
 - 约束：默认行为不变；影响玩法需加开关；更新 README（中英双语）。
 - 修改文件：[列出你预计修改的文件]
 - 验证：执行导入校验；用 `python main.py` 启动。
-2026年1月13日 1:05:26
-
-
