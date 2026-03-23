@@ -7,6 +7,8 @@
 
 # Cellular Cube Go / 细胞自动机游戏
 
+🎮 **[Play Web Version / 游玩网页版](https://zh3zhou.github.io/Cellular-Cube-Go/)** 🎮
+
 A Pygame-based cellular automaton game with player movement, bullets, rewards, and dynamic pattern generation. Includes a size diversity algorithm that discourages repeating recent pattern sizes and rewards variety.
 
 一个基于 Pygame 的细胞自动机游戏，包含玩家移动、子弹、奖励系统以及动态图案生成。支持“最近尺寸惩罚 + 尺寸差异奖励”的选择算法，鼓励生成不同大小的图案。
