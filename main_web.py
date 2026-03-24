@@ -3,6 +3,7 @@ import pygame
 import sys
 import os
 import time
+import numpy  # Required by pygbag to load the numpy wheel
 
 # Ensure project root is on Python path
 project_root = os.path.dirname(os.path.abspath(__file__))
