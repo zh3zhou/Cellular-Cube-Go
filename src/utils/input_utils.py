@@ -3,7 +3,7 @@
 Input handling utilities
 """
 import pygame
-import ctypes
+import sys
 from config.game_config import GameConfig
 
 class InputHandler:
@@ -11,20 +11,22 @@ class InputHandler:
     输入处理器
     Input handler
     """
-    
+
     def __init__(self):
         self._switch_to_english_input()
-    
+
     def _switch_to_english_input(self):
         """
         切换到英文输入法
         Switch to English input method
         """
         try:
-            user32 = ctypes.WinDLL('user32', use_last_error=True)
-            hkl = user32.GetKeyboardLayout(0)
-            if hkl != 0x04090409:
-                user32.ActivateKeyboardLayout(0x04090409, 0)
+            if sys.platform == "win32":
+                import ctypes
+                user32 = ctypes.WinDLL('user32', use_last_error=True)
+                hkl = user32.GetKeyboardLayout(0)
+                if hkl != 0x04090409:
+                    user32.ActivateKeyboardLayout(0x04090409, 0)
         except:
             pass  # 忽略错误，继续运行 | Ignore errors and continue
     
