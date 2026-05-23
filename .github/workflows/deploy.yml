@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Web Version
         run: |
-          pygbag --build .
+          pygbag --build --template static/default.tmpl .
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
