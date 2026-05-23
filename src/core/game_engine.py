@@ -23,11 +23,16 @@ class GameEngine:
     
     def __init__(self):
         # 初始化pygame | Initialize pygame
-        pygame.init()
+        if not pygame.get_init():
+            pygame.init()
         
         # 创建屏幕 | Create screen
         self.screen = pygame.display.set_mode((GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT))
         pygame.display.set_caption(GameConfig.GAME_TITLE)
+        
+        # 强制清空屏幕为黑色，防止初始灰屏
+        self.screen.fill(GameConfig.BACKGROUND_COLOR)
+        pygame.display.flip()
         
         # 初始化游戏组件 | Initialize game components
         self.cellular_automaton = CellularAutomaton()
@@ -65,6 +70,7 @@ class GameEngine:
             self._handle_events()
             
             if not self.game_over and not self.paused:
+                self._handle_continuous_input()
                 # 更新游戏逻辑 | Update game logic
                 self._update_game_logic()
                 
@@ -97,7 +103,11 @@ class GameEngine:
                 elif self.show_settings:
                     self._handle_settings_event(event)
         
-        # 处理持续按键 | Handle continuous key presses
+    def _handle_continuous_input(self):
+        """
+        处理持续按键
+        Handle continuous key presses
+        """
         if not self.game_over and not self.paused and not self.show_settings:
             self.input_handler.handle_input(self.player)
     
