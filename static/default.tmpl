@@ -1,4 +1,4 @@
-<html lang="en-us"><script src="{{cookiecutter.cdn}}pythons.js" type=module id="site" data-python="python{{cookiecutter.PYBUILD}}" data-LINES=42 data-COLUMNS=132 data-os="vtx,snd,gui" async defer>#<!--
+<html lang="en-us"><script src="{{cookiecutter.cdn}}browserfs.min.js"></script><script src="{{cookiecutter.cdn}}pythons.js" type=module id="site" data-python="python{{cookiecutter.PYBUILD}}" data-LINES=42 data-COLUMNS=132 data-os="vtx,snd,gui">#<!--
 
 print("""
 Loading {{cookiecutter.title}} from {{cookiecutter.archive}}.apk
@@ -72,6 +72,7 @@ async def custom_site():
         # now make a prompt
         msg  = "Ready to start ! Please click/touch page"
         platform.window.infobox.innerText = msg
+        platform.window.show_infobox()
         print("\n"*4, f"    * Waiting for media user engagement. {msg} *" , "\n"*4)
 
         while not platform.window.MM.UME:
@@ -163,16 +164,9 @@ config = {
 }
 
 function show_infobox() {
-    infobox.classList.add('show');
-
-    const w = infobox.offsetWidth;
-    const h = infobox.offsetHeight;
-
-    const left = (window.innerWidth - w) / 2;
-    const top = (window.innerHeight - h) / 2;
-
-    infobox.style.left = left + "px";
-    infobox.style.top = top + "px";
+    if (infobox.innerText.trim()) {
+        infobox.classList.add('show');
+    }
 }
 
 </script>
@@ -195,6 +189,9 @@ function show_infobox() {
             font-size: 24px;
             font-weight: bold;
             margin: 0;
+            width: min(90vw, 420px);
+            text-align: center;
+            line-height: 1.4;
         }
 
         #progress {
@@ -222,7 +219,9 @@ function show_infobox() {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 40px;
+            gap: 24px;
+            padding: 32px 20px;
+            box-sizing: border-box;
             z-index: 100;
         }
 
@@ -284,16 +283,19 @@ function show_infobox() {
 
         #infobox {
             display: none;
-            position: fixed;
+            position: static;
             background: #4CAF50;
             color: #1a1a1a;
             font-family: 'Courier New', monospace;
             font-weight: bold;
             font-size: 18px;
-            padding: 16px 32px;
+            width: min(90vw, 420px);
+            padding: 12px 20px;
             border-radius: 8px;
             z-index: 999999;
             text-align: center;
+            box-sizing: border-box;
+            line-height: 1.5;
         }
         
         #infobox.show {
@@ -370,14 +372,13 @@ function show_infobox() {
 */
     </script>
 
-    <script src="{{cookiecutter.cdn}}/browserfs.min.js"></script>
-
 </head>
 
 <body>
 
     <div id="transfer">
         <div class="emscripten" id="status">Downloading...</div>
+        <div id="infobox"></div>
         
         <div class="glider-track">
             <div class="glider-container">
@@ -408,8 +409,6 @@ width="{{cookiecutter.width}}px"
 height="{{cookiecutter.height}}px"
     oncontextmenu="event.preventDefault()" tabindex=1 hidden>
     </canvas>
-
-    <div id="infobox"></div>
 
     <div id=html></div>
 
@@ -485,7 +484,6 @@ frameborder="1"
         info.hidden = debug_hidden
         box.hidden =  debug_hidden
 
-        show_infobox()
     }
 
     function custom_prerun(){

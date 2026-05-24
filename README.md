@@ -127,17 +127,22 @@ If you modify code and want to test how it behaves in the browser:
 
 1. **Build / 编译打包**:
    ```bash
-   pygbag --build --template static/default.tmpl .
+   py -3.12 -m pygbag --build --template static/default.tmpl .
    ```
 2. **Local Server / 启动本地测试服务**:
-   Do **not** use `pygbag .` as it proxies large files unreliably. Use Python's built-in HTTP server:
-   **不要**使用 `pygbag .` 自带的服务器（代理大文件如 numpy 时不稳定）。请使用 Python 自带服务：
+   For `pygbag 0.9.3`, use pygbag's local server **with the custom template**, so dependency wheels can be fetched from the local `/cdn` path and the loading UI matches the deployed version:
+   对于 `pygbag 0.9.3`，本地调试请使用 **带自定义模板的** pygbag 自带服务，这样依赖轮子才能从本地 `/cdn` 路径正确加载，同时加载界面也会和部署版一致：
    ```bash
-   python -m http.server 8888 -d build/web
+   py -3.12 -m pygbag --template static/default.tmpl .
    ```
 3. **Test / 测试**:
-   Open `http://localhost:8888` in your browser. Open the browser's **Developer Tools (F12) -> Console** to view `print()` statements and Python errors.
-   浏览器访问 `http://localhost:8888`。按 **F12 打开开发者工具 -> Console (控制台)**，即可查看代码中的 `print()` 输出和报错信息。
+   Open `http://localhost:8000` in your browser. Open the browser's **Developer Tools (F12) -> Console** to view loader/runtime messages.
+   浏览器访问 `http://localhost:8000`。按 **F12 打开开发者工具 -> Console (控制台)**，查看加载器和运行时信息。
+4. **Note / 注意**:
+   A plain static server like `python -m http.server` may load `index.html`, but it can fail to provide `/cdn/...whl` dependency requests locally, which looks like "click has no response".
+   像 `python -m http.server` 这样的纯静态服务器虽然能打开 `index.html`，但本地往往无法正确提供 `/cdn/...whl` 依赖请求，看起来就会像“点击后没有反应”。
+   Also, running plain `pygbag .` may regenerate the page with the default template, making the custom loading progress bar and animation disappear.
+   另外，直接运行 `pygbag .` 可能会重新生成默认模板页面，导致自定义加载进度条和动画消失。
 
 ## Configuration / 配置
 - `config/game_config.py`
