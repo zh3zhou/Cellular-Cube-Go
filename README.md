@@ -95,8 +95,49 @@ pip install -r requirements.txt
 python main.py
 ```
 
-- Run from the project root. Use `python main.py` or `python -m src.main`. Do not run `src/main.py` directly.
-- 请在项目根目录运行。使用 `python main.py` 或 `python -m src.main`。不要直接运行 `src/main.py`。
+- Run from the project root. Use `python main.py`. Do not run `src/main.py` directly.
+- 请在项目根目录运行。使用 `python main.py`。不要直接运行 `src/main.py`。
+
+## Web Version & Debugging / 网页版与调试指南
+
+The project uses a **Single Codebase** approach. `main.py` is the universal entry point for both local execution and WebAssembly (WASM) deployment via `pygbag`.
+本项目采用 **单代码库 (Single Codebase)** 架构，`main.py` 是本地运行和网页版 (WASM) 部署的通用入口。
+
+### 1. How to distinguish / 如何区分本地与网页版？
+- **Local Version (本地版)**: Runs directly via `python main.py` using standard `asyncio` and `pygame-ce`. Performance is handled by local hardware.
+- **Web Version (网页版)**: Compiled via `pygbag`, runs in the browser. It uses `pygbag.aio` and yields control to the browser's `requestAnimationFrame` via `await asyncio.sleep(0)`.
+- **Code Distinction**: In `main.py`, the platform is detected automatically:
+  ```python
+  if sys.platform in ("emscripten", "wasi"):
+      import pygbag.aio as asyncio  # Web
+  else:
+      import asyncio                # Local
+  ```
+
+### 2. Debugging Local Version / 调试本地版
+Simply run the script. Any errors will show in your terminal.
+直接在终端运行，报错会直接打印在终端中：
+```bash
+python main.py
+```
+
+### 3. Debugging Web Version / 调试网页版
+If you modify code and want to test how it behaves in the browser:
+如果你修改了代码，需要测试其在浏览器中的表现：
+
+1. **Build / 编译打包**:
+   ```bash
+   pygbag --build --template static/default.tmpl .
+   ```
+2. **Local Server / 启动本地测试服务**:
+   Do **not** use `pygbag .` as it proxies large files unreliably. Use Python's built-in HTTP server:
+   **不要**使用 `pygbag .` 自带的服务器（代理大文件如 numpy 时不稳定）。请使用 Python 自带服务：
+   ```bash
+   python -m http.server 8888 -d build/web
+   ```
+3. **Test / 测试**:
+   Open `http://localhost:8888` in your browser. Open the browser's **Developer Tools (F12) -> Console** to view `print()` statements and Python errors.
+   浏览器访问 `http://localhost:8888`。按 **F12 打开开发者工具 -> Console (控制台)**，即可查看代码中的 `print()` 输出和报错信息。
 
 ## Configuration / 配置
 - `config/game_config.py`
