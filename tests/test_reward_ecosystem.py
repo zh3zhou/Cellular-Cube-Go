@@ -8,7 +8,13 @@ import pytest
 from src.core.cellular_automaton import CellularAutomaton
 from src.core.collision_detection import CollisionDetector
 from src.core.game_engine import GameEngine
-from src.entities.reward import REWARD_TYPES, RewardInstance, RewardManager
+from src.core.rules import CONWAY_LIFE
+from src.entities.reward import (
+    REWARD_TYPES,
+    RewardInstance,
+    RewardManager,
+    calculate_incubation_generations,
+)
 
 
 class _BlockDefinition:
@@ -78,6 +84,7 @@ def test_each_reward_type_creates_its_bound_rule_zone(type_id, rule_id):
     assert zone.base_color == next(
         item.color for item in REWARD_TYPES if item.id == type_id
     )
+    assert zone.min_generations == zone.max_generations
 
 
 def test_green_floor_and_small_library_share_return():
@@ -95,6 +102,49 @@ def test_progress_uses_survival_and_successful_greenhouses():
     assert manager.progress == pytest.approx(0.7)
     manager.successful_rewards = 8
     assert manager.progress == 1.0
+
+
+@pytest.mark.parametrize(
+    ("direction", "expected"),
+    [
+        ("up", (33, 55)),
+        ("down", (27, 55)),
+        ("left", (30, 58)),
+        ("right", (30, 52)),
+        ("up-left", (32, 57)),
+        ("up-right", (32, 53)),
+        ("down-left", (28, 57)),
+        ("down-right", (28, 53)),
+    ],
+)
+def test_seed_is_placed_behind_exit_direction(direction, expected):
+    manager = RewardManager(rng=random.Random(1), catalog=_BlockCatalog())
+    assert manager._calculate_seed_position(
+        (30, 55), direction, 1, 1, 60, 110
+    ) == expected
+
+
+def test_large_seed_bounding_box_stays_behind_player():
+    manager = RewardManager(rng=random.Random(1), catalog=_BlockCatalog())
+    pattern_width = 17
+    start_row, start_col = manager._calculate_seed_position(
+        (30, 55), "right", 9, pattern_width, 60, 110
+    )
+    assert start_row == 26
+    assert start_col + pattern_width - 1 == 52
+    assert start_col + pattern_width - 1 < 55
+
+
+def test_incubation_duration_increases_with_pattern_size_and_complexity():
+    small_simple = calculate_incubation_generations(
+        CONWAY_LIFE, complexity_score=0, bounding_area=4
+    )
+    large_complex = calculate_incubation_generations(
+        CONWAY_LIFE, complexity_score=100, bounding_area=400
+    )
+    assert small_simple >= CONWAY_LIFE.min_generations
+    assert large_complex > small_simple
+    assert large_complex <= CONWAY_LIFE.max_generations
 
 
 def test_contact_leave_creates_nonlethal_zone_then_commits():
@@ -117,6 +167,10 @@ def test_contact_leave_creates_nonlethal_zone_then_commits():
     assert not manager.reward_cells
     assert len(manager.evolution_zones) == 1
     zone = manager.evolution_zones[0]
+    assert zone.current_step == 0
+    assert zone.get_color() == next(
+        item.color for item in REWARD_TYPES if item.id == "life"
+    )
     r0, c0, r1, c1 = zone.reserved_rect
     assert not state[r0:r1, c0:c1].any()
 

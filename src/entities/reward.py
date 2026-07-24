@@ -10,7 +10,7 @@ import numpy as np
 import pygame
 
 from config.game_config import GameConfig
-from src.core.rules import get_rule
+from src.core.rules import RuleSpec, get_rule
 from src.entities.evolution_zone import EvolutionZone
 from src.patterns.catalog import PatternCatalog
 from src.patterns.selector import PatternSelector, SelectionContext
@@ -53,14 +53,17 @@ class RewardManager:
     """Spawn colored rewards and mature their local ecosystems into Conway."""
 
     direction_offsets = {
-        "up": (-3, 0),
-        "down": (3, 0),
-        "left": (0, -3),
-        "right": (0, 3),
-        "up-left": (-2, -2),
-        "up-right": (-2, 2),
-        "down-left": (2, -2),
-        "down-right": (2, 2),
+        # The player has already left the reward in ``direction``. Place the
+        # greenhouse on the opposite side so continuing forward never forces
+        # an immediate dodge or a manual backtrack.
+        "up": (3, 0),
+        "down": (-3, 0),
+        "left": (0, 3),
+        "right": (0, -3),
+        "up-left": (2, 2),
+        "up-right": (2, -2),
+        "down-left": (-2, 2),
+        "down-right": (-2, -2),
         "center": (0, 0),
         None: (0, 0),
     }
@@ -133,7 +136,14 @@ class RewardManager:
         self._cleanup_occupied_rewards()
         self._try_create_reward()
         converted = self._check_player_contact(player)
-        self._advance_evolution_zones()
+        # Keep a newly created greenhouse at its exact reward color for its
+        # first rendered frame; older zones continue evolving normally.
+        created_zone = (
+            self.evolution_zones[-1]
+            if converted is not None and self.evolution_zones
+            else None
+        )
+        self._advance_evolution_zones(skip_zone=created_zone)
         return converted
 
     def _cleanup_occupied_rewards(self) -> None:
@@ -325,13 +335,12 @@ class RewardManager:
                 world_width,
             )
             rule = get_rule(reward_type.rule_id)
-            complexity = float(getattr(definition, "complexity_score", 0.0))
-            area = pattern_height * pattern_width
-            incubation_ratio = min(
-                0.30, 0.20 * complexity / 100.0 + 0.10 * min(1.0, area / 400.0)
-            )
-            effective_min = rule.min_generations + round(
-                (rule.max_generations - rule.min_generations) * incubation_ratio
+            incubation_generations = calculate_incubation_generations(
+                rule,
+                complexity_score=float(
+                    getattr(definition, "complexity_score", 0.0)
+                ),
+                bounding_area=pattern_height * pattern_width,
             )
             zone = EvolutionZone(
                 pattern,
@@ -341,7 +350,11 @@ class RewardManager:
                 padding=reward_type.padding,
                 base_color=reward_type.color,
                 world_shape=state.shape,
-                min_generations=effective_min,
+                # Incubation is a fixed visual/evolution schedule. Stability
+                # is still tracked, but no longer makes the zone jump to white
+                # before its size/complexity-derived gradient is complete.
+                min_generations=incubation_generations,
+                max_generations=incubation_generations,
             )
             if any(zone.overlaps(existing, buffer=1) for existing in self.evolution_zones):
                 continue
@@ -366,11 +379,21 @@ class RewardManager:
         world_width: int,
     ) -> tuple[int, int]:
         offset_row, offset_col = self.direction_offsets.get(direction, (0, 0))
-        center_row = reward_position[0] + offset_row
-        center_col = reward_position[1] + offset_col
+        if offset_row < 0:
+            start_row = reward_position[0] + offset_row - pattern_height + 1
+        elif offset_row > 0:
+            start_row = reward_position[0] + offset_row
+        else:
+            start_row = reward_position[0] - pattern_height // 2
+        if offset_col < 0:
+            start_col = reward_position[1] + offset_col - pattern_width + 1
+        elif offset_col > 0:
+            start_col = reward_position[1] + offset_col
+        else:
+            start_col = reward_position[1] - pattern_width // 2
         return (
-            max(0, min(center_row - pattern_height // 2, world_height - pattern_height)),
-            max(0, min(center_col - pattern_width // 2, world_width - pattern_width)),
+            max(0, min(start_row, world_height - pattern_height)),
+            max(0, min(start_col, world_width - pattern_width)),
         )
 
     @staticmethod
@@ -386,10 +409,16 @@ class RewardManager:
         }
         return np.rot90(cells, rotations.get(direction, 0)).copy()
 
-    def _advance_evolution_zones(self) -> None:
+    def _advance_evolution_zones(
+        self,
+        *,
+        skip_zone: EvolutionZone | None = None,
+    ) -> None:
         state = self._require_state()
         finished: list[EvolutionZone] = []
         for zone in self.evolution_zones:
+            if zone is skip_zone:
+                continue
             if not zone.step():
                 continue
             for row, col in zone.commit_coordinates():
@@ -406,3 +435,21 @@ class RewardManager:
         if self._current_state is None:
             raise RuntimeError("RewardManager.update must receive a state first")
         return self._current_state
+
+
+def calculate_incubation_generations(
+    rule: RuleSpec,
+    *,
+    complexity_score: float,
+    bounding_area: int,
+) -> int:
+    """Map Pattern complexity and size onto the rule's incubation range."""
+    normalized_complexity = min(100.0, max(0.0, float(complexity_score)))
+    normalized_area = min(1.0, max(0, int(bounding_area)) / 400.0)
+    incubation_ratio = min(
+        0.30,
+        0.20 * normalized_complexity / 100.0 + 0.10 * normalized_area,
+    )
+    return rule.min_generations + round(
+        (rule.max_generations - rule.min_generations) * incubation_ratio
+    )

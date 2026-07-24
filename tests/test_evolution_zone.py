@@ -1,6 +1,6 @@
 import unittest
 
-from src.core.rules import CONWAY_LIFE
+from src.core.rules import CONWAY_LIFE, RULES
 from src.entities.evolution_zone import EvolutionZone, ZoneStatus
 
 
@@ -67,10 +67,45 @@ class EvolutionZoneTests(unittest.TestCase):
         adjacent = EvolutionZone([[1]], 2, 4, "life", padding=0)
         self.assertTrue(first.overlaps(adjacent, buffer=1))
 
-    def test_active_zone_color_is_immediately_legible(self):
-        zone = EvolutionZone([[1, 1], [1, 1]], 2, 2, "life", padding=1)
-        color = zone.get_color()
-        self.assertGreaterEqual(color[0], int(zone.base_color[0] * 0.55))
+    def test_all_rule_colors_interpolate_from_base_to_white(self):
+        for rule in RULES.values():
+            with self.subTest(rule=rule.id):
+                zone = EvolutionZone(
+                    [[1, 1], [1, 1]],
+                    2,
+                    2,
+                    rule,
+                    padding=1,
+                    min_generations=10,
+                    max_generations=10,
+                )
+                self.assertEqual(zone.get_color(), rule.color)
+                zone.current_step = 5
+                self.assertEqual(
+                    zone.get_color(),
+                    tuple(
+                        int(round(channel + (255 - channel) * 0.5))
+                        for channel in rule.color
+                    ),
+                )
+                zone.current_step = 10
+                self.assertEqual(zone.get_color(), (255, 255, 255))
+
+    def test_stability_tracking_does_not_extend_incubation(self):
+        zone = EvolutionZone(
+            [[1, 1], [1, 1]],
+            5,
+            5,
+            "life",
+            padding=2,
+            min_generations=12,
+            max_generations=12,
+        )
+        for _ in range(11):
+            self.assertFalse(zone.step())
+        self.assertTrue(zone.step())
+        self.assertEqual(zone.current_step, 12)
+        self.assertEqual(zone.finish_reason, "stable")
 
 
 if __name__ == "__main__":

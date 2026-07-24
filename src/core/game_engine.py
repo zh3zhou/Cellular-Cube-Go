@@ -198,10 +198,14 @@ class GameEngine:
         重启游戏
         Restart game
         """
+        # The immutable, validated catalog is expensive to parse (especially
+        # under WebAssembly). A restart resets run-local selection history,
+        # but must reuse the already loaded catalog.
+        pattern_catalog = self.reward_manager.catalog
         self.cellular_automaton = CellularAutomaton()
         self.player = Player()
         self.bullet_manager = BulletManager()
-        self.reward_manager = RewardManager()
+        self.reward_manager = RewardManager(catalog=pattern_catalog)
         self.running = True
         self.game_over = False
         self.paused = False
