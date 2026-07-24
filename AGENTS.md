@@ -57,6 +57,10 @@ specifiers as import names while resolving Web wheels.
 - Do not edit generated files under `build/`; rebuild them instead.
 - Do not commit `《开发》/`, `.trae/documents/`, environments, caches, test
   output, or importer working data.
+- Preserve the author's handwritten Chinese preface under `作者的碎碎念` in
+  `README.md` verbatim. It is intentional public self-expression, not obsolete
+  technical documentation; do not remove, rewrite, translate, or collapse it
+  unless the repository owner explicitly requests that change.
 - Do not add hooks, durable automations, remote writes, or new public features
   without explicit authorization.
 
