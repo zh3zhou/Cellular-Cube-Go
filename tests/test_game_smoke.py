@@ -4,6 +4,7 @@ os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 from src.core.game_engine import GameEngine
+from src.patterns.catalog import PatternCatalog
 
 
 def test_game_engine_public_step_render_shutdown():
@@ -27,5 +28,25 @@ def test_web_sized_frames_use_fixed_simulation_rate():
         assert game.iteration == 0
         game.step([], 1 / 60)
         assert game.iteration == 1
+    finally:
+        game.shutdown()
+
+
+def test_restart_reuses_validated_pattern_catalog(monkeypatch):
+    game = GameEngine()
+    catalog = game.reward_manager.catalog
+    try:
+        def fail_if_reloaded():
+            raise AssertionError("restart reloaded the Pattern catalog")
+
+        monkeypatch.setattr(
+            PatternCatalog,
+            "load_default",
+            staticmethod(fail_if_reloaded),
+        )
+        game._restart_game()
+        assert game.reward_manager.catalog is catalog
+        assert game.iteration == 0
+        assert game.survival_time_seconds == 0.0
     finally:
         game.shutdown()

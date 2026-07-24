@@ -128,12 +128,12 @@ class EvolutionZone:
         return self.status is ZoneStatus.EXTINCT
 
     def get_color(self) -> Tuple[int, int, int]:
-        # Active ecosystems must remain legible even when a stable Pattern
-        # matures well before its hard deadline.  This is visual only: unlike
-        # the retired ProgressivePattern code, evolution never pauses.
+        """Interpolate continuously from the reward color to mature white."""
         progress = min(1.0, self.current_step / max(1, self.max_generations))
-        brightness = 0.55 + 0.45 * progress
-        return tuple(int(channel * brightness) for channel in self.base_color)
+        return tuple(
+            int(round(channel + (255 - channel) * progress))
+            for channel in self.base_color
+        )
 
     def step(self) -> bool:
         """Advance once; return True when the zone is mature or extinct."""
@@ -148,13 +148,18 @@ class EvolutionZone:
             self.status = ZoneStatus.EXTINCT
             self.finish_reason = "extinct"
             return True
-        if self.current_step >= self.min_generations:
-            self._update_stability_candidate(signature)
-            if self._candidate_repeats >= 3:
-                self.status = ZoneStatus.MATURE
-                self.stable_period = self._candidate_period
-                self.finish_reason = "stable"
-                return True
+        # Track recurrence throughout incubation so stable structures can
+        # mature exactly when their visual schedule completes. Waiting until
+        # min_generations to begin tracking added an unintended delay.
+        self._update_stability_candidate(signature)
+        if (
+            self.current_step >= self.min_generations
+            and self._candidate_repeats >= 3
+        ):
+            self.status = ZoneStatus.MATURE
+            self.stable_period = self._candidate_period
+            self.finish_reason = "stable"
+            return True
         if self.current_step >= self.max_generations:
             self.status = ZoneStatus.MATURE
             self.finish_reason = "max_generations"
