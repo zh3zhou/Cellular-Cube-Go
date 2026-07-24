@@ -7,55 +7,65 @@ small survival-and-exploration game. The player is a red square moving through
 an evolving black-and-white world. White live cells are hazards. Colored
 rewards create visible interventions in the world's evolution.
 
-The intended experience is:
-
-- readable, minimal pixel art;
-- interesting emergent structures with low repetition;
-- a world that visibly evolves instead of behaving like a conventional score
-  chase;
-- one codebase that behaves consistently on desktop and in the browser.
-
-The default mode remains a survival challenge. Exploration, visual emergence,
-and rule interaction matter more than adding a large progression system.
+The intended experience is readable minimal pixel art, interesting emergence
+with low repetition, and one codebase that behaves consistently on desktop and
+in the browser. The default remains a survival challenge; exploration and rule
+interaction matter more than a conventional score chase.
 
 ## Current rule-zone design
 
 The main world is binary Conway Life (`B3/S23`) with hard, non-wrapping
-boundaries. A colored reward selects one of four rules:
+boundaries. Rewards use five ecosystems:
 
-| Color | Rule | Rulestring | Default weight |
-| --- | --- | --- | ---: |
-| Green | Conway Life | `B3/S23` | 55% |
-| Purple | HighLife | `B36/S23` | 20% |
-| Orange | Seeds | `B2/S` | 15% |
-| Cyan-blue | Day & Night | `B3678/S34678` | 10% |
+| Color | Rule | Rulestring / neighborhood | Routing |
+| --- | --- | --- | --- |
+| Green | Conway Life | `B3/S23`, Moore | minimum 55% |
+| Purple | HighLife | `B36/S23`, Moore | dynamic |
+| Orange | Seeds | `B2/S`, Moore | dynamic |
+| Cyan-blue | Day & Night | `B3678/S34678`, Moore | dynamic |
+| Yellow | Wolfram Code 52 | `B24/S134`, von Neumann | dynamic |
 
-After the player touches and leaves a reward, its Pattern evolves inside an
-isolated local zone. The outside Conway world cannot enter the zone, and the
-incubating colored cells are non-lethal. A stable, periodic, extinct, or
-time-limited zone resolves deterministically; surviving cells then become white
-Conway cells in the main world.
+The secondary share is based on the square root of each usable library size
+and its fresh candidates; unavailable share returns to Conway. The route and
+Pattern choice use the same candidate snapshot.
+
+After the player touches and leaves a reward, its Pattern is placed forward in
+the exit direction and evolves inside an isolated local zone. The outside
+Conway world cannot enter the zone, and the incubating colored cells are
+non-lethal. A stable, periodic, extinct, or time-limited zone resolves
+deterministically; surviving cells then become lethal white Conway cells.
+Pattern area and complexity may lengthen the minimum incubation inside each
+rule's published generation range.
+
+## Complexity and variety
+
+Pattern complexity opens continuously from survival time and successfully
+created greenhouses. The default 90-second Variety Duration supplies 70% of
+progress and eight successful greenhouses supply the remaining 30%. Large
+Pattern probability rises from about 3% to at most 15%.
+
+Recent Pattern IDs, the last two sizes, category history, and the most recent
+200 choices restore the variety goals that existed before the rule-zone
+refactor. Low-complexity Patterns remain possible late in a run.
 
 ## Pattern data policy
 
-The runtime catalog is rule-first and versioned. Entries need a stable ID,
-rulestring compatibility, category, dimensions, population, RLE, selection
-metadata, source, and license/provenance metadata.
+The schema-v3 runtime catalog is rule-first and versioned. Entries need a
+stable ID, rulestring compatibility, category, dimensions, population, RLE,
+selection metadata, deterministic complexity analysis, source, and
+license/provenance metadata.
 
-Importing is an offline development operation. Runtime gameplay never scrapes
-the network. A source may be useful for research without granting
-redistribution rights; entries with missing or unclear redistribution
-information must stay out of the published catalog.
+The 2026-07-24 snapshot contains project-owned seeds, licensed Conway entries
+from the PlayGameOfLife Life Lexicon, and a pinned curated set of LifeWiki OCA
+entries for HighLife, Seeds, and Day & Night. Deterministic project-owned
+search fills every secondary rule, including Code 52, to at least 20 playable
+geometric uniques.
 
-The 2026-07-24 catalog snapshot contains project-owned seed Patterns and
-licensed Conway entries from the PlayGameOfLife Life Lexicon, plus a pinned
-curated set of LifeWiki OCA entries for HighLife, Seeds, and Day & Night.
-Network acquisition is isolated to a development tool; the strict RLE
-importer, validation, deduplication, and runtime are local and deterministic.
-
-All valid entries may be retained in the catalog, but gameplay eligibility also
-depends on fitting the visible world. Large entries form a low-frequency tier
-instead of overwhelming ordinary reward selection.
+Importing and analysis are offline development operations. Runtime gameplay
+never scrapes the network. Unknown-license data remains out of the published
+catalog but must be visible in import reports. All valid entries may remain in
+the catalog; gameplay eligibility additionally requires fitting the visible
+world.
 
 ## Deliberate non-goals for this phase
 

@@ -71,6 +71,26 @@ geometrically deduplicated. Source URLs, content hashes, attribution, and
 change notices are retained per entry. The runtime copy of these notices is
 `assets/patterns/NOTICE.md`, which is intentionally included in Web artifacts.
 
+### Project-generated secondary-rule Patterns
+
+The v3 catalog includes 59 fixed-seed, algorithmically searched Patterns whose
+provider is `cellular-cube-go-generator`. They are project output under MIT,
+not copied from external diagrams. The catalog stores generator version,
+random seed, source digest, and 256-generation analysis metadata. The v3
+report records accepted and rejected candidates.
+
+The Code 52 rule was selected with research context from Packard and Wolfram's
+two-dimensional cellular-automaton work and later Code 52 analysis:
+
+- `https://content.wolfram.com/sw-publications/2020/07/two-dimensional-cellular-automata.pdf`
+- `https://www.complex-systems.com/abstracts/v17_i02_a05/`
+
+No paper figure or Pattern was copied into the catalog.
+
+The historical `assets/patterns/library.json` contained 109 records without
+per-entry source or redistribution terms. It remains excluded; the v3 report
+records the whole source as `unknown-license` so the exclusion is auditable.
+
 ## BrowserFS
 
 The Web loader references BrowserFS 1.4.3 from jsDelivr because pygbag 0.9.3's
