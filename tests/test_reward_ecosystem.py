@@ -12,12 +12,19 @@ from src.entities.reward import REWARD_TYPES, RewardInstance, RewardManager
 
 
 class _BlockDefinition:
+    def __init__(self, cells=None):
+        self.cells = cells or [[1, 1], [1, 1]]
+
     def to_matrix(self):
-        return [[1, 1], [1, 1]]
+        return self.cells
 
 
 class _BlockCatalog:
     def select(self, *args, **kwargs):
+        if args and args[0] == "wolfram_code_52":
+            return _BlockDefinition(
+                [[0, 1, 0], [1, 1, 1], [0, 1, 0]]
+            )
         return _BlockDefinition()
 
 
@@ -33,8 +40,15 @@ class _Player:
 
 def test_reward_type_distribution_matches_documented_weights():
     manager = RewardManager(rng=random.Random(20260724))
+    manager.survival_seconds = 129
     counts = Counter(manager.choose_reward_type().id for _ in range(10_000))
-    expected = {item.id: item.weight for item in REWARD_TYPES}
+    expected = {
+        "life": 0.55,
+        "highlife": 0.1125,
+        "seeds": 0.1125,
+        "day_night": 0.1125,
+        "wolfram_code_52": 0.1125,
+    }
     for reward_type, target in expected.items():
         assert abs(counts[reward_type] / 10_000 - target) < 0.03
 
@@ -46,6 +60,7 @@ def test_reward_type_distribution_matches_documented_weights():
         ("highlife", "highlife"),
         ("seeds", "seeds"),
         ("day_night", "day_night"),
+        ("wolfram_code_52", "wolfram_code_52"),
     ],
 )
 def test_each_reward_type_creates_its_bound_rule_zone(type_id, rule_id):
@@ -63,6 +78,23 @@ def test_each_reward_type_creates_its_bound_rule_zone(type_id, rule_id):
     assert zone.base_color == next(
         item.color for item in REWARD_TYPES if item.id == type_id
     )
+
+
+def test_green_floor_and_small_library_share_return():
+    manager = RewardManager(rng=random.Random(3))
+    manager.survival_seconds = 0
+    weights = manager.reward_route_weights()
+    assert weights["life"] >= 0.55
+    assert abs(sum(weights.values()) - 1.0) < 1e-12
+    assert weights["life"] > 0.55
+
+
+def test_progress_uses_survival_and_successful_greenhouses():
+    manager = RewardManager(rng=random.Random(4))
+    manager.survival_seconds = 90
+    assert manager.progress == pytest.approx(0.7)
+    manager.successful_rewards = 8
+    assert manager.progress == 1.0
 
 
 def test_contact_leave_creates_nonlethal_zone_then_commits():
