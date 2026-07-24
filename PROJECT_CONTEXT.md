@@ -29,13 +29,13 @@ The secondary share is based on the square root of each usable library size
 and its fresh candidates; unavailable share returns to Conway. The route and
 Pattern choice use the same candidate snapshot.
 
-After the player touches and leaves a reward, its Pattern is placed forward in
-the exit direction and evolves inside an isolated local zone. The outside
-Conway world cannot enter the zone, and the incubating colored cells are
-non-lethal. A stable, periodic, extinct, or time-limited zone resolves
-deterministically; surviving cells then become lethal white Conway cells.
-Pattern area and complexity may lengthen the minimum incubation inside each
-rule's published generation range.
+After the player touches and leaves a reward, its complete Pattern bounding box
+is placed behind the exit direction and evolves inside an isolated local zone.
+The outside Conway world cannot enter the zone, and the incubating colored
+cells are non-lethal. They interpolate from the reward color toward white over
+a fixed schedule derived from Pattern area and measured complexity inside each
+rule's published generation range. Extinction clears a zone early; otherwise
+the schedule ends with surviving cells becoming lethal white Conway cells.
 
 ## Complexity and variety
 

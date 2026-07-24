@@ -14,7 +14,7 @@
 
 ---
 
-在持续演化的元胞自动机中控制红色方块生存。白色细胞是危险；触碰并离开彩色奖励，会在移动方向前方生成一座使用不同规则的隔离温室。彩色孵化细胞可以穿过且不会致死，成熟后则变为白色、并入 Conway 主世界。
+在持续演化的元胞自动机中控制红色方块生存。白色细胞是危险；触碰并离开彩色奖励，会在离开方向后方生成一座使用不同规则的隔离温室，不必为了躲开新 Pattern 手动折返。彩色孵化细胞可以穿过且不会致死，并会从对应奖励色逐代渐变到白色；成熟后并入 Conway 主世界。
 
 ![Cellular Cube Go 网页版实机画面](assets/screenshots/web-gameplay.png)
 
@@ -30,7 +30,7 @@
 | 设置内 `A/D` | 调整数值 |
 | 设置内 `Enter/Space` | 切换开关 |
 
-主世界始终使用硬边界、二值 Conway Life。最多同时存在三座互不重叠且相隔一格的温室；外面的 Conway 细胞不能侵入。温室稳定、灭绝或达到代数上限后结束，仍存活的结构成为普通白色细胞，也会恢复致死碰撞。
+主世界始终使用硬边界、二值 Conway Life。最多同时存在三座互不重叠且相隔一格的温室；外面的 Conway 细胞不能侵入。温室若演化灭绝会直接清除；否则由 Pattern 的包围盒大小与复杂度共同决定孵化代数，并在颜色渐变完成时成为普通白色细胞、恢复致死碰撞。
 
 ## 五种奖励生态
 
@@ -58,7 +58,7 @@ progress = min(1, 0.7 × survival_time / Variety Duration + 0.3 × rewards / 8)
 
 ## Quick Play (English)
 
-[Play the Web version](https://zh3zhou.github.io/Cellular-Cube-Go/) and move the red cube with `WASD`. Avoid white cells. Touch and then leave a colored reward to incubate a Pattern under its color's rule. Colored greenhouse cells are safe to cross; when they turn white, they join the lethal Conway world. Use `P` to pause, `R` to restart after game over, and `Esc` for settings.
+[Play the Web version](https://zh3zhou.github.io/Cellular-Cube-Go/) and move the red cube with `WASD`. Avoid white cells. Touch and then leave a colored reward to incubate a Pattern behind your exit direction under its color's rule. Greenhouse cells fade from the reward color to white and are safe to cross while colored; once mature, they join the lethal Conway world. Use `P` to pause, `R` to restart after game over, and `Esc` for settings.
 
 ## 桌面版
 
