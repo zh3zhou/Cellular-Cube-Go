@@ -3,8 +3,7 @@
 Game core engine
 """
 import pygame
-import time
-from typing import List, Tuple
+from typing import Iterable
 from config.game_config import GameConfig
 from src.core.cellular_automaton import CellularAutomaton
 from src.core.collision_detection import CollisionDetector
@@ -52,45 +51,45 @@ class GameEngine:
         # 时间控制 | Time control
         self.interval = 1.0 / GameConfig.FPS
         self.clock = pygame.time.Clock()
+        self._time_accumulator = 0.0
         self._game_start_iteration = 0
         self.show_settings = False
         self._settings_index = 0
         self._last_adjust_index = None
         self._last_adjust_time_ms = 0
     
-    def run(self):
-        """
-        主游戏循环
-        Main game loop
-        """
-        while self.running:
-            start_time = time.time()
-            
-            # 处理事件 | Handle events
-            self._handle_events()
-            
+    def step(self, events: Iterable[pygame.event.Event], dt: float) -> None:
+        """Advance input and simulation by one application frame."""
+        self._handle_events(events)
+        if not self.running:
+            return
+        self._time_accumulator = min(0.25, self._time_accumulator + max(0.0, dt))
+        tick_interval = 1.0 / max(1, GameConfig.FPS)
+        while self._time_accumulator + 1e-9 >= tick_interval:
+            self._time_accumulator -= tick_interval
             if not self.game_over and not self.paused:
                 self._handle_continuous_input()
-                # 更新游戏逻辑 | Update game logic
                 self._update_game_logic()
-                
-                # 检查碰撞 | Check collisions
                 self._check_collisions()
-            
-            # 渲染 | Render
-            self._render()
-            
-            # 控制帧率 | Control framerate
-            self._control_framerate(start_time)
-        
+                if self.reward_manager.committed_this_update:
+                    # A newly white pattern must be rendered once before a
+                    # catch-up tick can evolve it as ordinary Conway cells.
+                    break
+
+    def render(self) -> None:
+        """Render the current application frame."""
+        self._render()
+
+    def shutdown(self) -> None:
+        """Release pygame resources owned by the application."""
         pygame.quit()
     
-    def _handle_events(self):
+    def _handle_events(self, events=None):
         """
         处理游戏事件
         Handle game events
         """
-        for event in pygame.event.get():
+        for event in events if events is not None else pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             elif event.type == pygame.KEYDOWN:
@@ -124,22 +123,24 @@ class GameEngine:
         # 更新子弹系统 | Update bullet system
         self.bullet_manager.update(self.cellular_automaton.state, self.player.get_grid_position())
         
-        # 更新奖励系统 | Update reward system
-        converted_reward = self.reward_manager.update(self.cellular_automaton.state, self.player)
-        
-        # 更新元胞自动机（传递渐进式patterns用于保护区域） | Update CA (pass progressive patterns for protected zones)
+        # Evolve Conway first while active local ecosystems reserve isolated
+        # rectangles. Reward updates run afterwards so a mature zone's white
+        # commit remains visible for a complete frame.
         self.cellular_automaton.update(
-            self.reward_manager.reward_cells,
-            self.reward_manager.progressive_patterns
+            [],
+            self.reward_manager.evolution_zones,
+        )
+
+        # Spawn/contact rewards, advance local rules, and commit mature zones.
+        self.reward_manager.update(self.cellular_automaton.state, self.player)
+        # A completed zone stops being nonlethal immediately. This also
+        # refreshes the mask for zones created after the Conway tick.
+        self.cellular_automaton.sync_evolution_zones(
+            self.reward_manager.evolution_zones
         )
         
         # 增加迭代次数 | Increase iteration count
         self.iteration += 1
-        try:
-            scale = min(1.0, self.iteration / float(getattr(GameConfig, 'SURVIVAL_RAMP_FRAMES', 1000)))
-            self.reward_manager.pattern_generator.set_survival_scale(scale)
-        except Exception:
-            pass
     
     def _check_collisions(self):
         """
@@ -185,19 +186,21 @@ class GameEngine:
         
         pygame.display.flip()
     
-    def _control_framerate(self, start_time):
-        """
-        控制帧率
-        Control framerate
-        """
-        self.clock.tick(GameConfig.FPS)
-    
     def _restart_game(self):
         """
         重启游戏
         Restart game
         """
-        self.__init__()
+        self.cellular_automaton = CellularAutomaton()
+        self.player = Player()
+        self.bullet_manager = BulletManager()
+        self.reward_manager = RewardManager()
+        self.running = True
+        self.game_over = False
+        self.paused = False
+        self.iteration = 0
+        self._game_start_iteration = 0
+        self._time_accumulator = 0.0
     def _handle_settings_event(self, event):
         items = self._settings_items()
         if event.key == pygame.K_w:

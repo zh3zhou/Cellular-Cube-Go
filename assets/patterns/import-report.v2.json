@@ -1,0 +1,4411 @@
+{
+  "schema_version": 1,
+  "catalog_schema_version": 2,
+  "summary": {
+    "duplicate": 69,
+    "imported": 659,
+    "too-large": 4
+  },
+  "results": [
+    {
+      "source_file": "https://playgameoflife.com/lexicon/1-2-3-4",
+      "status": "imported",
+      "pattern_id": "life-lexicon-1-2-3-4",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/1-2-3",
+      "status": "imported",
+      "pattern_id": "life-lexicon-1-2-3",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/101",
+      "status": "imported",
+      "pattern_id": "life-lexicon-101",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/119P4H1V0",
+      "status": "imported",
+      "pattern_id": "life-lexicon-119p4h1v0",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/135-degree_MWSS-to-G",
+      "status": "imported",
+      "pattern_id": "life-lexicon-135-degree-mwss-to-g",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/180-degree_kickback",
+      "status": "imported",
+      "pattern_id": "life-lexicon-180-degree-kickback",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/2-engine_Cordership",
+      "status": "imported",
+      "pattern_id": "life-lexicon-2-engine-cordership",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/2-glider_mess",
+      "status": "imported",
+      "pattern_id": "life-lexicon-2-glider-mess",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/(23,5)c;79_Herschel_climber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-23-5-c-79-herschel-climber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/25P3H1V0.1",
+      "status": "imported",
+      "pattern_id": "life-lexicon-25p3h1v0-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/25P3H1V0.2",
+      "status": "imported",
+      "pattern_id": "life-lexicon-25p3h1v0-2",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/295P5H1V1",
+      "status": "imported",
+      "pattern_id": "life-lexicon-295p5h1v1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/2c;3_wire",
+      "status": "imported",
+      "pattern_id": "life-lexicon-2c-3-wire",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/30P5H2V0",
+      "status": "imported",
+      "pattern_id": "life-lexicon-30p5h2v0",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/31c;240_Herschel-pair_climber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-31c-240-herschel-pair-climber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/4-8-12_diamond",
+      "status": "imported",
+      "pattern_id": "life-lexicon-4-8-12-diamond",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/4_boats",
+      "status": "imported",
+      "pattern_id": "life-lexicon-4-boats",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/44P5H2V0",
+      "status": "imported",
+      "pattern_id": "life-lexicon-44p5h2v0",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/45-degree_MWSS-to-G",
+      "status": "imported",
+      "pattern_id": "life-lexicon-45-degree-mwss-to-g",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/4g-to-5g_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-4g-to-5g-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/56P6H1V0",
+      "status": "imported",
+      "pattern_id": "life-lexicon-56p6h1v0",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/58P5H1V1",
+      "status": "imported",
+      "pattern_id": "life-lexicon-58p5h1v1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/5c;9_wire",
+      "status": "imported",
+      "pattern_id": "life-lexicon-5c-9-wire",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/60P312",
+      "status": "imported",
+      "pattern_id": "life-lexicon-60p312",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/60P5H2V0",
+      "status": "imported",
+      "pattern_id": "life-lexicon-60p5h2v0",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/67P5H1V1",
+      "status": "imported",
+      "pattern_id": "life-lexicon-67p5h1v1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/70P5H2V0",
+      "status": "imported",
+      "pattern_id": "life-lexicon-70p5h2v0",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/7x9_eater",
+      "status": "imported",
+      "pattern_id": "life-lexicon-7x9-eater",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/86P5H1V1",
+      "status": "imported",
+      "pattern_id": "life-lexicon-86p5h1v1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/92P156",
+      "status": "imported",
+      "pattern_id": "life-lexicon-92p156",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/A_for_all",
+      "status": "imported",
+      "pattern_id": "life-lexicon-a-for-all",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Achims_p144",
+      "status": "imported",
+      "pattern_id": "life-lexicon-achims-p144",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Achims_p16",
+      "status": "imported",
+      "pattern_id": "life-lexicon-achims-p16",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Achims_p4",
+      "status": "imported",
+      "pattern_id": "life-lexicon-achims-p4",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Achims_p8",
+      "status": "imported",
+      "pattern_id": "life-lexicon-achims-p8",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/acorn",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-acorn",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/against_the_grain",
+      "status": "imported",
+      "pattern_id": "life-lexicon-against-the-grain",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/aircraft_carrier",
+      "status": "imported",
+      "pattern_id": "life-lexicon-aircraft-carrier",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/airforce",
+      "status": "imported",
+      "pattern_id": "life-lexicon-airforce",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/AK47_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ak47-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/AK94_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ak94-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/almost_knightship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-almost-knightship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/almosymmetric",
+      "status": "imported",
+      "pattern_id": "life-lexicon-almosymmetric",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ants",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ants",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/antstretcher",
+      "status": "imported",
+      "pattern_id": "life-lexicon-antstretcher",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/anvil",
+      "status": "imported",
+      "pattern_id": "life-lexicon-anvil",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/arm",
+      "status": "imported",
+      "pattern_id": "life-lexicon-arm",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/aVerage",
+      "status": "imported",
+      "pattern_id": "life-lexicon-average",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/B-52_bomber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-b-52-bomber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/B-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-b-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/B29",
+      "status": "imported",
+      "pattern_id": "life-lexicon-b29",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/B60",
+      "status": "imported",
+      "pattern_id": "life-lexicon-b60",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/babbling_brook",
+      "status": "imported",
+      "pattern_id": "life-lexicon-babbling-brook",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/backrake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-backrake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/baker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-baker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bakers_dozen",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bakers-dozen",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bakery",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bakery",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/banana_spark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-banana-spark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/barbershop",
+      "status": "imported",
+      "pattern_id": "life-lexicon-barbershop",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/barge",
+      "status": "imported",
+      "pattern_id": "life-lexicon-barge",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/beacon_maker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beacon-maker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/beacon",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-beacon",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/beehive_and_dock",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beehive-and-dock",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/beehive_stopper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beehive-stopper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/beehive_with_tail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beehive-with-tail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/beehive",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beehive",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Beluchenkos_p37",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beluchenkos-p37",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Beluchenkos_p51",
+      "status": "imported",
+      "pattern_id": "life-lexicon-beluchenkos-p51",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bent_keys",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bent-keys",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/BFx59H",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bfx59h",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-block_fuse",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bi-block-fuse",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-block_puffer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bi-block-puffer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-block",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bi-block",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-loaf_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bi-loaf-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-loaf_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-bi-loaf-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-loaf_(3)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-bi-loaf-3",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bi-pond",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bi-pond",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/biclock",
+      "status": "imported",
+      "pattern_id": "life-lexicon-biclock",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/big_glider",
+      "status": "imported",
+      "pattern_id": "life-lexicon-big-glider",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/big_S",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-big-s",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bipole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bipole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bistable_switch",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bistable-switch",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/biting_off_more_than_they_can_chew",
+      "status": "imported",
+      "pattern_id": "life-lexicon-biting-off-more-than-they-can-chew",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinker_fuse",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blinker-fuse",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinker_puffer_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blinker-puffer-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinker_puffer_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-blinker-puffer-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinker_pull",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blinker-pull",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinker_ship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blinker-ship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinker",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-blinker",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blinkers_bit_pole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blinkers-bit-pole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_(1)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-block-1",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-block-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_and_dock",
+      "status": "imported",
+      "pattern_id": "life-lexicon-block-and-dock",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_and_glider",
+      "status": "imported",
+      "pattern_id": "life-lexicon-block-and-glider",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_on_table",
+      "status": "imported",
+      "pattern_id": "life-lexicon-block-on-table",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_pull",
+      "status": "imported",
+      "pattern_id": "life-lexicon-block-pull",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/block_pusher",
+      "status": "imported",
+      "pattern_id": "life-lexicon-block-pusher",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blockade",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blockade",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blocker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blocker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blom",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blom",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/blonker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-blonker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/BNE14T30",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bne14t30",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boat-bit_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-boat-bit-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boat-bit_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-boat-bit-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boat_maker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-boat-maker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boat-tie",
+      "status": "imported",
+      "pattern_id": "life-lexicon-boat-tie",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-boat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boojum_reflector",
+      "status": "imported",
+      "pattern_id": "life-lexicon-boojum-reflector",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bookend",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bookend",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bookends",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bookends",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/boss",
+      "status": "imported",
+      "pattern_id": "life-lexicon-boss",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bottle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bottle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/brain",
+      "status": "imported",
+      "pattern_id": "life-lexicon-brain",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/branching_spaceship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-branching-spaceship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/BRx46B",
+      "status": "imported",
+      "pattern_id": "life-lexicon-brx46b",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/BTS",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bts",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/buckaroo",
+      "status": "imported",
+      "pattern_id": "life-lexicon-buckaroo",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bullet_heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bullet-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/bunnies",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bunnies",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/burloaferimeter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-burloaferimeter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/butterfly",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-butterfly",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Bx125",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bx125",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Bx222",
+      "status": "imported",
+      "pattern_id": "life-lexicon-bx222",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/by_flops",
+      "status": "imported",
+      "pattern_id": "life-lexicon-by-flops",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/c;6_spaceship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-c-6-spaceship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/C-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-c-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Callahan_G-to-H",
+      "status": "imported",
+      "pattern_id": "life-lexicon-callahan-g-to-h",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Canada_goose",
+      "status": "imported",
+      "pattern_id": "life-lexicon-canada-goose",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/candelabra",
+      "status": "imported",
+      "pattern_id": "life-lexicon-candelabra",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/candlefrobra_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-candlefrobra-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/candlefrobra_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-candlefrobra-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/canoe",
+      "status": "imported",
+      "pattern_id": "life-lexicon-canoe",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cap",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cap",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/carnival_shuttle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-carnival-shuttle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/catch_and_throw",
+      "status": "imported",
+      "pattern_id": "life-lexicon-catch-and-throw",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/caterer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-caterer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Caterpillar_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-caterpillar-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Caterpillar_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-caterpillar-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cauldron",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cauldron",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/CC_semi-cenark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cc-semi-cenark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/CC_semi-Snark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cc-semi-snark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/centinal",
+      "status": "imported",
+      "pattern_id": "life-lexicon-centinal",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/century_eater",
+      "status": "imported",
+      "pattern_id": "life-lexicon-century-eater",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/century-to-glider_converter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-century-to-glider-converter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/century",
+      "status": "imported",
+      "pattern_id": "life-lexicon-century",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/chemist",
+      "status": "imported",
+      "pattern_id": "life-lexicon-chemist",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Cheshire_cat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cheshire-cat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/chicken_wire_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-chicken-wire-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/chicken_wire_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-chicken-wire-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cis-beacon_on_anvil",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cis-beacon-on-anvil",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cis-beacon_on_table",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cis-beacon-on-table",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cis-boat_with_tail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cis-boat-with-tail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cis_fuse_with_two_tails",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cis-fuse-with-two-tails",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cis-mirrored_R-bee",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cis-mirrored-r-bee",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/clearance",
+      "status": "imported",
+      "pattern_id": "life-lexicon-clearance",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/clock_(1)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-clock-1",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/clock_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-clock-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/clock_II",
+      "status": "imported",
+      "pattern_id": "life-lexicon-clock-ii",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/clock_insertion",
+      "status": "imported",
+      "pattern_id": "life-lexicon-clock-insertion",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Coe_ship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-coe-ship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Coes_p8",
+      "status": "imported",
+      "pattern_id": "life-lexicon-coes-p8",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/colour_of_a_glider",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-colour-of-a-glider",
+      "reason": "geometric duplicate"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/component",
+      "status": "imported",
+      "pattern_id": "life-lexicon-component",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/conduit",
+      "status": "imported",
+      "pattern_id": "life-lexicon-conduit",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/confused_eaters",
+      "status": "imported",
+      "pattern_id": "life-lexicon-confused-eaters",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/converter_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-converter-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/converter_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-converter-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/copperhead",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-copperhead",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Cordership",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cordership",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cousins",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cousins",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cover",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cover",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cow",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cow",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/CP_semi-cenark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cp-semi-cenark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/CP_semi-Snark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cp-semi-snark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/crane",
+      "status": "imported",
+      "pattern_id": "life-lexicon-crane",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cross_(1)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-cross-1",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cross_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-cross-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/crowd",
+      "status": "imported",
+      "pattern_id": "life-lexicon-crowd",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/crown",
+      "status": "imported",
+      "pattern_id": "life-lexicon-crown",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/crystal",
+      "status": "imported",
+      "pattern_id": "life-lexicon-crystal",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cuphook_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-cuphook-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/cuphook_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-cuphook-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/dart",
+      "status": "imported",
+      "pattern_id": "life-lexicon-dart",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/dead_spark_coil",
+      "status": "imported",
+      "pattern_id": "life-lexicon-dead-spark-coil",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/demultiplexer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-demultiplexer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/diamond_ring",
+      "status": "imported",
+      "pattern_id": "life-lexicon-diamond-ring",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/diehard",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-diehard",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/dinner_table",
+      "status": "imported",
+      "pattern_id": "life-lexicon-dinner-table",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/diuresis",
+      "status": "imported",
+      "pattern_id": "life-lexicon-diuresis",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/do-see-do",
+      "status": "imported",
+      "pattern_id": "life-lexicon-do-see-do",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/dock",
+      "status": "imported",
+      "pattern_id": "life-lexicon-dock",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/double-barrelled",
+      "status": "imported",
+      "pattern_id": "life-lexicon-double-barrelled",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/double_block_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-double-block-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/double_caterer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-double-caterer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/double_ewe",
+      "status": "imported",
+      "pattern_id": "life-lexicon-double-ewe",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/dove",
+      "status": "imported",
+      "pattern_id": "life-lexicon-dove",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/dragon",
+      "status": "imported",
+      "pattern_id": "life-lexicon-dragon",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/duoplet",
+      "status": "imported",
+      "pattern_id": "life-lexicon-duoplet",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/E-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-e-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater;block_frob",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater-block-frob",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater_plug",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater-plug",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater1_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater1-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater1_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-eater1-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater2_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater2-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater2_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-eater2-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater3",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater3",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater4",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater4",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/eater5",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eater5",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ecologist",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ecologist",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/edge-repair_spaceship_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-edge-repair-spaceship-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/edge-repair_spaceship_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-edge-repair-spaceship-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/edge-repair_spaceship_(3)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-edge-repair-spaceship-3",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/edge_shooter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-edge-shooter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/electric_fence",
+      "status": "imported",
+      "pattern_id": "life-lexicon-electric-fence",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/elevener",
+      "status": "imported",
+      "pattern_id": "life-lexicon-elevener",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Elkies_p5",
+      "status": "imported",
+      "pattern_id": "life-lexicon-elkies-p5",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/en_retard",
+      "status": "imported",
+      "pattern_id": "life-lexicon-en-retard",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Enterprise",
+      "status": "imported",
+      "pattern_id": "life-lexicon-enterprise",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Eureka",
+      "status": "imported",
+      "pattern_id": "life-lexicon-eureka",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/extremely_impressive",
+      "status": "imported",
+      "pattern_id": "life-lexicon-extremely-impressive",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/F-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-f-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/F116",
+      "status": "imported",
+      "pattern_id": "life-lexicon-f116",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/F117",
+      "status": "imported",
+      "pattern_id": "life-lexicon-f117",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/F166",
+      "status": "imported",
+      "pattern_id": "life-lexicon-f166",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/F171",
+      "status": "imported",
+      "pattern_id": "life-lexicon-f171",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/factory",
+      "status": "imported",
+      "pattern_id": "life-lexicon-factory",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fast_Forward_Force_Field",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fast-forward-force-field",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/figure-8",
+      "status": "imported",
+      "pattern_id": "life-lexicon-figure-8",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/filter_stream",
+      "status": "imported",
+      "pattern_id": "life-lexicon-filter-stream",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/filter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-filter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fire-spitting",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fire-spitting",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fireship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fireship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fleet",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fleet",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/flotilla",
+      "status": "imported",
+      "pattern_id": "life-lexicon-flotilla",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fly-by_deletion",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fly-by-deletion",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fly",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fly",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fore_and_back",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fore-and-back",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fountain",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fountain",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/four_skewed_blocks_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-four-skewed-blocks-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/four_skewed_blocks_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-four-skewed-blocks-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fourteener",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fourteener",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fox",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fox",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/French_kiss",
+      "status": "imported",
+      "pattern_id": "life-lexicon-french-kiss",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/frog_II",
+      "status": "imported",
+      "pattern_id": "life-lexicon-frog-ii",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/frothing_puffer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-frothing-puffer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fumarole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fumarole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/fuse",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fuse",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fx119_inserter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fx119-inserter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fx119",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fx119",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fx153",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fx153",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fx158",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fx158",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fx176",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fx176",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Fx77",
+      "status": "imported",
+      "pattern_id": "life-lexicon-fx77",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/G4_receiver",
+      "status": "imported",
+      "pattern_id": "life-lexicon-g4-receiver",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Gabriels_p138",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gabriels-p138",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Garden_of_Eden_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-garden-of-eden-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Garden_of_Eden_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-garden-of-eden-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/germ",
+      "status": "imported",
+      "pattern_id": "life-lexicon-germ",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ghost_Herschel",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ghost-herschel",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/GIG",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gig",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glasses",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glasses",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider-block_cycle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-block-cycle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_duplicator",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-duplicator",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_pusher",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-pusher",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_stopper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-stopper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_synthesis",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-synthesis",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_to_2_blocks",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-to-2-blocks",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_to_block",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-to-block",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_train",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-train",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider_turner",
+      "status": "imported",
+      "pattern_id": "life-lexicon-glider-turner",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/glider",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-glider",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/gliderless",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gliderless",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/gliders_by_the_dozen",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gliders-by-the-dozen",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Gosper_glider_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gosper-glider-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/gourmet",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gourmet",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Gray_counter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-gray-counter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/great_on-off",
+      "status": "imported",
+      "pattern_id": "life-lexicon-great-on-off",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/grin",
+      "status": "imported",
+      "pattern_id": "life-lexicon-grin",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/grow-by-one_object",
+      "status": "imported",
+      "pattern_id": "life-lexicon-grow-by-one-object",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/H-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-h-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/H-to-MWSS",
+      "status": "imported",
+      "pattern_id": "life-lexicon-h-to-mwss",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/half-bakery_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-half-bakery-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hammer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hammer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hammerhead",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hammerhead",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/handshake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-handshake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/harbor",
+      "status": "imported",
+      "pattern_id": "life-lexicon-harbor",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/harvester",
+      "status": "imported",
+      "pattern_id": "life-lexicon-harvester",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hebdarole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hebdarole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hectic",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hectic",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Heisenburp_device",
+      "status": "imported",
+      "pattern_id": "life-lexicon-heisenburp-device",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/helix",
+      "status": "imported",
+      "pattern_id": "life-lexicon-helix",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/heptapole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-heptapole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Herschel_descendant",
+      "status": "imported",
+      "pattern_id": "life-lexicon-herschel-descendant",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Herschel_great-grandparent",
+      "status": "imported",
+      "pattern_id": "life-lexicon-herschel-great-grandparent",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Herschel_receiver",
+      "status": "imported",
+      "pattern_id": "life-lexicon-herschel-receiver",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Herschel_stopper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-herschel-stopper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Herschel_transmitter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-herschel-transmitter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Herschel",
+      "status": "imported",
+      "pattern_id": "life-lexicon-herschel",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Hertz_oscillator",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hertz-oscillator",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hexapole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hexapole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/HFx58B",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hfx58b",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/highway_robber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-highway-robber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hivenudger_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hivenudger-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hivenudger_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-hivenudger-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/honey_bit_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-honey-bit-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/honey_bit_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-honey-bit-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/honey_farm",
+      "status": "imported",
+      "pattern_id": "life-lexicon-honey-farm",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/honeycomb",
+      "status": "imported",
+      "pattern_id": "life-lexicon-honeycomb",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hook_with_tail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hook-with-tail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/houndstooth_agar",
+      "status": "imported",
+      "pattern_id": "life-lexicon-houndstooth-agar",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/house",
+      "status": "imported",
+      "pattern_id": "life-lexicon-house",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hustler_II",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hustler-ii",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/hustler",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hustler",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/HW_emulator",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hw-emulator",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/HW_volcano",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hw-volcano",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/HWSS_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-hwss-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/HWSS_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-hwss-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/I-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-i-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/infinite_growth_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-infinite-growth-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/infinite_growth_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-infinite-growth-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/infinite_growth_(3)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-infinite-growth-3",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/inject",
+      "status": "imported",
+      "pattern_id": "life-lexicon-inject",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/inline_inverter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-inline-inverter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/integral_sign",
+      "status": "imported",
+      "pattern_id": "life-lexicon-integral-sign",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/interchange",
+      "status": "imported",
+      "pattern_id": "life-lexicon-interchange",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Iwona",
+      "status": "imported",
+      "pattern_id": "life-lexicon-iwona",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/jack",
+      "status": "imported",
+      "pattern_id": "life-lexicon-jack",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/jam",
+      "status": "imported",
+      "pattern_id": "life-lexicon-jam",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Jolson",
+      "status": "imported",
+      "pattern_id": "life-lexicon-jolson",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Justyna",
+      "status": "imported",
+      "pattern_id": "life-lexicon-justyna",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Karels_p15",
+      "status": "imported",
+      "pattern_id": "life-lexicon-karels-p15",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/keeper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-keeper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/kickback_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-kickback-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/killer_toads",
+      "status": "imported",
+      "pattern_id": "life-lexicon-killer-toads",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Koks_galaxy",
+      "status": "imported",
+      "pattern_id": "life-lexicon-koks-galaxy",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/L112",
+      "status": "imported",
+      "pattern_id": "life-lexicon-l112",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/L156",
+      "status": "imported",
+      "pattern_id": "life-lexicon-l156",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Laputa",
+      "status": "imported",
+      "pattern_id": "life-lexicon-laputa",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Lidka_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lidka-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Lidka_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-lidka-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/light_bulb_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-light-bulb-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/light_bulb_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-light-bulb-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lightspeed_bubble_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lightspeed-bubble-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lightspeed_bubble_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-lightspeed-bubble-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lightspeed_wire_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lightspeed-wire-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lightspeed_wire_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-lightspeed-wire-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/line-cutting_reaction",
+      "status": "too-large",
+      "pattern_id": "life-lexicon-line-cutting-reaction",
+      "reason": "does not fit 108x58 in either orientation"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/line-mending_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-line-mending-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loading_dock",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loading-dock",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loaf_pull",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loaf-pull",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loaf_siamese_barge",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loaf-siamese-barge",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loaf",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loaf",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loafer_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loafer-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loafer_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-loafer-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loaflipflop",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loaflipflop",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lobster",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lobster",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/lone_dot_agar",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lone-dot-agar",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_barge",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-barge",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_boat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-boat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_bookend",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-bookend",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_canoe",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-canoe",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_integral",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-integral",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_long_barge",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-long-barge",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_long_boat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-long-boat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_long_canoe",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-long-canoe",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_long_ship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-long-ship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_long_snake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-long-snake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_shillelagh",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-shillelagh",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_ship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-ship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/long_snake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-long-snake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/loop",
+      "status": "imported",
+      "pattern_id": "life-lexicon-loop",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/LW_emulator",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lw-emulator",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/LWSS_(1)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-lwss-1",
+      "reason": "geometric duplicate"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/LWSS_(2)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lwss-2",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/LWSS-glider_bounce",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lwss-glider-bounce",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/LWSS-LWSS_bounce",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lwss-lwss-bounce",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/LWSS-LWSS_deflection",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lwss-lwss-deflection",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Lx200",
+      "status": "imported",
+      "pattern_id": "life-lexicon-lx200",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/mango",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mango",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/mathematician",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mathematician",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/mazing",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mazing",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/memory_cell",
+      "status": "imported",
+      "pattern_id": "life-lexicon-memory-cell",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Merzenichs_p11",
+      "status": "imported",
+      "pattern_id": "life-lexicon-merzenichs-p11",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Merzenichs_p18",
+      "status": "imported",
+      "pattern_id": "life-lexicon-merzenichs-p18",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/metamorphosis_II",
+      "status": "imported",
+      "pattern_id": "life-lexicon-metamorphosis-ii",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/metamorphosis",
+      "status": "imported",
+      "pattern_id": "life-lexicon-metamorphosis",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Mickey_Mouse",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mickey-mouse",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/mini_pressure_cooker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mini-pressure-cooker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/mold",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mold",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/monogram",
+      "status": "imported",
+      "pattern_id": "life-lexicon-monogram",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/moose_antlers",
+      "status": "imported",
+      "pattern_id": "life-lexicon-moose-antlers",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/multiple_roteightors",
+      "status": "imported",
+      "pattern_id": "life-lexicon-multiple-roteightors",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/multum_in_parvo",
+      "status": "imported",
+      "pattern_id": "life-lexicon-multum-in-parvo",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/muttering_moat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-muttering-moat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/MW_emulator",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mw-emulator",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/MW_volcano",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mw-volcano",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/MWSS_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mwss-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/MWSS_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-mwss-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/MWSS_out_of_the_blue",
+      "status": "imported",
+      "pattern_id": "life-lexicon-mwss-out-of-the-blue",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/natural_Heisenburp",
+      "status": "imported",
+      "pattern_id": "life-lexicon-natural-heisenburp",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/negative_spaceship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-negative-spaceship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/negentropy",
+      "status": "imported",
+      "pattern_id": "life-lexicon-negentropy",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/new_five",
+      "status": "imported",
+      "pattern_id": "life-lexicon-new-five",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/new_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-new-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Noahs_ark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-noahs-ark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/non-monotonic",
+      "status": "imported",
+      "pattern_id": "life-lexicon-non-monotonic",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/nonomino_switch_engine_predecessor",
+      "status": "imported",
+      "pattern_id": "life-lexicon-nonomino-switch-engine-predecessor",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/NW31",
+      "status": "imported",
+      "pattern_id": "life-lexicon-nw31",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/O-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-o-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/octagon_II",
+      "status": "imported",
+      "pattern_id": "life-lexicon-octagon-ii",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/octagon_IV",
+      "status": "imported",
+      "pattern_id": "life-lexicon-octagon-iv",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/octomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-octomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/odd_keys",
+      "status": "imported",
+      "pattern_id": "life-lexicon-odd-keys",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/one-sided_spaceship_synthesis",
+      "status": "imported",
+      "pattern_id": "life-lexicon-one-sided-spaceship-synthesis",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/onion_rings",
+      "status": "imported",
+      "pattern_id": "life-lexicon-onion-rings",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Orion_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-orion-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Orion_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-orion-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/P-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p104_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p104-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p11_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p11-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p130_shuttle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p130-shuttle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p15_bouncer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p15-bouncer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p15_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p15-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p184_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p184-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p22_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p22-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p24_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p24-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p246_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p246-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p256_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p256-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p29_pentadecathlon_hassler",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p29-pentadecathlon-hassler",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p3_bumper_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p3-bumper-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p3_bumper_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-p3-bumper-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p30_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p30-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p36_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p36-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p4_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p4-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p4_reflector",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p4-reflector",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p44_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p44-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p44_MWSS_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p44-mwss-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p45_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p45-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p46_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p46-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p48_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p48-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p5_bouncer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p5-bouncer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p5_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p5-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p54_shuttle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p54-shuttle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p6_bouncer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p6-bouncer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p6_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p6-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p6_pipsquirter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p6-pipsquirter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p6_shuttle_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p6-shuttle-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p6_shuttle_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-p6-shuttle-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p60_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p60-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p690_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p690-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p7_bouncer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p7-bouncer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p7_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p7-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p7_pipsquirter_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p7-pipsquirter-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p7_pipsquirter_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-p7-pipsquirter-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p72_quasi-shuttle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p72-quasi-shuttle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p8_bouncer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p8-bouncer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p8_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p8-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p8_G-to-H",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p8-g-to-h",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p9_bumper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p9-bumper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p90_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p90-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/p92_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-p92-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/paperclip",
+      "status": "imported",
+      "pattern_id": "life-lexicon-paperclip",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/parasite",
+      "status": "imported",
+      "pattern_id": "life-lexicon-parasite",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/partial_result",
+      "status": "imported",
+      "pattern_id": "life-lexicon-partial-result",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/PD-pair_reflector",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pd-pair-reflector",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pedestle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pedestle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/penny_lane",
+      "status": "imported",
+      "pattern_id": "life-lexicon-penny-lane",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pentadecathlon",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-pentadecathlon",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pentant",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pentant",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pentapole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pentapole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pentoad",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pentoad",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/period_multiplier",
+      "status": "imported",
+      "pattern_id": "life-lexicon-period-multiplier",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/permanent_switch",
+      "status": "imported",
+      "pattern_id": "life-lexicon-permanent-switch",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/PF35W_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pf35w-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/PF35W_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-pf35w-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/phase_change_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-phase-change-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/phase_change_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-phase-change-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/phi",
+      "status": "imported",
+      "pattern_id": "life-lexicon-phi",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/phoenix_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-phoenix-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/phoenix_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-phoenix-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pi_climber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pi-climber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pi-heptomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pi-heptomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pi_orbital",
+      "status": "too-large",
+      "pattern_id": "life-lexicon-pi-orbital",
+      "reason": "does not fit 108x58 in either orientation"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pi_portraitor",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pi-portraitor",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pi_ship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pi-ship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pi_wave",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pi-wave",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pinwheel",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pinwheel",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/piston",
+      "status": "imported",
+      "pattern_id": "life-lexicon-piston",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pond_on_pond",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pond-on-pond",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pond",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pond",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/popover",
+      "status": "imported",
+      "pattern_id": "life-lexicon-popover",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/PPS",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pps",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pre-beehive",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pre-beehive",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pre-block",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pre-block",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pre-pre-block_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pre-pre-block-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pre-pre-block_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-pre-pre-block-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pre-pulsar",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pre-pulsar",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pressure_cooker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pressure-cooker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/protein",
+      "status": "imported",
+      "pattern_id": "life-lexicon-protein",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pseudo-barberpole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pseudo-barberpole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pseudo",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pseudo",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/puff_suppressor",
+      "status": "imported",
+      "pattern_id": "life-lexicon-puff-suppressor",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/puffer_train_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-puffer-train-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/puffer_train_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-puffer-train-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/puffer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-puffer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pufferfish_spaceship",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pufferfish-spaceship",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pufferfish",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pufferfish",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pulsar_quadrant",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pulsar-quadrant",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pulsar",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-pulsar",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pulse_divider",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pulse-divider",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pulshuttle_V",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pulshuttle-v",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pure_glider_generator",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pure-glider-generator",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pushalong",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pushalong",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/pyrotechnecium",
+      "status": "imported",
+      "pattern_id": "life-lexicon-pyrotechnecium",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Q-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-q-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quad_pseudo",
+      "status": "imported",
+      "pattern_id": "life-lexicon-quad-pseudo",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quad",
+      "status": "imported",
+      "pattern_id": "life-lexicon-quad",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quadpole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-quadpole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quadri-Snark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-quadri-snark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quarter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-quarter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quasar_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-quasar-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/quasar_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-quasar-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/queen_bee_shuttle_pair",
+      "status": "imported",
+      "pattern_id": "life-lexicon-queen-bee-shuttle-pair",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/queen_bee_shuttle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-queen-bee-shuttle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/R-pentomino",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-r-pentomino",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/R190",
+      "status": "imported",
+      "pattern_id": "life-lexicon-r190",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/R2D2",
+      "status": "imported",
+      "pattern_id": "life-lexicon-r2d2",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/R64",
+      "status": "imported",
+      "pattern_id": "life-lexicon-r64",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/rabbits_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rabbits-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/rabbits_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-rabbits-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/$rats",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rats",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/rattlesnake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rattlesnake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/reanimation",
+      "status": "imported",
+      "pattern_id": "life-lexicon-reanimation",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/rectifier",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rectifier",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/reflector",
+      "status": "imported",
+      "pattern_id": "life-lexicon-reflector",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/relay",
+      "status": "imported",
+      "pattern_id": "life-lexicon-relay",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/rephaser",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rephaser",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/reverse_fuse",
+      "status": "imported",
+      "pattern_id": "life-lexicon-reverse-fuse",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/revolver",
+      "status": "imported",
+      "pattern_id": "life-lexicon-revolver",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/RF28B",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rf28b",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/RF48H",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rf48h",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Richs_p16",
+      "status": "imported",
+      "pattern_id": "life-lexicon-richs-p16",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ring_of_fire",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ring-of-fire",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/RNE-19T84_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rne-19t84-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/RNE-19T84_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-rne-19t84-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/roteightor",
+      "status": "imported",
+      "pattern_id": "life-lexicon-roteightor",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/rumbling_river",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rumbling-river",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Rx202",
+      "status": "imported",
+      "pattern_id": "life-lexicon-rx202",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/S-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-s-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sailboat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sailboat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/salvo",
+      "status": "imported",
+      "pattern_id": "life-lexicon-salvo",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sawtooth",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sawtooth",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Schick_engine",
+      "status": "imported",
+      "pattern_id": "life-lexicon-schick-engine",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/scorpion",
+      "status": "imported",
+      "pattern_id": "life-lexicon-scorpion",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/scrubber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-scrubber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/seal",
+      "status": "imported",
+      "pattern_id": "life-lexicon-seal",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/seed",
+      "status": "imported",
+      "pattern_id": "life-lexicon-seed",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/semi-cenark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-semi-cenark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sesquihat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sesquihat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/shillelagh",
+      "status": "imported",
+      "pattern_id": "life-lexicon-shillelagh",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ship_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ship-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ship_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-ship-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ship_(3)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-ship-3",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ship_in_a_bottle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ship-in-a-bottle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ship_tie_boat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ship-tie-boat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/ship-tie",
+      "status": "imported",
+      "pattern_id": "life-lexicon-ship-tie",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/short_keys",
+      "status": "imported",
+      "pattern_id": "life-lexicon-short-keys",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/side",
+      "status": "imported",
+      "pattern_id": "life-lexicon-side",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sidecar",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sidecar",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sidesnagger",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sidesnagger",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sidewalk",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sidewalk",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/siesta",
+      "status": "imported",
+      "pattern_id": "life-lexicon-siesta",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/signal_elbow",
+      "status": "imported",
+      "pattern_id": "life-lexicon-signal-elbow",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Silver_reflector",
+      "status": "too-large",
+      "pattern_id": "life-lexicon-silver-reflector",
+      "reason": "does not fit 108x58 in either orientation"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Silvers_p5",
+      "status": "imported",
+      "pattern_id": "life-lexicon-silvers-p5",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Simkin_glider_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-simkin-glider-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/singular_flip_flop",
+      "status": "imported",
+      "pattern_id": "life-lexicon-singular-flip-flop",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Sir_Robin",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sir-robin",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/six_Ls",
+      "status": "imported",
+      "pattern_id": "life-lexicon-six-ls",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sixty-nine",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sixty-nine",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/skewed_quad",
+      "status": "imported",
+      "pattern_id": "life-lexicon-skewed-quad",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/skewed_traffic_light",
+      "status": "imported",
+      "pattern_id": "life-lexicon-skewed-traffic-light",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/slide_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-slide-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sliding_block_memory",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sliding-block-memory",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/slow_glider_construction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-slow-glider-construction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/small_lake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-small-lake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/smiley",
+      "status": "imported",
+      "pattern_id": "life-lexicon-smiley",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snacker_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snacker-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snacker_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-snacker-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snake_bridge_snake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snake-bridge-snake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snake_dance",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snake-dance",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snake_pit_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snake-pit-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snake_pit_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-snake-pit-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snake_siamese_snake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snake-siamese-snake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/snake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Snark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-snark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sombreros",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sombreros",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/soup",
+      "status": "imported",
+      "pattern_id": "life-lexicon-soup",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/space_nonfiller",
+      "status": "imported",
+      "pattern_id": "life-lexicon-space-nonfiller",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/space_rake",
+      "status": "imported",
+      "pattern_id": "life-lexicon-space-rake",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/spacefiller",
+      "status": "imported",
+      "pattern_id": "life-lexicon-spacefiller",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/spark_coil",
+      "status": "imported",
+      "pattern_id": "life-lexicon-spark-coil",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sparking_eater",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sparking-eater",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/sparky",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sparky",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/speed_booster",
+      "status": "imported",
+      "pattern_id": "life-lexicon-speed-booster",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/spider",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-spider",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/spiral",
+      "status": "imported",
+      "pattern_id": "life-lexicon-spiral",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/splitter",
+      "status": "imported",
+      "pattern_id": "life-lexicon-splitter",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/squaredance",
+      "status": "imported",
+      "pattern_id": "life-lexicon-squaredance",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/stabilized_switch_engine",
+      "status": "too-large",
+      "pattern_id": "life-lexicon-stabilized-switch-engine",
+      "reason": "does not fit 108x58 in either orientation"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/stairstep_hexomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-stairstep-hexomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/stamp_collection",
+      "status": "imported",
+      "pattern_id": "life-lexicon-stamp-collection",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/star",
+      "status": "imported",
+      "pattern_id": "life-lexicon-star",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/statorless_p5",
+      "status": "imported",
+      "pattern_id": "life-lexicon-statorless-p5",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/still_life_tagalong",
+      "status": "imported",
+      "pattern_id": "life-lexicon-still-life-tagalong",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/still_life",
+      "status": "imported",
+      "pattern_id": "life-lexicon-still-life",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/stillater",
+      "status": "imported",
+      "pattern_id": "life-lexicon-stillater",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/stop_and_go",
+      "status": "imported",
+      "pattern_id": "life-lexicon-stop-and-go",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/stop_and_restart",
+      "status": "imported",
+      "pattern_id": "life-lexicon-stop-and-restart",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/strict_volatility",
+      "status": "imported",
+      "pattern_id": "life-lexicon-strict-volatility",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/superfountain",
+      "status": "imported",
+      "pattern_id": "life-lexicon-superfountain",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/superstring",
+      "status": "imported",
+      "pattern_id": "life-lexicon-superstring",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/surprise",
+      "status": "imported",
+      "pattern_id": "life-lexicon-surprise",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/SW-2",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sw-2",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/SW1T43",
+      "status": "imported",
+      "pattern_id": "life-lexicon-sw1t43",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/swan",
+      "status": "imported",
+      "pattern_id": "life-lexicon-swan",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/switch_engine_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-switch-engine-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/switch_engine_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-switch-engine-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/switch_engine_channel",
+      "status": "imported",
+      "pattern_id": "life-lexicon-switch-engine-channel",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/switch",
+      "status": "imported",
+      "pattern_id": "life-lexicon-switch",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/switchable_gun",
+      "status": "imported",
+      "pattern_id": "life-lexicon-switchable-gun",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/symmetric",
+      "status": "imported",
+      "pattern_id": "life-lexicon-symmetric",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/syringe",
+      "status": "imported",
+      "pattern_id": "life-lexicon-syringe",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/T-nosed_p4",
+      "status": "imported",
+      "pattern_id": "life-lexicon-t-nosed-p4",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/T-nosed_p5",
+      "status": "imported",
+      "pattern_id": "life-lexicon-t-nosed-p5",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/T-nosed_p6",
+      "status": "imported",
+      "pattern_id": "life-lexicon-t-nosed-p6",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/T-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-t-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/T-tetromino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-t-tetromino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/table_on_table",
+      "status": "imported",
+      "pattern_id": "life-lexicon-table-on-table",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/table",
+      "status": "imported",
+      "pattern_id": "life-lexicon-table",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tagalong",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tagalong",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Tanners_p46",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tanners-p46",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/teardrop",
+      "status": "imported",
+      "pattern_id": "life-lexicon-teardrop",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/technician",
+      "status": "imported",
+      "pattern_id": "life-lexicon-technician",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tee",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tee",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/test_tube_baby",
+      "status": "imported",
+      "pattern_id": "life-lexicon-test-tube-baby",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tetromino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tetromino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/thumb",
+      "status": "imported",
+      "pattern_id": "life-lexicon-thumb",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/thunderbird",
+      "status": "imported",
+      "pattern_id": "life-lexicon-thunderbird",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/time_bomb",
+      "status": "imported",
+      "pattern_id": "life-lexicon-time-bomb",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/titanic_toroidal_traveler",
+      "status": "imported",
+      "pattern_id": "life-lexicon-titanic-toroidal-traveler",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/toad-flipper",
+      "status": "imported",
+      "pattern_id": "life-lexicon-toad-flipper",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/toad-sucker",
+      "status": "imported",
+      "pattern_id": "life-lexicon-toad-sucker",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/toad",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-toad",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/toaster",
+      "status": "imported",
+      "pattern_id": "life-lexicon-toaster",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/toggle_circuit",
+      "status": "imported",
+      "pattern_id": "life-lexicon-toggle-circuit",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/total_aperiodic",
+      "status": "imported",
+      "pattern_id": "life-lexicon-total-aperiodic",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tractor_beam",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tractor-beam",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/traffic_circle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-traffic-circle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/traffic_jam",
+      "status": "imported",
+      "pattern_id": "life-lexicon-traffic-jam",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/traffic_light",
+      "status": "imported",
+      "pattern_id": "life-lexicon-traffic-light",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/traffic_lights_extruder",
+      "status": "imported",
+      "pattern_id": "life-lexicon-traffic-lights-extruder",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trans-beacon_on_table",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trans-beacon-on-table",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trans-boat_with_tail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trans-boat-with-tail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trans-loaf_with_tail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trans-loaf-with-tail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/transparent_block_reaction",
+      "status": "imported",
+      "pattern_id": "life-lexicon-transparent-block-reaction",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/transparent_lane",
+      "status": "imported",
+      "pattern_id": "life-lexicon-transparent-lane",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tremi-Snark",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tremi-snark",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trice_tongs",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trice-tongs",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trigger",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trigger",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/triple_caterer",
+      "status": "imported",
+      "pattern_id": "life-lexicon-triple-caterer",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/triple_pseudo",
+      "status": "imported",
+      "pattern_id": "life-lexicon-triple-pseudo",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/triplet",
+      "status": "imported",
+      "pattern_id": "life-lexicon-triplet",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tripole",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tripole",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tritoad",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tritoad",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trivial_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trivial-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trivial_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-trivial-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trivial_p6",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trivial-p6",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/trombone_slide",
+      "status": "imported",
+      "pattern_id": "life-lexicon-trombone-slide",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tub_with_tail",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tub-with-tail",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tub",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tub",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tubber",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tubber",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tubeater",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tubeater",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tubstretcher",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tubstretcher",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tumbler",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tumbler",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/tumbling_T-tetson",
+      "status": "imported",
+      "pattern_id": "life-lexicon-tumbling-t-tetson",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/turner",
+      "status": "imported",
+      "pattern_id": "life-lexicon-turner",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/turning_toads",
+      "status": "imported",
+      "pattern_id": "life-lexicon-turning-toads",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/turtle",
+      "status": "imported",
+      "pattern_id": "life-lexicon-turtle",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/twin_bees_shuttle_pair",
+      "status": "imported",
+      "pattern_id": "life-lexicon-twin-bees-shuttle-pair",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/twin_bees_shuttle_spark_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-twin-bees-shuttle-spark-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/twin_bees_shuttle_spark_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-twin-bees-shuttle-spark-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/twin_bees_shuttle",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-twin-bees-shuttle",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/twinhat",
+      "status": "imported",
+      "pattern_id": "life-lexicon-twinhat",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/twirling_T-tetsons_II",
+      "status": "imported",
+      "pattern_id": "life-lexicon-twirling-t-tetsons-ii",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/two_eaters",
+      "status": "imported",
+      "pattern_id": "life-lexicon-two-eaters",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/two_pulsar_quadrants",
+      "status": "imported",
+      "pattern_id": "life-lexicon-two-pulsar-quadrants",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/U-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-u-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/unix",
+      "status": "imported",
+      "pattern_id": "life-lexicon-unix",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/V-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-v-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/V_spark_(1)",
+      "status": "imported",
+      "pattern_id": "life-lexicon-v-spark-1",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/V_spark_(2)",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-v-spark-2",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Venetian_blinds",
+      "status": "imported",
+      "pattern_id": "life-lexicon-venetian-blinds",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/very_long_house",
+      "status": "imported",
+      "pattern_id": "life-lexicon-very-long-house",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/volatility",
+      "status": "imported",
+      "pattern_id": "life-lexicon-volatility",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/W-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-w-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Wainwrights_tagalong",
+      "status": "imported",
+      "pattern_id": "life-lexicon-wainwrights-tagalong",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/washerwoman",
+      "status": "imported",
+      "pattern_id": "life-lexicon-washerwoman",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/washing_machine",
+      "status": "imported",
+      "pattern_id": "life-lexicon-washing-machine",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/wasp",
+      "status": "imported",
+      "pattern_id": "life-lexicon-wasp",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/wavefront",
+      "status": "imported",
+      "pattern_id": "life-lexicon-wavefront",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/wavestretcher",
+      "status": "imported",
+      "pattern_id": "life-lexicon-wavestretcher",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/weekender",
+      "status": "duplicate",
+      "pattern_id": "life-lexicon-weekender",
+      "reason": "case-insensitive duplicate name"
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/why_not",
+      "status": "imported",
+      "pattern_id": "life-lexicon-why-not",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/wickstretcher",
+      "status": "imported",
+      "pattern_id": "life-lexicon-wickstretcher",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/windmill",
+      "status": "imported",
+      "pattern_id": "life-lexicon-windmill",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/wing",
+      "status": "imported",
+      "pattern_id": "life-lexicon-wing",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/with_the_grain",
+      "status": "imported",
+      "pattern_id": "life-lexicon-with-the-grain",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/worker_bee",
+      "status": "imported",
+      "pattern_id": "life-lexicon-worker-bee",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/X-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-x-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/x66",
+      "status": "imported",
+      "pattern_id": "life-lexicon-x66",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Y-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-y-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Z-hexomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-z-hexomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/Z-pentomino",
+      "status": "imported",
+      "pattern_id": "life-lexicon-z-pentomino",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/zebra_stripes",
+      "status": "imported",
+      "pattern_id": "life-lexicon-zebra-stripes",
+      "reason": null
+    },
+    {
+      "source_file": "https://playgameoflife.com/lexicon/zweiback",
+      "status": "imported",
+      "pattern_id": "life-lexicon-zweiback",
+      "reason": null
+    }
+  ],
+  "source": {
+    "provider": "playgameoflife-life-lexicon",
+    "index_url": "https://playgameoflife.com/list.html",
+    "snapshot_version": "2026-07-24",
+    "license": "CC-BY-SA-3.0",
+    "discovered": 732,
+    "index_sha256": "f9ea24f8e35563bd1efd931652f96019207f1052e6b538fbf67af036ec9c9c6e"
+  }
+}

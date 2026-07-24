@@ -1,5 +1,7 @@
 # 技术报告 - Cellular Cube Go 网页版 (Web Edition)
 
+> 历史报告：本文记录旧架构，不再作为运行命令或实现状态的事实来源。当前合同请参阅 `AGENTS.md`、`PROJECT_CONTEXT.md` 与 `README.md`。
+>
 > 本文档记录了 Conway 生命游戏与射击游戏融合项目「Cellular Cube Go」的完整技术架构，
 > 重点涵盖 2026 年 5 月新增的 Pygbag 网页版部署方案。
 
