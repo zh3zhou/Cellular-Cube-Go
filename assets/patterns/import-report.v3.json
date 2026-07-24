@@ -1,0 +1,58 @@
+{
+  "schema_version": 3,
+  "source": "assets/patterns/catalog.v2.json",
+  "analyzed": 731,
+  "generated": {
+    "highlife": {
+      "existing": 11,
+      "target": 20,
+      "accepted": 9,
+      "attempts": 12,
+      "rejections": {
+        "low-interest": 3
+      }
+    },
+    "seeds": {
+      "existing": 5,
+      "target": 20,
+      "accepted": 15,
+      "attempts": 18,
+      "rejections": {
+        "performance-rejected": 3
+      }
+    },
+    "day_night": {
+      "existing": 5,
+      "target": 20,
+      "accepted": 15,
+      "attempts": 22,
+      "rejections": {
+        "low-interest": 7
+      }
+    },
+    "wolfram_code_52": {
+      "existing": 0,
+      "target": 20,
+      "accepted": 20,
+      "attempts": 21,
+      "rejections": {
+        "low-interest": 1
+      }
+    }
+  },
+  "legacy_unpublished": {
+    "source": "assets/patterns/library.json@86aaf6c",
+    "entries": 109,
+    "case_insensitive_unique_names": 55,
+    "outcome": "unknown-license",
+    "reason": "The historical bulk library has no per-entry source or redistribution license and is therefore intentionally absent from the publishable runtime catalog."
+  },
+  "summary": {
+    "life": 710,
+    "highlife": 20,
+    "seeds": 20,
+    "day_night": 20,
+    "wolfram_code_52": 20,
+    "total": 790
+  }
+}

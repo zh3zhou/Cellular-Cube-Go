@@ -42,11 +42,17 @@ class RLETests(unittest.TestCase):
 class CatalogTests(unittest.TestCase):
     def test_default_catalog_is_strictly_valid(self) -> None:
         catalog = load_catalog()
-        self.assertEqual(catalog.schema_version, 2)
+        self.assertEqual(catalog.schema_version, 3)
         self.assertGreaterEqual(len(catalog.patterns), 700)
         self.assertEqual(
             {rule: len(catalog.patterns_for(rule)) for rule in catalog.rules},
-            {"life": 710, "highlife": 11, "seeds": 5, "day_night": 5},
+            {
+                "life": 710,
+                "highlife": 20,
+                "seeds": 20,
+                "day_night": 20,
+                "wolfram_code_52": 20,
+            },
         )
         providers = {item.source.provider for item in catalog.patterns}
         self.assertIn("playgameoflife-life-lexicon", providers)
@@ -64,6 +70,15 @@ class CatalogTests(unittest.TestCase):
             self.assertTrue(source["attribution"])
             self.assertTrue(source["changes"])
             self.assertRegex(source["content_sha256"], r"^[0-9a-f]{64}$")
+        for item in raw["patterns"]:
+            self.assertGreaterEqual(item["complexity_score"], 0)
+            self.assertLessEqual(item["complexity_score"], 100)
+            self.assertEqual(
+                item["complexity_tier"],
+                min(5, int(item["complexity_score"] // 20) + 1),
+            )
+            self.assertTrue(item["behavior_tags"])
+            self.assertEqual(item["analysis"]["analyzer_version"], "1.0")
 
     def test_missing_license_and_geometric_duplicate_are_reported(self) -> None:
         data = json.loads(DEFAULT_CATALOG_PATH.read_text(encoding="utf-8"))
@@ -113,7 +128,9 @@ class SelectorTests(unittest.TestCase):
         large = 0
         trials = 10_000
         for _ in range(trials):
-            pattern = selector.select("life", max_width=108, max_height=58)
+            pattern = selector.select(
+                "life", max_width=108, max_height=58, progress=1.0
+            )
             large += pattern.tier == "large"
         self.assertGreater(large / trials, 0.13)
         self.assertLess(large / trials, 0.17)
@@ -139,6 +156,36 @@ class SelectorTests(unittest.TestCase):
             )
             self.assertNotEqual(pattern.id, previous)
             previous = pattern.id
+
+    def test_late_progress_selects_higher_complexity(self) -> None:
+        early = PatternSelector(load_catalog(), rng=random.Random(73))
+        late = PatternSelector(load_catalog(), rng=random.Random(73))
+        early_scores = [
+            early.select(
+                "life", max_width=108, max_height=58, progress=0.0
+            ).complexity_score
+            for _ in range(1000)
+        ]
+        late_scores = [
+            late.select(
+                "life", max_width=108, max_height=58, progress=1.0
+            ).complexity_score
+            for _ in range(1000)
+        ]
+        self.assertGreater(sum(late_scores) / len(late_scores), sum(early_scores) / len(early_scores) + 15)
+
+    def test_large_fraction_grows_from_three_to_fifteen_percent(self) -> None:
+        for progress, lower, upper in ((0.0, 0.015, 0.045), (1.0, 0.13, 0.17)):
+            selector = PatternSelector(load_catalog(), rng=random.Random(911))
+            selections = [
+                selector.select(
+                    "life", max_width=108, max_height=58, progress=progress
+                )
+                for _ in range(10_000)
+            ]
+            ratio = sum(item.tier == "large" for item in selections) / len(selections)
+            self.assertGreater(ratio, lower)
+            self.assertLess(ratio, upper)
 
 
 class ImportTests(unittest.TestCase):
