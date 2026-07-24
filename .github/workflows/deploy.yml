@@ -95,14 +95,18 @@ jobs:
               ".pytest_cache",
               "__pycache__",
               "build",
+              "cv",
               "tests",
               "tools",
               "《开发》",
           }
           forbidden_files = {
               "AGENTS.md",
+              "MIGRATION_AUDIT.md",
+              "catalog.v2.json",
               "PROJECT_CONTEXT.md",
               "README.md",
+              "import-report.v3.json",
               "TECHNICAL_REPORT.md",
               "THIRD_PARTY_NOTICES.md",
               "proposal.txt",

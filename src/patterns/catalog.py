@@ -9,12 +9,19 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
+from src.core.rules import NEIGHBORHOODS
+from src.patterns.analysis import (
+    ANALYZER_VERSION,
+    BEHAVIOR_TAGS,
+    MEASURED_GENERATIONS,
+    complexity_tier,
+)
 from src.patterns.rle import RLEError, geometric_signature, normalize_rule, parse_rle
 
 
-CATALOG_SCHEMA_VERSION = 2
+CATALOG_SCHEMA_VERSION = 3
 DEFAULT_CATALOG_PATH = (
-    Path(__file__).resolve().parents[2] / "assets" / "patterns" / "catalog.v2.json"
+    Path(__file__).resolve().parents[2] / "assets" / "patterns" / "catalog.v3.json"
 )
 REQUIRED_PATTERN_FIELDS = frozenset(
     {
@@ -30,6 +37,11 @@ REQUIRED_PATTERN_FIELDS = frozenset(
         "tier",
         "tags",
         "source",
+        "complexity_score",
+        "complexity_tier",
+        "behavior_tags",
+        "analysis",
+        "affinity",
     }
 )
 REQUIRED_SOURCE_FIELDS = frozenset(
@@ -72,6 +84,18 @@ class PatternSource:
 
 
 @dataclass(frozen=True)
+class PatternAnalysisRecord:
+    analyzer_version: str
+    measured_generations: int
+    peak_population: int
+    peak_area: int
+    lifetime: int | None
+    period: int | None
+    displacement: tuple[int, int] | None
+    growth_rate: float
+
+
+@dataclass(frozen=True)
 class PatternRecord:
     id: str
     name: str
@@ -85,6 +109,11 @@ class PatternRecord:
     tier: str
     tags: tuple[str, ...]
     source: PatternSource
+    complexity_score: float
+    complexity_tier: int
+    behavior_tags: tuple[str, ...]
+    analysis: PatternAnalysisRecord
+    affinity: str
     cells: tuple[tuple[int, ...], ...]
 
     @property
@@ -161,17 +190,14 @@ class PatternCatalog:
         key = (id(rng), allow_large)
         selector = self._selectors.get(key)
         if selector is None or selector.rng is not rng:
-            selector = PatternSelector(
-                self,
-                rng=rng,
-                large_fraction=0.15 if allow_large else 0.0,
-            )
+            selector = PatternSelector(self, rng=rng)
             self._selectors[key] = selector
         return selector.select(
             rule_id,
             max_width=max_width,
             max_height=max_height,
             allow_large=allow_large,
+            progress=1.0,
         )
 
 
@@ -203,6 +229,16 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
                 normalize_rule(rule.get("rulestring"))
             except RLEError as exc:
                 errors.append(f"rules.{rule_id}.rulestring: {exc}")
+            neighborhood_id = _text(
+                rule.get("neighborhood_id"),
+                f"rules.{rule_id}.neighborhood_id",
+                errors,
+            )
+            if neighborhood_id and neighborhood_id not in NEIGHBORHOODS:
+                errors.append(
+                    f"rules.{rule_id}.neighborhood_id is unknown: "
+                    f"{neighborhood_id!r}"
+                )
     if not isinstance(data.get("generated"), dict):
         errors.append("generated must be an object")
     patterns = data.get("patterns")
@@ -248,10 +284,106 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
             names.add(name_key)
         if item["tier"] not in {"standard", "large"}:
             errors.append(f"{label}.tier must be standard or large")
+        score = item["complexity_score"]
+        if (
+            not isinstance(score, (int, float))
+            or isinstance(score, bool)
+            or not 0 <= score <= 100
+        ):
+            errors.append(f"{label}.complexity_score must be between 0 and 100")
+        tier_value = item["complexity_tier"]
+        if not isinstance(tier_value, int) or isinstance(tier_value, bool):
+            errors.append(f"{label}.complexity_tier must be an integer from 1 to 5")
+        elif not 1 <= tier_value <= 5:
+            errors.append(f"{label}.complexity_tier must be an integer from 1 to 5")
+        elif isinstance(score, (int, float)) and not isinstance(score, bool):
+            if tier_value != complexity_tier(float(score)):
+                errors.append(
+                    f"{label}.complexity_tier does not match complexity_score"
+                )
         if not isinstance(item["tags"], list) or any(
             not isinstance(tag, str) or not tag for tag in item["tags"]
         ):
             errors.append(f"{label}.tags must be an array of non-empty strings")
+        behavior_tags = item["behavior_tags"]
+        if (
+            not isinstance(behavior_tags, list)
+            or not behavior_tags
+            or any(tag not in BEHAVIOR_TAGS for tag in behavior_tags)
+        ):
+            errors.append(
+                f"{label}.behavior_tags must use the controlled behavior vocabulary"
+            )
+        if item["affinity"] not in {"rule-native", "polyglot"}:
+            errors.append(f"{label}.affinity must be rule-native or polyglot")
+        elif len(rule_ids) > 1 and item["affinity"] != "polyglot":
+            errors.append(
+                f"{label}.affinity must be polyglot for multiple rule_ids"
+            )
+        analysis = item["analysis"]
+        required_analysis = {
+            "analyzer_version",
+            "measured_generations",
+            "peak_population",
+            "peak_area",
+            "lifetime",
+            "period",
+            "displacement",
+            "growth_rate",
+        }
+        if not isinstance(analysis, dict):
+            errors.append(f"{label}.analysis must be an object")
+        else:
+            missing_analysis = required_analysis - analysis.keys()
+            if missing_analysis:
+                errors.append(
+                    f"{label}.analysis missing fields: "
+                    f"{', '.join(sorted(missing_analysis))}"
+                )
+            if analysis.get("analyzer_version") != ANALYZER_VERSION:
+                errors.append(
+                    f"{label}.analysis.analyzer_version must be {ANALYZER_VERSION}"
+                )
+            if analysis.get("measured_generations") != MEASURED_GENERATIONS:
+                errors.append(
+                    f"{label}.analysis.measured_generations must be "
+                    f"{MEASURED_GENERATIONS}"
+                )
+            for field in ("measured_generations", "peak_population", "peak_area"):
+                value = analysis.get(field)
+                if not isinstance(value, int) or isinstance(value, bool) or value < 0:
+                    errors.append(f"{label}.analysis.{field} must be non-negative")
+            for field in ("lifetime", "period"):
+                value = analysis.get(field)
+                if value is not None and (
+                    not isinstance(value, int)
+                    or isinstance(value, bool)
+                    or value < 1
+                ):
+                    errors.append(
+                        f"{label}.analysis.{field} must be null or a positive integer"
+                    )
+            displacement = analysis.get("displacement")
+            if displacement is not None and (
+                not isinstance(displacement, list)
+                or len(displacement) != 2
+                or any(
+                    not isinstance(value, int) or isinstance(value, bool)
+                    for value in displacement
+                )
+            ):
+                errors.append(
+                    f"{label}.analysis.displacement must be null or [row, col]"
+                )
+            growth_rate = analysis.get("growth_rate")
+            if (
+                not isinstance(growth_rate, (int, float))
+                or isinstance(growth_rate, bool)
+                or growth_rate < 0
+            ):
+                errors.append(
+                    f"{label}.analysis.growth_rate must be non-negative"
+                )
         if not isinstance(item["weight"], (int, float)) or item["weight"] <= 0:
             errors.append(f"{label}.weight must be positive")
         source = item["source"]
@@ -331,6 +463,8 @@ def load_catalog(path: str | Path = DEFAULT_CATALOG_PATH) -> PatternCatalog:
     for item in data["patterns"]:
         parsed = parse_rle(item["rle"])
         source = item["source"]
+        analysis = item["analysis"]
+        displacement = analysis["displacement"]
         records.append(
             PatternRecord(
                 id=item["id"],
@@ -351,6 +485,22 @@ def load_catalog(path: str | Path = DEFAULT_CATALOG_PATH) -> PatternCatalog:
                     external_id=source["external_id"],
                     license=source["license"],
                 ),
+                complexity_score=float(item["complexity_score"]),
+                complexity_tier=item["complexity_tier"],
+                behavior_tags=tuple(item["behavior_tags"]),
+                analysis=PatternAnalysisRecord(
+                    analyzer_version=analysis["analyzer_version"],
+                    measured_generations=analysis["measured_generations"],
+                    peak_population=analysis["peak_population"],
+                    peak_area=analysis["peak_area"],
+                    lifetime=analysis["lifetime"],
+                    period=analysis["period"],
+                    displacement=(
+                        tuple(displacement) if displacement is not None else None
+                    ),
+                    growth_rate=float(analysis["growth_rate"]),
+                ),
+                affinity=item["affinity"],
                 cells=parsed.cells,
             )
         )

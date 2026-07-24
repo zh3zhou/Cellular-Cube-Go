@@ -23,6 +23,7 @@ from src.patterns.catalog import (
     load_catalog,
     validate_catalog_data,
 )
+from src.patterns.analysis import analyze_pattern
 from src.patterns.rle import encode_rle, geometric_signature, normalize_rule, parse_rle
 
 
@@ -159,6 +160,7 @@ def import_rle_files(
         if tier not in {"standard", "large"}:
             results.append(ImportResult(str(path), "invalid", pattern_id, "invalid tier"))
             continue
+        analysis_result = analyze_pattern(parsed.cells, rule_ids[0])
         record = {
             "id": pattern_id,
             "name": name,
@@ -176,6 +178,11 @@ def import_rle_files(
                 for field in sorted(REQUIRED_SOURCE_FIELDS | OPTIONAL_SOURCE_FIELDS)
                 if isinstance(source.get(field), str) and source[field].strip()
             },
+            "complexity_score": analysis_result.score,
+            "complexity_tier": analysis_result.tier,
+            "behavior_tags": list(analysis_result.behavior_tags),
+            "analysis": analysis_result.analysis.to_dict(),
+            "affinity": "rule-native" if len(rule_ids) == 1 else "polyglot",
         }
         output["patterns"].append(record)
         ids.add(pattern_id.casefold())
@@ -240,6 +247,24 @@ def main() -> int:
                     "external_id": item.source.external_id,
                     "license": item.source.license,
                 },
+                "complexity_score": item.complexity_score,
+                "complexity_tier": item.complexity_tier,
+                "behavior_tags": list(item.behavior_tags),
+                "analysis": {
+                    "analyzer_version": item.analysis.analyzer_version,
+                    "measured_generations": item.analysis.measured_generations,
+                    "peak_population": item.analysis.peak_population,
+                    "peak_area": item.analysis.peak_area,
+                    "lifetime": item.analysis.lifetime,
+                    "period": item.analysis.period,
+                    "displacement": (
+                        list(item.analysis.displacement)
+                        if item.analysis.displacement is not None
+                        else None
+                    ),
+                    "growth_rate": item.analysis.growth_rate,
+                },
+                "affinity": item.affinity,
             }
             for item in catalog.patterns
         ],

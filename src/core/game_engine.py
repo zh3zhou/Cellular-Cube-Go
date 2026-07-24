@@ -48,6 +48,8 @@ class GameEngine:
         self.paused = False
         self.iteration = 0
         
+        self.survival_time_seconds = 0.0
+
         # 时间控制 | Time control
         self.interval = 1.0 / GameConfig.FPS
         self.clock = pygame.time.Clock()
@@ -132,7 +134,11 @@ class GameEngine:
         )
 
         # Spawn/contact rewards, advance local rules, and commit mature zones.
-        self.reward_manager.update(self.cellular_automaton.state, self.player)
+        self.reward_manager.update(
+            self.cellular_automaton.state,
+            self.player,
+            survival_seconds=self.survival_time_seconds,
+        )
         # A completed zone stops being nonlethal immediately. This also
         # refreshes the mask for zones created after the Conway tick.
         self.cellular_automaton.sync_evolution_zones(
@@ -141,6 +147,7 @@ class GameEngine:
         
         # 增加迭代次数 | Increase iteration count
         self.iteration += 1
+        self.survival_time_seconds += 1.0 / max(1, GameConfig.FPS)
     
     def _check_collisions(self):
         """
@@ -199,6 +206,7 @@ class GameEngine:
         self.game_over = False
         self.paused = False
         self.iteration = 0
+        self.survival_time_seconds = 0.0
         self._game_start_iteration = 0
         self._time_accumulator = 0.0
     def _handle_settings_event(self, event):
@@ -241,9 +249,11 @@ class GameEngine:
     def _adjust_setting(self, name, delta):
         if name == 'FPS':
             GameConfig.FPS = max(5, min(60, GameConfig.FPS + delta))
-        elif name in ('Survival Ramp', 'Variety Duration'):
-            step = 50
-            GameConfig.SURVIVAL_RAMP_FRAMES = max(200, min(5000, GameConfig.SURVIVAL_RAMP_FRAMES + delta * step))
+        elif name == 'Variety Duration':
+            GameConfig.VARIETY_DURATION_SECONDS = max(
+                30,
+                min(180, GameConfig.VARIETY_DURATION_SECONDS + delta * 5),
+            )
 
     def _toggle_setting(self, name):
         if name == 'Wu Di Mode':
@@ -269,8 +279,8 @@ class GameEngine:
             val_text = ''
             if name == 'FPS':
                 val_text = str(GameConfig.FPS)
-            elif name in ('Survival Ramp', 'Variety Duration'):
-                val_text = ''
+            elif name == 'Variety Duration':
+                val_text = f'{GameConfig.VARIETY_DURATION_SECONDS}s'
             elif name == 'Wu Di Mode':
                 val_text = 'ON' if GameConfig.WU_DI_MODE else 'OFF'
             elif name == 'Reward System':
@@ -286,8 +296,8 @@ class GameEngine:
             fill_ratio = 0.0
             if name == 'FPS':
                 fill_ratio = (GameConfig.FPS - 5) / (60 - 5)
-            elif name in ('Survival Ramp', 'Variety Duration'):
-                fill_ratio = (GameConfig.SURVIVAL_RAMP_FRAMES - 200) / (5000 - 200)
+            elif name == 'Variety Duration':
+                fill_ratio = (GameConfig.VARIETY_DURATION_SECONDS - 30) / (180 - 30)
             elif name in ('Wu Di Mode', 'Reward System'):
                 fill_ratio = 1.0 if (val_text == 'ON') else 0.0
             fill_ratio = max(0.0, min(1.0, fill_ratio))

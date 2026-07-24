@@ -18,7 +18,7 @@ from src.patterns.rle import (
     normalize_rule,
     parse_rle,
 )
-from src.patterns.selector import PatternSelector
+from src.patterns.selector import PatternSelector, SelectionContext
 
 __all__ = [
     "CATALOG_SCHEMA_VERSION",
@@ -28,6 +28,7 @@ __all__ = [
     "PatternDefinition",
     "PatternRecord",
     "PatternSelector",
+    "SelectionContext",
     "RLEError",
     "RLEPattern",
     "encode_rle",

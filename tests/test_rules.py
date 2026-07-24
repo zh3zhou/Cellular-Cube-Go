@@ -2,7 +2,15 @@ import unittest
 
 import numpy as np
 
-from src.core.rules import CONWAY_LIFE, DAY_AND_NIGHT, HIGHLIFE, SEEDS, get_rule
+from src.core.rules import (
+    CONWAY_LIFE,
+    DAY_AND_NIGHT,
+    HIGHLIFE,
+    SEEDS,
+    VON_NEUMANN_NEIGHBORHOOD,
+    WOLFRAM_CODE_52,
+    get_rule,
+)
 
 
 def _trim(state):
@@ -80,10 +88,26 @@ class RuleSpecTests(unittest.TestCase):
         state[0, 0] = state[0, 2] = state[2, 0] = 1
         self.assertEqual(int(CONWAY_LIFE.evolve(state)[2, 2]), 0)
 
+    def test_code_52_uses_von_neumann_period_two_cross(self):
+        state = np.zeros((7, 7), dtype=np.uint8)
+        state[3, 3] = state[2, 3] = state[4, 3] = 1
+        state[3, 2] = state[3, 4] = 1
+        first = WOLFRAM_CODE_52.evolve(state)
+        np.testing.assert_array_equal(first[2:5, 2:5], np.ones((3, 3)))
+        np.testing.assert_array_equal(WOLFRAM_CODE_52.evolve(first), state)
+        self.assertIs(WOLFRAM_CODE_52.neighborhood, VON_NEUMANN_NEIGHBORHOOD)
+
+    def test_code_52_hard_boundary_does_not_wrap(self):
+        state = np.zeros((3, 3), dtype=np.uint8)
+        state[0, 0] = state[0, 2] = 1
+        self.assertEqual(int(WOLFRAM_CODE_52.evolve(state)[0, 1]), 1)
+        self.assertEqual(int(WOLFRAM_CODE_52.evolve(state)[2, 1]), 0)
+
     def test_registry_accepts_ids_aliases_and_rulestrings(self):
         self.assertIs(get_rule("life"), CONWAY_LIFE)
         self.assertIs(get_rule("B36/S23"), HIGHLIFE)
         self.assertIs(get_rule("daynight"), DAY_AND_NIGHT)
+        self.assertIs(get_rule("code52"), WOLFRAM_CODE_52)
 
 
 if __name__ == "__main__":

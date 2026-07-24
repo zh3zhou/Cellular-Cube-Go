@@ -67,6 +67,11 @@ class EvolutionZoneTests(unittest.TestCase):
         adjacent = EvolutionZone([[1]], 2, 4, "life", padding=0)
         self.assertTrue(first.overlaps(adjacent, buffer=1))
 
+    def test_active_zone_color_is_immediately_legible(self):
+        zone = EvolutionZone([[1, 1], [1, 1]], 2, 2, "life", padding=1)
+        color = zone.get_color()
+        self.assertGreaterEqual(color[0], int(zone.base_color[0] * 0.55))
+
 
 if __name__ == "__main__":
     unittest.main()

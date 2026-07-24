@@ -228,7 +228,7 @@ def main() -> int:
     parser.add_argument(
         "--report",
         type=Path,
-        default=DEFAULT_CATALOG_PATH.with_name("import-report.v2.json"),
+        default=DEFAULT_CATALOG_PATH.with_name("import-report.lexicon.json"),
     )
     parser.add_argument("--workers", type=int, default=16)
     args = parser.parse_args()

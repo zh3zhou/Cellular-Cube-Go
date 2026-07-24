@@ -128,8 +128,12 @@ class EvolutionZone:
         return self.status is ZoneStatus.EXTINCT
 
     def get_color(self) -> Tuple[int, int, int]:
+        # Active ecosystems must remain legible even when a stable Pattern
+        # matures well before its hard deadline.  This is visual only: unlike
+        # the retired ProgressivePattern code, evolution never pauses.
         progress = min(1.0, self.current_step / max(1, self.max_generations))
-        return tuple(int(channel * progress) for channel in self.base_color)
+        brightness = 0.55 + 0.45 * progress
+        return tuple(int(channel * brightness) for channel in self.base_color)
 
     def step(self) -> bool:
         """Advance once; return True when the zone is mature or extinct."""

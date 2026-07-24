@@ -17,7 +17,7 @@ Stephen A. Silver from contributions credited by the upstream project.
 For this game, the displayed binary grids were converted to RLE, empty outer
 rows and columns were trimmed, RLE syntax was canonicalized, and entries
 equivalent under translation, rotation, or reflection were deduplicated.
-Names and per-entry source URLs are retained in `catalog.v2.json`. These
+Names and per-entry source URLs are retained in `catalog.v3.json`. These
 normalized catalog records remain under CC BY-SA 3.0; the project's MIT
 license does not replace that license.
 
@@ -38,4 +38,16 @@ linked LifeWiki pages and remain under the GNU Free Documentation License 1.2.
 
 Viewer directives were removed and the displayed RLE was canonicalized and
 geometrically deduplicated. Per-entry source pages, hashes, attribution, and
-change notices are retained in `catalog.v2.json`.
+change notices are retained in `catalog.v3.json`.
+
+## Deterministically generated secondary-rule seeds
+
+Entries whose `source.provider` is `cellular-cube-go-generator` were generated
+by this repository's fixed-seed search and are distributed under the MIT
+license. Generator version, seed, rule, input digest, and deterministic
+256-generation analysis are stored in `catalog.v3.json`; accepted and rejected
+candidate counts are in `import-report.v3.json`.
+
+The historical `assets/patterns/library.json` is not part of the runtime
+catalog. Its 109 records lacked per-entry provenance and redistribution terms,
+so the v3 report records them as `unknown-license` rather than publishing them.

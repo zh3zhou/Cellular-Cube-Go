@@ -35,12 +35,6 @@ class GameConfig:
     REWARD_CREATE_INTERVAL = 18  # 子弹生成频率的2倍 | Twice the bullet spawn interval
     MAX_ACTIVE_EVOLUTION_ZONES = 3
 
-    # Legacy Conway aliases kept for older callers. New code uses RuleSpec.
-    LIVE_MIN_NEIGHBORS = 2
-    LIVE_MAX_NEIGHBORS = 3
-    BORN_MIN_NEIGHBORS = 3
-    BORN_MAX_NEIGHBORS = 3
-
     # 渲染设置 | Rendering settings
     CELL_COLOR = (255, 255, 255)  # 白色 | White
     BACKGROUND_COLOR = (0, 0, 0)  # 黑色 | Black
@@ -96,7 +90,9 @@ class GameConfig:
     KEY_RIGHT = pygame.K_d
     KEY_PAUSE = pygame.K_p
     KEY_RESTART = pygame.K_r
-    SURVIVAL_RAMP_FRAMES = 1000
+    # Seconds until survival alone contributes 70% of full Pattern variety.
+    # The remaining 30% comes from eight successfully created greenhouses.
+    VARIETY_DURATION_SECONDS = 90
     WU_DI_MODE = False
     # Settings UI layout
     SETTINGS_TITLE_Y = 100

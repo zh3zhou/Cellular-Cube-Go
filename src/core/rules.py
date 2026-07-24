@@ -1,4 +1,4 @@
-"""Pure, reusable definitions for two-state Life-like cellular automata."""
+"""Pure, reusable definitions for two-state cellular automata."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -12,8 +12,60 @@ Color = Tuple[int, int, int]
 
 
 @dataclass(frozen=True)
+class NeighborhoodSpec:
+    """A finite, translation-invariant neighborhood around one cell."""
+
+    id: str
+    name: str
+    offsets: tuple[tuple[int, int], ...]
+
+    def __post_init__(self) -> None:
+        offsets = tuple(tuple(offset) for offset in self.offsets)
+        if not offsets:
+            raise ValueError("A neighborhood must contain at least one offset")
+        if any(
+            len(offset) != 2
+            or not all(isinstance(value, int) for value in offset)
+            for offset in offsets
+        ):
+            raise ValueError("Neighborhood offsets must be integer row/column pairs")
+        if (0, 0) in offsets:
+            raise ValueError("Neighborhood offsets must not include the center cell")
+        if len(set(offsets)) != len(offsets):
+            raise ValueError("Neighborhood offsets must be unique")
+        object.__setattr__(self, "offsets", offsets)
+
+    @property
+    def max_neighbors(self) -> int:
+        return len(self.offsets)
+
+
+MOORE_NEIGHBORHOOD = NeighborhoodSpec(
+    "moore",
+    "Moore (8 neighbors)",
+    tuple(
+        (row, col)
+        for row in (-1, 0, 1)
+        for col in (-1, 0, 1)
+        if (row, col) != (0, 0)
+    ),
+)
+VON_NEUMANN_NEIGHBORHOOD = NeighborhoodSpec(
+    "von_neumann",
+    "von Neumann (4 neighbors)",
+    ((-1, 0), (0, -1), (0, 1), (1, 0)),
+)
+NEIGHBORHOODS: Mapping[str, NeighborhoodSpec] = MappingProxyType(
+    {
+        neighborhood.id: neighborhood
+        for neighborhood in (MOORE_NEIGHBORHOOD, VON_NEUMANN_NEIGHBORHOOD)
+    }
+)
+
+
+@dataclass(frozen=True)
 class RuleSpec:
-    """A non-wrapping, two-state Life-like rule."""
+    """A non-wrapping, two-state outer-totalistic rule."""
 
     id: str
     name: str
@@ -24,13 +76,22 @@ class RuleSpec:
     max_generations: int
     stable_period_max: int
     pattern_library_id: str
+    neighborhood: NeighborhoodSpec = MOORE_NEIGHBORHOOD
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "birth_counts", frozenset(self.birth_counts))
         object.__setattr__(self, "survival_counts", frozenset(self.survival_counts))
+        if not isinstance(self.neighborhood, NeighborhoodSpec):
+            raise ValueError("neighborhood must be a NeighborhoodSpec")
         counts = self.birth_counts | self.survival_counts
-        if any(not isinstance(value, int) or not 0 <= value <= 8 for value in counts):
-            raise ValueError("Birth and survival counts must be integers from 0 to 8")
+        if any(
+            not isinstance(value, int)
+            or not 0 <= value <= self.neighborhood.max_neighbors
+            for value in counts
+        ):
+            raise ValueError(
+                "Birth and survival counts must fit the selected neighborhood"
+            )
         if self.min_generations < 0 or self.max_generations < 1:
             raise ValueError("Generation limits must be non-negative and non-zero")
         if self.min_generations > self.max_generations:
@@ -57,12 +118,20 @@ class RuleSpec:
             return cells.copy()
         if np.any(cells > 1):
             raise ValueError("Cell state must contain only 0 and 1")
-        padded = np.pad(cells, 1, mode="constant", constant_values=0)
-        neighbors = (
-            padded[:-2, :-2] + padded[:-2, 1:-1] + padded[:-2, 2:]
-            + padded[1:-1, :-2] + padded[1:-1, 2:]
-            + padded[2:, :-2] + padded[2:, 1:-1] + padded[2:, 2:]
+        pad = max(
+            max(abs(row), abs(col))
+            for row, col in self.neighborhood.offsets
         )
+        padded = np.pad(cells, pad, mode="constant", constant_values=0)
+        height, width = cells.shape
+        neighbors = np.zeros_like(cells)
+        for row_offset, col_offset in self.neighborhood.offsets:
+            row_start = pad + row_offset
+            col_start = pad + col_offset
+            neighbors += padded[
+                row_start:row_start + height,
+                col_start:col_start + width,
+            ]
         born = (cells == 0) & np.isin(neighbors, tuple(self.birth_counts))
         survives = (cells == 1) & np.isin(neighbors, tuple(self.survival_counts))
         return (born | survives).astype(np.uint8)
@@ -85,9 +154,28 @@ DAY_AND_NIGHT = RuleSpec(
     frozenset({3, 4, 6, 7, 8}), (90, 210, 235), 48, 160, 8,
     "day_night",
 )
+WOLFRAM_CODE_52 = RuleSpec(
+    "wolfram_code_52",
+    "Wolfram Code 52",
+    frozenset({2, 4}),
+    frozenset({1, 3, 4}),
+    (250, 214, 64),
+    48,
+    160,
+    8,
+    "wolfram_code_52",
+    VON_NEUMANN_NEIGHBORHOOD,
+)
 
 RULES: Mapping[str, RuleSpec] = MappingProxyType({
-    rule.id: rule for rule in (CONWAY_LIFE, HIGHLIFE, SEEDS, DAY_AND_NIGHT)
+    rule.id: rule
+    for rule in (
+        CONWAY_LIFE,
+        HIGHLIFE,
+        SEEDS,
+        DAY_AND_NIGHT,
+        WOLFRAM_CODE_52,
+    )
 })
 _RULE_ALIASES = {
     "conway": "life",
@@ -99,6 +187,10 @@ _RULE_ALIASES = {
     "day-and-night": "day_night",
     "day_and_night": "day_night",
     "b3678/s34678": "day_night",
+    "code52": "wolfram_code_52",
+    "code_52": "wolfram_code_52",
+    "wolfram-code-52": "wolfram_code_52",
+    "b24/s134": "wolfram_code_52",
 }
 
 
