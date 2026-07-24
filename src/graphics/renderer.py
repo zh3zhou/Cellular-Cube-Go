@@ -58,18 +58,18 @@ class Renderer:
             return
         
         # 渲染奖励细胞
-        for reward_pos in reward_manager.get_reward_cells():
-            row, col = reward_pos
+        for reward, reward_type in reward_manager.iter_rewards():
+            row, col = reward.position
             rect = pygame.Rect(col * self.cell_size, row * self.cell_size,
                                self.cell_size, self.cell_size)
-            pygame.draw.rect(self.screen, GameConfig.REWARD_COLOR, rect)
+            pygame.draw.rect(self.screen, reward_type.color, rect)
         
-        # 渲染渐进式patterns
-        for prog_pattern in reward_manager.get_progressive_patterns():
-            color = prog_pattern.get_color()
-            pattern = prog_pattern.pattern
-            start_row = prog_pattern.start_row
-            start_col = prog_pattern.start_col
+        # 渲染独立规则温室
+        for zone in reward_manager.get_evolution_zones():
+            color = zone.get_color()
+            pattern = zone.pattern
+            start_row = zone.start_row
+            start_col = zone.start_col
             
             for i, row in enumerate(pattern):
                 for j, cell in enumerate(row):

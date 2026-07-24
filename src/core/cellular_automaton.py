@@ -6,6 +6,7 @@ import numpy as np
 import random as rd
 from typing import List, Tuple
 from config.game_config import GameConfig
+from src.core.rules import CONWAY_LIFE, RuleSpec
 
 class CellularAutomaton:
     """
@@ -67,17 +68,17 @@ class CellularAutomaton:
         sub = state[ys, xs]
         return int(sub.sum() - state[y, x])
     
-    def apply_rules(self, current_cell: int, neighbor_count: int) -> int:
+    def apply_rules(
+        self,
+        current_cell: int,
+        neighbor_count: int,
+        rule: RuleSpec = CONWAY_LIFE,
+    ) -> int:
         """
         应用康威生命游戏规则
         Apply Conway's Game of Life rules
         """
-        if current_cell == 1:  # 活细胞 | Live cell
-            # 使用可配置的存活邻居范围 | Use configurable live-neighbor range
-            return 1 if (GameConfig.LIVE_MIN_NEIGHBORS <= neighbor_count <= GameConfig.LIVE_MAX_NEIGHBORS) else 0
-        else:  # 死细胞 | Dead cell
-            # 使用可配置的出生邻居范围 | Use configurable birth-neighbor range
-            return 1 if (GameConfig.BORN_MIN_NEIGHBORS <= neighbor_count <= GameConfig.BORN_MAX_NEIGHBORS) else 0
+        return rule.apply(current_cell, neighbor_count)
     
     def add_protected_zone(self, center_row: int, center_col: int, 
                           pattern_height: int, pattern_width: int):
@@ -118,68 +119,60 @@ class CellularAutomaton:
                 return True
         return False
     
-    def next_generation(self, state: List[List[int]]) -> List[List[int]]:
+    def next_generation(
+        self,
+        state: List[List[int]],
+        rule: RuleSpec = CONWAY_LIFE,
+    ) -> List[List[int]]:
         """
         计算下一代状态（包含保护区域逻辑）
         Compute next generation (including protected zone logic)
         """
-        s = state
-        # 邻居计数向量化：零填充 + 切片累加（边界不环绕）
-        p = np.pad(s, 1, mode='constant', constant_values=0)
-        n = (
-            p[0:-2, 0:-2] + p[0:-2, 1:-1] + p[0:-2, 2:  ] +
-            p[1:-1, 0:-2] +                 p[1:-1, 2:  ] +
-            p[2:  , 0:-2] + p[2:  , 1:-1] + p[2:  , 2:  ]
-        )
-        live = ((s == 1) & (n >= GameConfig.LIVE_MIN_NEIGHBORS) & (n <= GameConfig.LIVE_MAX_NEIGHBORS))
-        born = ((s == 0) & (n >= GameConfig.BORN_MIN_NEIGHBORS) & (n <= GameConfig.BORN_MAX_NEIGHBORS))
-        new_state = np.where(live | born, 1, 0).astype(np.uint8)
+        new_state = rule.evolve(state)
         # 保护区掩码：强制清零
         if self._protected_mask is not None:
             new_state[self._protected_mask] = 0
         return new_state
     
-    def update(self, reward_cells: List[Tuple[int, int]], 
-               progressive_patterns: List = None) -> None:
+    def update(
+        self,
+        reward_cells: List[Tuple[int, int]],
+        evolution_zones: List = None,
+    ) -> None:
         """
         更新元胞自动机状态（接收渐进式patterns用于保护区域）
         Update automaton state (receive progressive patterns for protected zones)
         """
-        # 清理旧的保护区域，并预计算掩码 | Clear old zones and precompute mask
-        self.protected_zones.clear()
-        self._protected_mask = None
-        
-        # 根据当前的渐进式patterns设置保护区域 | Set protected zones based on progressive patterns
-        if progressive_patterns:
-            mask = np.zeros((self.height, self.width), dtype=bool)
-            for pattern in progressive_patterns:
-                ph = len(pattern.pattern)
-                pw = len(pattern.pattern[0]) if ph > 0 else 0
-                # 计算包含2格缓冲区的范围
-                sr = max(0, pattern.start_row - 2)
-                sc = max(0, pattern.start_col - 2)
-                er = min(self.height, pattern.start_row + ph + 2)
-                ec = min(self.width, pattern.start_col + pw + 2)
-                mask[sr:er, sc:ec] = True
-            self._protected_mask = mask
-        
+        self.sync_evolution_zones(evolution_zones)
+
         # 计算下一代状态 | Compute next generation
         new_state = self.next_generation(self.state)
-        # 在保护区域内叠加当前渐进式 pattern 的细胞，覆盖重叠
-        if progressive_patterns:
-            for pattern in progressive_patterns:
-                ph = len(pattern.pattern)
-                pw = len(pattern.pattern[0]) if ph > 0 else 0
-                for i in range(ph):
-                    for j in range(pw):
-                        if pattern.pattern[i][j] == 1:
-                            ri = pattern.start_row + i
-                            rj = pattern.start_col + j
-                            if 0 <= ri < self.height and 0 <= rj < self.width:
-                                new_state[ri][rj] = 1
         self.state = new_state
-        
+
         # 清理被占用的奖励细胞 | Cleanup reward cells that became occupied
         for row, col in reward_cells[:]:
             if self.state[row][col] == 1:
                 reward_cells.remove((row, col))
+
+    def sync_evolution_zones(self, evolution_zones: List = None) -> None:
+        """Refresh the collision/evolution mask from currently active zones."""
+        # 清理旧的保护区域，并预计算掩码 | Clear old zones and precompute mask
+        self.protected_zones.clear()
+        self._protected_mask = None
+        
+        # Active zones reserve isolated rectangles. Their colored cells remain
+        # outside the Conway state and are rendered separately.
+        if evolution_zones:
+            mask = np.zeros((self.height, self.width), dtype=bool)
+            for zone in evolution_zones:
+                if hasattr(zone, "reserved_rect"):
+                    sr, sc, er, ec = zone.reserved_rect
+                else:
+                    ph = len(zone.pattern)
+                    pw = len(zone.pattern[0]) if ph > 0 else 0
+                    sr, sc = zone.start_row, zone.start_col
+                    er, ec = sr + ph, sc + pw
+                sr, sc = max(0, sr), max(0, sc)
+                er, ec = min(self.height, er), min(self.width, ec)
+                mask[sr:er, sc:ec] = True
+            self._protected_mask = mask

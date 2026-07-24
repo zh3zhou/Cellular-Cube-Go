@@ -1,35 +1,205 @@
-name: Deploy Pygbag Web App
+name: Verify and deploy Web app
 
 on:
+  pull_request:
   push:
     branches:
       - main
-      - master
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build-and-deploy:
+  verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    env:
+      SDL_VIDEODRIVER: dummy
+      SDL_AUDIODRIVER: dummy
+      PYTHONUNBUFFERED: "1"
     steps:
-      - name: Checkout code
+      - name: Check out source
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.12"
+          cache: pip
 
-      - name: Install dependencies
+      - name: Install verified dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pygbag
+          python -m pip install -e ".[test,web]"
 
-      - name: Build Web Version
+      - name: Run automated checks
         run: |
-          pygbag --build --template static/default.tmpl .
+          python -m pytest
+          python -m compileall -q main.py config src
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Build Web application
+        run: >-
+          python -m pygbag
+          --build
+          --width 1100
+          --height 600
+          --ume_block 0
+          --template static/default.tmpl
+          .
+
+      - name: Verify Web package contents
+        shell: python
+        run: |
+          from pathlib import Path, PurePosixPath
+          import tarfile
+
+          archives = list(Path("build/web").glob("*.tar.gz"))
+          if len(archives) != 1:
+              raise SystemExit(f"expected one Web tarball, found: {archives}")
+
+          with tarfile.open(archives[0], "r:gz") as archive:
+              names = {
+                  PurePosixPath(name).as_posix().lstrip("./")
+                  for name in archive.getnames()
+              }
+
+          required_files = {
+              "assets/main.py",
+              "assets/assets/patterns/NOTICE.md",
+          }
+          required_prefixes = (
+              "assets/src/",
+              "assets/config/",
+              "assets/assets/",
+          )
+          missing = required_files - names
+          for prefix in required_prefixes:
+              if not any(name.startswith(prefix) for name in names):
+                  missing.add(prefix)
+          if missing:
+              raise SystemExit(f"Web archive missing runtime content: {sorted(missing)}")
+
+          forbidden_parts = {
+              ".git",
+              ".github",
+              ".trae",
+              ".pytest_cache",
+              "__pycache__",
+              "build",
+              "tests",
+              "tools",
+              "《开发》",
+          }
+          forbidden_files = {
+              "AGENTS.md",
+              "PROJECT_CONTEXT.md",
+              "README.md",
+              "TECHNICAL_REPORT.md",
+              "THIRD_PARTY_NOTICES.md",
+              "proposal.txt",
+              "pyproject.toml",
+              "requirements.txt",
+              "pygbag.ini",
+              "scraper.py",
+          }
+          leaked = []
+          for name in names:
+              path = PurePosixPath(name)
+              if forbidden_parts.intersection(path.parts):
+                  leaked.append(name)
+              elif path.name in forbidden_files:
+                  leaked.append(name)
+          if leaked:
+              raise SystemExit(f"non-runtime files leaked into Web archive: {leaked}")
+
+          web_root = Path("build/web")
+          for expected in ("index.html", "default.tmpl"):
+              if not (web_root / expected).is_file():
+                  raise SystemExit(f"Web output missing static file: {expected}")
+
+      - name: Install Chromium smoke-test runtime
+        run: |
+          npm install --no-save playwright@1.61.1
+          npx playwright install --with-deps chromium
+
+      - name: Smoke-test browser startup and input
+        run: |
+          python -m http.server 8000 --directory build/web >web-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          node <<'NODE'
+          const { chromium } = require("playwright");
+
+          (async () => {
+            const browser = await chromium.launch({ headless: true });
+            const page = await browser.newPage();
+            const pageErrors = [];
+            page.on("pageerror", error => pageErrors.push(String(error)));
+
+            await page.goto("http://127.0.0.1:8000/", {
+              waitUntil: "domcontentloaded",
+              timeout: 30_000,
+            });
+            await page.locator("body").click({ position: { x: 20, y: 20 } });
+            await page.waitForFunction(() => {
+              const canvas = document.querySelector("#canvas");
+              return canvas
+                && canvas.width > 1
+                && canvas.height > 1
+                && document.body.dataset.lifeGameState === "running";
+            }, null, { timeout: 120_000 });
+
+            await page.keyboard.press("Escape");
+            await page.waitForFunction(() =>
+              document.body.dataset.lifeGameSettings === "open"
+            );
+            await page.keyboard.press("Escape");
+            await page.waitForFunction(() =>
+              document.body.dataset.lifeGameSettings === "closed"
+            );
+
+            if (pageErrors.length) {
+              throw new Error(`browser page errors: ${pageErrors.join(" | ")}`);
+            }
+            await browser.close();
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Upload GitHub Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
+          path: build/web
+
+      - name: Configure GitHub Pages for Actions
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

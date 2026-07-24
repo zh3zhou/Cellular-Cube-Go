@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "catalog_schema_version": 2,
+  "summary": {
+    "imported": 9
+  },
+  "results": [
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA",
+      "status": "imported",
+      "pattern_id": "lifewiki-day-night-fireball",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife/Bomber",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-bomber-predecessor",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife/Bomber",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-bomber",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-period-96",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-replicator-generation-12",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-replicator-generation-36",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife/Replicator",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-replicator-predecessor",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3AHighLife/Replicator",
+      "status": "imported",
+      "pattern_id": "lifewiki-highlife-replicator",
+      "reason": null
+    },
+    {
+      "source_file": "https://conwaylife.com/wiki/OCA%3ASeeds",
+      "status": "imported",
+      "pattern_id": "lifewiki-seeds-small-oscillators",
+      "reason": null
+    }
+  ]
+}

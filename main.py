@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.11"
+# requires-python = ">=3.12"
 # dependencies = [
 #   "pygame-ce",
 #   "numpy",
@@ -24,65 +24,46 @@ else:
 
 
 async def main():
-    print("DEBUG: main() started")
-    sys.stdout.flush()
-
     import pygame
-    print("DEBUG: pygame import ok")
-    sys.stdout.flush()
-
-    pygame.init()
-    print("DEBUG: pygame.init() done")
-    sys.stdout.flush()
-
-    import sys as _sys
-    print(f"DEBUG: sys.path = {_sys.path[:3]}")
-    sys.stdout.flush()
-
     from config.game_config import GameConfig
-    print("DEBUG: GameConfig imported")
-    sys.stdout.flush()
-
-    screen = pygame.display.set_mode((GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT))
-    pygame.display.set_caption(GameConfig.GAME_TITLE)
-    screen.fill(GameConfig.BACKGROUND_COLOR)
-    pygame.display.flip()
-    print("DEBUG: display set up")
-    sys.stdout.flush()
-
     from src.core.game_engine import GameEngine
-    print("DEBUG: GameEngine class imported")
-    sys.stdout.flush()
 
     game = GameEngine()
-    print("DEBUG: GameEngine() created")
-    sys.stdout.flush()
-
-    import time
-    last_time = time.time()
-
-    print("DEBUG: game loop starting")
-    sys.stdout.flush()
+    clock = pygame.time.Clock()
+    is_web = sys.platform in ("emscripten", "wasi")
 
     while game.running:
-        current_time = time.time()
-        dt = current_time - last_time
-        frame_duration = 1.0 / GameConfig.FPS
+        # Clock.tick is the desktop frame limiter. In browsers pygbag owns the
+        # pacing, so the loop only measures elapsed time and yields every frame.
+        dt_ms = clock.tick(0 if is_web else GameConfig.FPS)
+        game.step(pygame.event.get(), min(dt_ms / 1000.0, 0.25))
+        game.render()
 
-        game._handle_events()
-
-        if dt >= frame_duration:
-            last_time = current_time
-            game._handle_continuous_input()
-            if not game.game_over and not game.paused:
-                game._update_game_logic()
-                game._check_collisions()
-            game._render()
-
+        if is_web:
+            _mark_web_state("running", game)
         await asyncio.sleep(0)
 
-    pygame.quit()
-    print("DEBUG: game exited")
+    game.shutdown()
+
+
+def _mark_web_state(state: str, game=None) -> None:
+    """Expose a minimal, platform-guarded browser smoke-test signal."""
+    if sys.platform not in ("emscripten", "wasi"):
+        return
+    try:
+        from platform import window
+        window.document.body.dataset.lifeGameState = state
+        if game is not None:
+            window.document.body.dataset.lifeGameSettings = (
+                "open" if game.show_settings else "closed"
+            )
+            window.document.body.dataset.lifeGamePlayer = (
+                f"{int(game.player.x)},{int(game.player.y)}"
+            )
+            window.document.body.dataset.lifeGameIteration = str(game.iteration)
+    except Exception:
+        # The game must remain playable if a template does not expose the DOM.
+        pass
 
 
 if __name__ == "__main__":

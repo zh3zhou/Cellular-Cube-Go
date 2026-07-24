@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=75,<82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cellular-cube-go"
+version = "0.2.0"
+description = "A survival game inside an evolving cellular-automaton world"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { file = "LICENSE" }
+dependencies = [
+    "numpy==2.1.2",
+    "pygame-ce==2.5.7",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest==8.4.2",
+]
+web = [
+    "pygbag==0.9.3",
+]
+import = [
+    "beautifulsoup4==4.12.3",
+    "requests==2.32.3",
+]
+dev = [
+    "beautifulsoup4==4.12.3",
+    "pygbag==0.9.3",
+    "pytest==8.4.2",
+    "requests==2.32.3",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["config*", "src*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]

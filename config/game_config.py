@@ -7,14 +7,15 @@ import pygame
 
 class GameConfig:
     # 游戏世界设置 | Game world settings
-    WORLD_WIDTH = 120
-    WORLD_HEIGHT = 70
     CELL_SIZE = 10
     CELLULAR_AUTOMATON_PROBABILITY = 0.5
 
     # 屏幕设置 | Screen settings
-    SCREEN_WIDTH = WORLD_WIDTH * CELL_SIZE - 100
-    SCREEN_HEIGHT = WORLD_HEIGHT * CELL_SIZE - 100
+    SCREEN_WIDTH = 1100
+    SCREEN_HEIGHT = 600
+    # The simulation and the viewport intentionally share one coordinate space.
+    WORLD_WIDTH = SCREEN_WIDTH // CELL_SIZE
+    WORLD_HEIGHT = SCREEN_HEIGHT // CELL_SIZE
 
     # 玩家设置 | Player settings
     PLAYER_SIZE = 20
@@ -30,10 +31,11 @@ class GameConfig:
 
     # 奖励系统设置 | Reward system settings
     REWARD_SYSTEM_ENABLED = True  # 新增：奖励系统开关 | Added: reward system switch
-    REWARD_COLOR = (138, 222, 137)  # 绿色 | Green
+    REWARD_COLOR = (110, 220, 139)  # Life green (legacy alias)
     REWARD_CREATE_INTERVAL = 18  # 子弹生成频率的2倍 | Twice the bullet spawn interval
+    MAX_ACTIVE_EVOLUTION_ZONES = 3
 
-    # 元胞自动机规则 | Cellular automaton rules
+    # Legacy Conway aliases kept for older callers. New code uses RuleSpec.
     LIVE_MIN_NEIGHBORS = 2
     LIVE_MAX_NEIGHBORS = 3
     BORN_MIN_NEIGHBORS = 3

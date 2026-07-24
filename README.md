@@ -1,371 +1,116 @@
-（只有中文的废话碎碎念；除了这些下面都是大模型生成的，欧耶）
-大二上学计算物理2。顺道跟着一个python教程写了Conway's Life Game,那个学期也在扒拉着看一些复杂系统的东西，也在上一门大概叫VR游戏设计与开发的课程，于是碎碎地看了很多游戏创作的技术、哲学之类......当时每天都在YY要做什么样的游戏。后来我的UE5学习中道崩殂在调天空的材质和光线时，版本跟我看的教程不一样，于是怎么也调的不像人类。后来这段有点入魔的经历给我留下的大概就是很多有意思的故事和idea，机核这个博主，和这个当时被我掰弯成某种游戏的CUBE GO。在后来一年多断断续续地把这个小东西拿出来玩一玩，改一改，修一修。在尝试这个小项目的初期，我就已经意识到，idea很美妙，看着它的实现更美妙，甚至写程序写代码本身，略显大逆不道地讲，比做物理题OR推公式（虽然w我也不会，可能两个都不会）更有让人享受的一面。但Debug，实在是会人在几分钟或者几十秒之内意识到坚持完成它是一件非常需要毅力的事儿，对我这个会懒到不清游戏日活，不签到领月卡的人来说太地狱了。不过今年Vibe Coding的出现让我的各种进程都轻巧容易了很多，尤其是针对这样弱资源，弱代码，强IDEA的小游戏的实现，如虎添翼，再造之恩，值得磕俩，舒服舒服......
-没空写太多，其实这个小小项目远远没打磨到可以让我自信推出的程度，也跟很多朋友唠了之后有一些尝试的方向，和一些显然的小BUG存在NOTE里还没琢磨。但因为想顺便给CV里一个除了邮箱以外能点开的链接想着先上架了，如果有人尝试配置游玩了它（ZZ将感动），欢迎找我唠嗑聊聊。想要接着试着在这个框架下接着开发也欢迎联系我，我将给小IDEA找新的家。
+# Cellular Cube Go / 细胞方块漫游
 
-2026/01/13 0:46 宿舍楼道洗衣机上坐着
+[在线游玩 / Play in browser](https://zh3zhou.github.io/Cellular-Cube-Go/)
 
+Cellular Cube Go 是一个基于 `pygame-ce` 的二维元胞自动机生存游戏。玩家控制红色方块穿过持续演化的 Conway Life 世界，避开白色活细胞，并用不同颜色的奖励开启短暂的“隔离温室”。温室使用自己的规则演化，成熟后再并入主世界。
 
-# Cellular Cube Go / 细胞自动机游戏
+The repository uses one Python entrypoint for desktop and WebAssembly. The main
+world follows Conway's Life; colored rewards can incubate Life, HighLife, Seeds,
+or Day & Night Patterns before merging them back into the world.
 
-🎮 **[Play Web Version / 游玩网页版](https://zh3zhou.github.io/Cellular-Cube-Go/)** 🎮
+## 快速开始
 
-A Pygame-based cellular automaton game with player movement, bullets, rewards, and dynamic pattern generation. Includes a size diversity algorithm that discourages repeating recent pattern sizes and rewards variety.
+需要 Python 3.12。
 
-一个基于 Pygame 的细胞自动机游戏，包含玩家移动、子弹、奖励系统以及动态图案生成。支持“最近尺寸惩罚 + 尺寸差异奖励”的选择算法，鼓励生成不同大小的图案。
-
----
-
-## Features / 功能特性
-- Cellular automaton world with configurable rules (`GameConfig`)
-- Player, bullets, and reward cells rendering
-- **Expanded Pattern Library**: Includes patterns from Golly's collection and PlayGameOfLife.com
-- Progressive patterns that move over time
-- Size diversity in pattern selection (recent sizes penalty + variety bonus)
-- Configurable difficulty presets and weights (`PatternConfig`)
-
-- 可配置的细胞自动机世界与规则（`GameConfig`）
-- 玩家、子弹与奖励细胞渲染
-- **扩展图案库**：包含来自 Golly 集合与 PlayGameOfLife.com 的海量图案
-- 随时间移动的渐进式图案
-- 尺寸选择多样性（最近尺寸惩罚 + 面积差异奖励）
-- 难度预设与权重可配置（`PatternConfig`）
-
-## Quick Start / 快速开始
-- Install dependencies with Conda or Pip.
-- Conda:
-  - `conda create -n cube-go python=3.12 -y`
-  - `conda activate cube-go`
-  - `pip install -r requirements.txt`
-- Pip:
-  - `pip install -r requirements.txt`
-- Run from the project root:
-  - `python main.py` (or `python -m src.main`)
-- Gameplay:
-  - Control a red square; move with `W/A/S/D`
-  - Avoid white squares; eat green squares to spawn a progressive pattern
-  - Press `P` to pause; press `R` to restart
-- Optional fonts:
-  - Place a `.ttf` in `assets/fonts/` (auto-detects `PixelifySans-SemiBold.ttf` or `PixelifySans.ttf`)
-- Troubleshooting:
-  - If `ModuleNotFoundError: numpy`, install deps in the active environment
-  - If `No module named 'src'`, run from project root or use `python -m src.main`
-
-- 使用 Conda 或 Pip 安装依赖。
-- Conda：
-  - `conda create -n cube-go python=3.12 -y`
-  - `conda activate cube-go`
-  - `pip install -r requirements.txt`
-- Pip：
-  - `pip install -r requirements.txt`
-- 从项目根目录运行：
-  - `python main.py`（或 `python -m src.main`）
-- 游戏玩法：
-  - 操作红色方块，使用 `W/A/S/D` 移动
-  - 避开白色方块；吃下绿色方块会生成随时间渐进的图案
-  - 按 `P` 暂停；按 `R` 重新开始
-- 可选字体：
-  - 在 `assets/fonts/` 放置 `.ttf` 字体（自动检测 `PixelifySans-SemiBold.ttf` 或 `PixelifySans.ttf`）
-- 常见问题：
-  - 若出现 `ModuleNotFoundError: numpy`，请在当前激活环境安装依赖
-  - 若出现 `No module named 'src'`，请从项目根目录运行或使用 `python -m src.main`
-
-## Requirements / 运行环境
-- Python 3.11+ (tested on 3.12)
-- `pygame` and `numpy` (see `requirements.txt`)
-
-- Python 3.11+（建议 3.12）
-- 依赖：`pygame`、`numpy`（见 `requirements.txt`）
-
-## Install / 安装
-
-### Option A: Conda
-```
-conda create -n cube-go python=3.12 -y
-conda activate cube-go
-pip install -r requirements.txt
-```
-
-### Option B: Pip (System Python)
-```
-pip install -r requirements.txt
-```
-
-## Run / 运行
-```
-python main.py
-```
-
-- Run from the project root. Use `python main.py`. Do not run `src/main.py` directly.
-- 请在项目根目录运行。使用 `python main.py`。不要直接运行 `src/main.py`。
-
-## Web Version & Debugging / 网页版与调试指南
-
-The project uses a **Single Codebase** approach. `main.py` is the universal entry point for both local execution and WebAssembly (WASM) deployment via `pygbag`.
-本项目采用 **单代码库 (Single Codebase)** 架构，`main.py` 是本地运行和网页版 (WASM) 部署的通用入口。
-
-### 1. How to distinguish / 如何区分本地与网页版？
-- **Local Version (本地版)**: Runs directly via `python main.py` using standard `asyncio` and `pygame-ce`. Performance is handled by local hardware.
-- **Web Version (网页版)**: Compiled via `pygbag`, runs in the browser. It uses `pygbag.aio` and yields control to the browser's `requestAnimationFrame` via `await asyncio.sleep(0)`.
-- **Code Distinction**: In `main.py`, the platform is detected automatically:
-  ```python
-  if sys.platform in ("emscripten", "wasi"):
-      import pygbag.aio as asyncio  # Web
-  else:
-      import asyncio                # Local
-  ```
-
-### 2. Debugging Local Version / 调试本地版
-Simply run the script. Any errors will show in your terminal.
-直接在终端运行，报错会直接打印在终端中：
 ```bash
+python -m venv .venv
+# Windows PowerShell
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -e ".[test]"
 python main.py
 ```
 
-### 3. Debugging Web Version / 调试网页版
-If you modify code and want to test how it behaves in the browser:
-如果你修改了代码，需要测试其在浏览器中的表现：
+Linux/macOS 激活环境时使用 `source .venv/bin/activate`。唯一受支持的入口是项目根目录下的 `main.py`；项目中没有 `src.main` 或单独的 Web 入口。
 
-1. **Build / 编译打包**:
-   ```bash
-   py -3.12 -m pygbag --build --template static/default.tmpl .
-   ```
-2. **Local Server / 启动本地测试服务**:
-   For `pygbag 0.9.3`, use pygbag's local server **with the custom template**, so dependency wheels can be fetched from the local `/cdn` path and the loading UI matches the deployed version:
-   对于 `pygbag 0.9.3`，本地调试请使用 **带自定义模板的** pygbag 自带服务，这样依赖轮子才能从本地 `/cdn` 路径正确加载，同时加载界面也会和部署版一致：
-   ```bash
-   py -3.12 -m pygbag --template static/default.tmpl .
-   ```
-3. **Test / 测试**:
-   Open `http://localhost:8000` in your browser. Open the browser's **Developer Tools (F12) -> Console** to view loader/runtime messages.
-   浏览器访问 `http://localhost:8000`。按 **F12 打开开发者工具 -> Console (控制台)**，查看加载器和运行时信息。
-4. **Note / 注意**:
-   A plain static server like `python -m http.server` may load `index.html`, but it can fail to provide `/cdn/...whl` dependency requests locally, which looks like "click has no response".
-   像 `python -m http.server` 这样的纯静态服务器虽然能打开 `index.html`，但本地往往无法正确提供 `/cdn/...whl` 依赖请求，看起来就会像“点击后没有反应”。
-   Also, running plain `pygbag .` may regenerate the page with the default template, making the custom loading progress bar and animation disappear.
-   另外，直接运行 `pygbag .` 可能会重新生成默认模板页面，导致自定义加载进度条和动画消失。
+### 操作
 
-## Configuration / 配置
-- `config/game_config.py`
-  - World, screen, player, bullets, colors, FPS
-  - Fonts: if `assets/fonts/PixelifySans.ttf` exists, it is auto-used; otherwise falls back to system font
-  - Collision detection: toggle with `COLLISION_DETECTION_ENABLED` (default: True)
-  
-  - 世界、屏幕、玩家、子弹、颜色、FPS 等
-  - 字体：如果项目内存在 `assets/fonts/PixelifySans.ttf` 将自动使用；否则回退系统默认字体
-  - 碰撞检测：通过 `COLLISION_DETECTION_ENABLED` 开关（默认：开启）
+- `W/A/S/D`：移动
+- `P`：暂停或继续
+- `R`：游戏结束后重新开始
+- `Esc`：打开或关闭设置
+- 设置面板中使用 `W/S` 选择、`A/D` 调整、`Enter/Space` 切换
 
-- `config/pattern_config.py`
-  - Selection strategy, size weights, difficulty presets
-  - Size diversity parameters: `RECENCY_LAST_PENALTY`, `RECENCY_SECOND_PENALTY`, `SIZE_VARIETY_BONUS`
-  
-  - 选择策略、尺寸权重、难度预设
-  - 尺寸多样性参数：`RECENCY_LAST_PENALTY`、`RECENCY_SECOND_PENALTY`、`SIZE_VARIETY_BONUS`
+白色细胞会导致游戏结束。彩色奖励需要先接触、再离开，随后在附近创建一个非致死的隔离演化区。
 
-## Fonts / 字体打包
-- Create `assets/fonts/` and place your font file, e.g., `PixelifySans.ttf`
-- By default, `GameConfig` will auto-detect `assets/fonts/PixelifySans.ttf`
-- If missing, the game uses system default font via `pygame.font.Font(None, size)`
-- Ensure the font license allows redistribution (e.g., Pixelify Sans is under SIL Open Font License 1.1)
+## 四种奖励
 
-- 创建 `assets/fonts/` 并放入字体文件，如 `PixelifySans.ttf`
-- `GameConfig` 会自动检测并使用该字体；不存在则回退系统字体
-- 确认字体授权允许随项目分发（例如 Pixelify Sans 使用 SIL OFL 1.1）
+| 颜色 | 规则 | Rulestring | 默认权重 |
+| --- | --- | --- | ---: |
+| 绿色 | Conway Life | `B3/S23` | 55% |
+| 紫色 | HighLife | `B36/S23` | 20% |
+| 橙色 | Seeds | `B2/S` | 15% |
+| 青蓝色 | Day & Night | `B3678/S34678` | 10% |
 
-## Controls / 操作
-- Movement: `W/A/S/D`
-- Pause: `P`
-- Restart: `R`
+主世界始终是硬边界、二值 Conway Life。其他规则只存在于隔离演化区中，不会改变全局规则。
 
-- 移动：`W/A/S/D`
-- 暂停：`P`
-- 重新开始：`R`
+## 验证
 
-## Gameplay / 游戏玩法
-- You control a red square. Move with `W/A/S/D`. Avoid white squares (hazards). Eating a green square will spawn a pattern that progressively renders over time. Press `P` to pause, press `R` to restart.
-- 你将操作一个红色方块，使用 `W/A/S/D` 移动；不要碰到白色方块（危险）；吃下绿色方块会生成图案并随时间渐进显示；按 `P` 暂停，按 `R` 重新开始。
-
-## Project Structure / 项目结构
-```
-life game/
-├── config/
-│   ├── game_config.py
-│   └── pattern_config.py
-├── assets/
-│   └── fonts/
-│       └── PixelifySans.ttf (optional)
-├── src/
-│   ├── core/
-│   │   ├── cellular_automaton.py
-│   │   ├── collision_detection.py
-│   │   └── game_engine.py
-│   ├── graphics/
-│   │   ├── renderer.py
-│   │   └── ui.py
-│   ├── entities/
-│   │   ├── player.py
-│   │   ├── bullet.py
-│   │   └── reward.py
-│   └── patterns/
-│       ├── pattern_library.py
-│       ├── pattern_generator.py
-│       └── progressive_pattern.py
-├── requirements.txt
-└── main.py
+```bash
+python -m pytest
+python -m compileall -q main.py config src
 ```
 
-## Advanced Configuration / 配置项详解（高级）
-- Edit `config/game_config.py` and `config/pattern_config.py`. Each option below shows defaults, effects, safe ranges, and risks.
-- 修改 `config/game_config.py` 与 `config/pattern_config.py`。下列条目给出默认值、作用、建议范围与风险提示。
+无显示器环境下可设置 SDL dummy 驱动后执行测试：
 
-### GameConfig
-- `WORLD_WIDTH` (default: `120`) — World width in cells | 世界宽度（格子数）。Risk: very large values increase CPU/GPU, rendering and collision checks scale with `width*height`.
-- `WORLD_HEIGHT` (default: `70`) — World height in cells | 世界高度（格子数）。Risk: extremely small worlds (< 15×15) reduce pattern fit; boundary spawns may rarely trigger.
-- `CELL_SIZE` (default: `10`) — Pixels per cell | 单个格子的像素尺寸。Important: current bullet boundary math assumes 10px cells; changing this can break bullet-pattern spawning; keep `10` unless you adjust bullet math accordingly.
-- `CELLULAR_AUTOMATON_PROBABILITY` (default: `0.5`) — Initial live-cell probability | 初始活细胞概率。Range `[0.0,1.0]`; high values cause dense starts and slower first frames.
-
-- `SCREEN_WIDTH` / `SCREEN_HEIGHT` — Derived: `WORLD_* * CELL_SIZE - 100` | 由上式计算，不建议单独改。Change world/cell instead; player start and bounds depend on these.
-
-- `PLAYER_SIZE` (default: `20`) — Player square size (px) | 玩家方块像素大小。Large values make collisions easier; ensure `PLAYER_SIZE <= min(SCREEN_*)`.
-- `PLAYER_SPEED` (default: `10`) — Pixels per tick | 每帧移动像素。If too high, you may skip over reward cells in a single frame, missing conversions.
-- `PLAYER_COLOR` — RGB tuple | 颜色配置。Safe to change.
-- `PLAYER_START_X` / `PLAYER_START_Y` — Initial pixel position | 初始像素坐标。Defaults to screen center; keep within screen bounds.
-- `PLAYER_SAFE_ZONE_RADIUS` (default: `10`) — Cells around center cleared on start | 开局清空的安全区半径（格）。Large radius wipes more initial cells.
-
-- `BULLET_CREATE_INTERVAL` (default: `9`) — Frames between boundary bullet-pattern spawns | 边界子弹图案生成的帧间隔。Lower values increase spawn rate and CPU.
-- `BULLET_SPEED` (default: `CELL_SIZE`) — Bullet pixel step | 子弹像素步长。Currently bullets are not instantiated visually; boundary patterns use the interval. Safe to leave default.
-
-- `REWARD_SYSTEM_ENABLED` (default: `True`) — Toggle reward cells & progressive patterns | 奖励系统开关（绿色格与渐进式图案）。
-- `REWARD_COLOR` — RGB for reward cells | 奖励细胞颜色。
-- `REWARD_CREATE_INTERVAL` (default: `18`) — Reward spawn cadence | 奖励生成频率（帧）。Too small creates many rewards, potential slowdowns.
-
-- `LIVE_MIN_NEIGHBORS` / `LIVE_MAX_NEIGHBORS` / `BORN_MIN_NEIGHBORS` / `BORN_MAX_NEIGHBORS` — CA rule parameters now applied in engine | 元胞规则参数，现已接入引擎。
-  - Defaults reproduce Conway B3/S23; tweak to experiment with variants. | 默认等价 B3/S23，可自行实验其它规则。
-
-- `CELL_COLOR` / `BACKGROUND_COLOR` — Cell and background colors | 细胞与背景颜色。Safe.
-- `FPS` (default: `13`) — Target frames per second | 目标帧率。Higher FPS increases CPU usage; too low reduces responsiveness.
-- `GAME_TITLE` — Window title | 窗口标题。
-- `COLLISION_DETECTION_ENABLED` (default: `True`) — Player vs. live-cell collision toggle | 玩家与活细胞碰撞开关。Turn off for sandbox exploration.
-
-- Fonts / 字体
-  - `FONT_PATH` — Auto-detected from `assets/fonts/` (`*.ttf`); `None` falls back to system font. | 自动检测 `assets/fonts/*.ttf`；为 `None` 时使用系统字体。
-  - `FONT_SIZE_LARGE` / `MEDIUM` / `SMALL` — UI font sizes | UI 字号。Large sizes may overflow screen on small resolutions.
-
-- UI Colors / UI 颜色
-  - `UI_TEXT_COLOR`, `UI_RESTART_COLOR`, `GAME_OVER_COLOR`, `PAUSE_COLOR`, `UI_OVERLAY_ALPHA` — Safe visual tweaks | 安全的视觉微调。
-
-- Key Bindings / 按键
-  - `KEY_UP/DOWN/LEFT/RIGHT` (defaults: `W/S/A/D`) — Movement
-  - `KEY_PAUSE` (`P`), `KEY_RESTART` (`R`) — Pause/Restart
-  - Use `pygame.K_*` constants; avoid duplicates. | 使用 `pygame.K_*` 常量，避免重复绑定。
-
-### PatternConfig
-- Progressive patterns / 渐进式图案
-- `PROGRESSIVE_PATTERN_SPEED` (default: `15`) — Base steps; size-based scaling increases total steps for larger patterns. | 基础步数；按尺寸放大总步数，越大越慢。
-  - `PROGRESSIVE_PATTERN_MAX_AGE` (default: `180`) — Hard cap on total steps. | 总步数上限。
-  - `SPEED_SCALING_FACTOR` (default: `0.15`) — Bounding-box-based scaling factor. | 基于包围盒的缩放系数。
-  - `MIN_PATTERN_SPEED` / `MAX_PATTERN_SPEED` — Now enforced as min/max total steps clamps. | 作为总步数的上下界已生效。
-
-- Selection strategy / 选择策略
-  - `SELECTION_STRATEGY`: `"single_cell"` | `"size_probability"` (default) — Size-probability picks sizes with weights. | 通过权重选择尺寸。
-  - `FALLBACK_STRATEGY`: `"single_cell"` | `"min_fit"` | `"closest_configured_size"` — Used when preferred size not available. | 首选尺寸不可用时的兜底策略。
-
-- Size weights and diversity / 尺寸权重与多样性
-  - `SIZE_SELECTION_WEIGHTS` — Dict keyed by `(w,h)` with float weights. | 以 `(w,h)` 为键的权重表。Keys must be tuples of ints; missing keys fall back via `DEFAULT_WEIGHT_SCALE`. | 键须为整数元组；未配置尺寸按面积比例与 `DEFAULT_WEIGHT_SCALE` 计算。
-  - `BASE_WEIGHT_MULTIPLIER`, `SIZE_DIVERSITY_FACTOR`, `MAX_PATTERN_BIAS`, `ENABLE_MAX_SIZE_BONUS`, `DEFAULT_WEIGHT_SCALE` — Tune overall bias. | 调整整体偏向。
-  - Recent-size effects / 最近尺寸影响：`RECENCY_LAST_PENALTY`、`RECENCY_SECOND_PENALTY`、`SIZE_VARIETY_BONUS` ∈ `[0,1]` recommended. | 建议取值 `[0,1]`。
-
-- Size constraints / 尺寸约束
-  - `MIN_PATTERN_AREA` / `MAX_PATTERN_AREA` — Area in cells of bounding box. | 以包围盒面积计。Ensure `MAX_PATTERN_AREA <= WORLD_WIDTH*WORLD_HEIGHT` and pattern sizes fit world dims. | 保证不超过世界可容纳范围。
-
-- Changing `CELL_SIZE` — bullet boundary logic now adapts to `CELL_SIZE`; safe to change, but very large values reduce grid resolution and may affect gameplay feel. | 修改 `CELL_SIZE`：边界生成已适配 `CELL_SIZE`，可安全调整；但过大将降低网格分辨率并改变操作手感。
-- Very large `WORLD_WIDTH`/`WORLD_HEIGHT` — per-frame loops for rendering, collision, and CA updates scale with the number of cells; test performance gradually. | 非常大的世界尺寸：渲染、碰撞、演化均随细胞数线性增长，请逐步调大并测试性能。
-- Excessive `PLAYER_SPEED` — can skip over 1-cell rewards between frames, preventing conversions. | 过高玩家速度：可能跨帧越过 1 格奖励而未被判定接触。
-- Very small worlds (< 15×15) — many library patterns will not fit; boundary spawning triggers less often. | 过小世界：多数图案无法放置，边界生成触发概率降低。
-
-### How to Apply / 修改方法
-- Edit and save the config file(s), then run `python main.py`. No rebuild step is required. | 直接修改配置文件并保存，然后运行 `python main.py`，无需额外构建步骤。
-
-## Notes / 说明
-- To tune selection behavior, tweak `PatternConfig.SIZE_SELECTION_WEIGHTS` and diversity parameters.
-- Set `PatternConfig.DEBUG_PATTERN_SELECTION = True` to log size probabilities.
-- Publishing to GitHub: include this README, `.gitignore`, and (optionally) a `LICENSE` (e.g., MIT). If bundling fonts, include their license.
-
-- 调整选择行为：修改 `PatternConfig.SIZE_SELECTION_WEIGHTS` 及多样性参数
-- 设置 `PatternConfig.DEBUG_PATTERN_SELECTION = True` 输出尺寸选择概率
-- 发布到 GitHub：提交本 README、`.gitignore`，可选添加 `LICENSE`（如 MIT）；如随库分发字体，请附带许可证
-
----
-
-## AI Assistant Prompt (Copy-Paste) / 面向AI的提示词（可直接复制）
-
-Use the following prompt to help an AI assistant understand and safely modify this project. Keep changes scoped, update docs, and validate imports.
-
-使用以下提示词帮助 AI 安全理解并修改本项目。限制改动范围、同步文档，并进行导入校验。
-
-```
-You are an expert Python/Pygame engineer assisting on a cellular automaton game.
-Goal:
-- Implement the following change: [clearly describe the change here]
-- Keep existing behavior as default unless specified; add toggles when appropriate.
-
-Repository context (key files):
-- Entry: `main.py` (root) calls `src.main.main`; run from project root with `python main.py`.
-- Core: `src/core/game_engine.py` (loop, updates, render), `src/core/cellular_automaton.py` (CA rules, protected zones), `src/core/collision_detection.py` (helpers).
-- Entities: `src/entities/player.py` (movement, rect), `src/entities/bullet.py` (boundary pattern spawns, uses `GameConfig.CELL_SIZE`), `src/entities/reward.py` (rewards → progressive patterns, respects `REWARD_SYSTEM_ENABLED`).
-- Patterns: `src/patterns/pattern_generator.py`, `src/patterns/pattern_library.py`, `src/patterns/progressive_pattern.py` (size-based speed, clamped by `MIN/MAX_PATTERN_SPEED` and `PROGRESSIVE_PATTERN_MAX_AGE`).
-- Graphics/UI: `src/graphics/renderer.py` (colors, fonts), `src/graphics/ui.py`.
-- Input: `src/utils/input_utils.py` (uses `GameConfig.KEY_*`).
-- Config: `config/game_config.py` (world, screen, player, bullets, rewards, colors, FPS, fonts, UI, keys, collision toggle), `config/pattern_config.py` (progressive timing, selection strategy and weights, diversity, size constraints, recency penalties, difficulty presets).
-
-Important constraints:
-- Follow project style; keep changes minimal and scoped to the request.
-- Defaults must preserve current behavior unless the request says otherwise.
-- Gate new behavior via config when it can affect gameplay; document in README (bilingual section).
-- Do not add new deps or change file layout unless necessary.
-- Avoid breaking `CELL_SIZE`-dependent logic; bullets already adapt to `CELL_SIZE`.
-- CA rules come from `GameConfig` (LIVE/BORN min/max) and must remain configurable.
-
-Performance & risks to consider:
-- Large `WORLD_WIDTH/HEIGHT` scales work per frame (render, CA, collisions).
-- Pattern speed uses size-based scaling and clamps; avoid unbounded timings.
-- High `PLAYER_SPEED` may skip 1-cell rewards in a single frame.
-
-Acceptance criteria:
-- Code compiles and module imports succeed.
-- The change works for default config and is behind a toggle when needed.
-- README “Advanced Configuration” reflects any new/changed settings.
-- No unrelated refactors; no silent behavior changes.
-
-Validation steps to run:
-1) From project root: `pip install -r requirements.txt`
-2) Import sanity check:
-   `python -c "import sys, os; sys.path.insert(0, os.getcwd()); import main, src.core.game_engine, src.core.collision_detection, src.core.cellular_automaton, src.entities.player, src.entities.reward, src.entities.bullet, src.patterns.progressive_pattern; print('Imports OK')"`
-3) Start the game: `python main.py` (or `python -m src.main`).
-
-If anything is ambiguous, ask me:
-- Should changes be toggleable? Default on/off?
-- Are there performance targets (FPS, world size)?
-- Which parts of README need updates (Quick Start, Advanced Configuration)?
-
-Plan before changes:
-1) Identify affected modules (search for related symbols/usages).
-2) Implement minimal changes with clear config flags if needed.
-3) Update README (bilingual), focusing on Advanced Configuration.
-4) Run the import sanity check; provide instructions to run.
-5) Present a concise diff and rationale.
-
-Deliverables:
-- Code changes (targeted and minimal), updated README, brief test notes.
+```bash
+# PowerShell
+$env:SDL_VIDEODRIVER = "dummy"
+$env:SDL_AUDIODRIVER = "dummy"
+python -m pytest
 ```
 
-### Quick Prompt Snippet / 快速提示片段
+测试覆盖规则演化、隔离区生命周期、Pattern 目录和核心游戏循环。手工桌面验收仍应直接运行 `python main.py`。
 
-- Task: [要做什么]
-- Constraints: keep defaults; add config toggle if gameplay changes; update README (CN/EN).
-- Touch files: [列出你预计修改的文件]
-- Validate: run import sanity check; launch with `python main.py`.
+Pattern 导入属于开发流程而非运行时。对已经离线保存、来源和许可明确的 RLE，
+使用 `python -m tools.patterns.import_rle ...`；更新已授权的 Life Lexicon 快照时，
+使用 `python -m tools.patterns.fetch_playgameoflife`。两者都会经过规则头、尺寸、
+人口、大小写名称和旋转/镜像几何去重校验，后者同时生成逐项导入报告。
 
-- 任务：[要做什么]
-- 约束：默认行为不变；影响玩法需加开关；更新 README（中英双语）。
-- 修改文件：[列出你预计修改的文件]
-- 验证：执行导入校验；用 `python main.py` 启动。
+## Web 构建
+
+安装 Web 依赖并使用固定版本的 pygbag：
+
+```bash
+python -m pip install -e ".[web]"
+python -m pygbag --build --width 1100 --height 600 --ume_block 0 --template static/default.tmpl .
+```
+
+构建输出位于 `build/web/`。本地交互调试使用 pygbag 自带服务器，以便正确提供 Python/WASM 运行时：
+
+```bash
+python -m pygbag --width 1100 --height 600 --ume_block 0 --template static/default.tmpl .
+```
+
+然后打开 <http://localhost:8000/>；当前游戏不使用音频，因此网页运行时会自动启动，不要求媒体授权点击。不要把 `build/` 提交到仓库；推送到 `main` 后，GitHub Actions 会重新测试、构建、检查归档内容，并通过 GitHub Pages 官方 artifact 流程部署。
+
+## 项目结构
+
+```text
+main.py                 桌面与 Web 通用入口
+config/                 世界、规则与选择配置
+src/core/               游戏循环和元胞自动机
+src/entities/           玩家、奖励及边界生成器
+src/patterns/           Pattern 目录、选择与隔离演化区
+src/graphics/           Pygame 渲染和 UI
+assets/                 运行时 Pattern 与字体
+static/default.tmpl     pygbag 加载页模板
+tests/                  自动化测试
+```
+
+产品意图和工程边界见 [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) 与
+[AGENTS.md](AGENTS.md)。Pattern 和字体的来源/许可说明见
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+
+## 数据与许可
+
+代码使用 [MIT License](LICENSE)。当前 v2 目录包含 731 个去重 Pattern：
+59 个项目内置种子和 663 个来自 PlayGameOfLife Life Lexicon 的
+CC BY-SA 3.0 Conway 条目；其中 659 个外部条目可进入游戏抽取，4 个仅保留在
+目录；另有 9 个来自 LifeWiki OCA、使用 GFDL 1.2 的 HighLife、Seeds 和
+Day & Night 条目。第三方 Pattern 只有在来源和再分发信息明确时才进入发布目录；抓取和
+导入工具不属于运行时，也不会被打进网页应用。仓库中的 Pixelify Sans
+字体文件自带 SIL Open Font License 1.1 元数据，完整归属、许可边界和导入
+统计见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 与
+`assets/patterns/import-report.v2.json`、
+`assets/patterns/import-report.lifewiki.json`。

@@ -1,4 +1,2 @@
-pygame==2.6.1
-numpy==2.1.2
-requests==2.32.3
-beautifulsoup4==4.12.3
+# Compatibility shortcut. pyproject.toml is the dependency source of truth.
+-e .

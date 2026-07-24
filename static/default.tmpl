@@ -1,4 +1,4 @@
-<html lang="en-us"><script src="{{cookiecutter.cdn}}browserfs.min.js"></script><script src="{{cookiecutter.cdn}}pythons.js" type=module id="site" data-python="python{{cookiecutter.PYBUILD}}" data-LINES=42 data-COLUMNS=132 data-os="vtx,snd,gui">#<!--
+<html lang="en-us"><script src="https://cdn.jsdelivr.net/npm/browserfs@1.4.3/dist/browserfs.min.js"></script><script src="{{cookiecutter.cdn}}pythons.js" type=module id="site" data-python="python{{cookiecutter.PYBUILD}}" data-LINES=42 data-COLUMNS=132 data-os="vtx,snd,gui">#<!--
 
 print("""
 Loading {{cookiecutter.title}} from {{cookiecutter.archive}}.apk
@@ -63,7 +63,7 @@ async def custom_site():
     # before a gesture is recorded ( touch or click )
 
     # test/wait user media interaction
-    if not platform.window.MM.UME:
+    if "{{cookiecutter.ume_block}}" == "1" and not platform.window.MM.UME:
 
         # now that apk is mounted we have access to font cache
         # but we need to fill __file__ that is not yet set
