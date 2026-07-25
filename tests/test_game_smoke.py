@@ -4,6 +4,7 @@ os.environ.setdefault("SDL_VIDEODRIVER", "dummy")
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 from src.core.game_engine import GameEngine
+from src.entities.bullet import InboundGlider
 from src.patterns.catalog import PatternCatalog
 
 
@@ -48,5 +49,22 @@ def test_restart_reuses_validated_pattern_catalog(monkeypatch):
         assert game.reward_manager.catalog is catalog
         assert game.iteration == 0
         assert game.survival_time_seconds == 0.0
+    finally:
+        game.shutdown()
+
+
+def test_inbound_bullet_warns_before_becoming_lethal():
+    game = GameEngine()
+    try:
+        game.cellular_automaton.state.fill(0)
+        glider = InboundGlider([[1]], 30, 55, visible_generations=1)
+        game.bullet_manager.bullets = [glider]
+
+        game._check_collisions()
+        assert not game.game_over
+
+        glider.visible_generations = 2
+        game._check_collisions()
+        assert game.game_over
     finally:
         game.shutdown()

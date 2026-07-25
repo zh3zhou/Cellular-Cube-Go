@@ -22,8 +22,10 @@ features so later cleanup does not repeat the same regressions.
 - a 200-choice inverse-frequency window;
 - a working, seconds-based `Variety Duration` setting;
 - Pattern-size-sensitive fixed incubation, now bounded by each `RuleSpec`;
+- full-range per-rule incubation calibrated to the current playable catalog;
 - a visible reward-color-to-white gradient for every rule ecosystem;
-- restart without reloading and reparsing the immutable Pattern catalog.
+- restart without reloading and reparsing the immutable Pattern catalog;
+- valid Conway gliders that originate beyond the visible boundary.
 
 ## Resolved historical contradictions
 
@@ -44,6 +46,12 @@ features so later cleanup does not repeat the same regressions.
    presentation is the reward color fading toward mature white. The current
    owner decision is applied consistently to all five rules, with the exact base
    color visible for the first frame.
+5. The historical bullet manager never instantiated its movable `Bullet`
+   entity. Instead it wrote a 3×3 structure directly into the visible grid
+   around three to five cells from an edge; two of its four structures were not
+   valid gliders. Incoming hazards now use rotations of one verified Conway
+   glider, evolve from fully outside the viewport, expose one warning frame, and
+   commit to the main world only after fully entering.
 
 Changing trailing placement, the incubation mapping, or the color endpoints is
 a product decision. Tests must be updated together with such a change.

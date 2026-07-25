@@ -29,13 +29,20 @@ The secondary share is based on the square root of each usable library size
 and its fresh candidates; unavailable share returns to Conway. The route and
 Pattern choice use the same candidate snapshot.
 
+White Conway gliders are separate incoming hazards. They evolve from fully
+outside the visible hard boundary, receive one visible warning frame when
+first entering, then become lethal. Once every live glider cell is inside, the
+structure commits to and continues evolving with the main Conway world.
+
 After the player touches and leaves a reward, its complete Pattern bounding box
 is placed behind the exit direction and evolves inside an isolated local zone.
 The outside Conway world cannot enter the zone, and the incubating colored
 cells are non-lethal. They interpolate from the reward color toward white over
-a fixed schedule derived from Pattern area and measured complexity inside each
-rule's published generation range. Extinction clears a zone early; otherwise
-the schedule ends with surviving cells becoming lethal white Conway cells.
+a fixed schedule derived from Pattern area and measured complexity. Each
+rule's current playable catalog is normalized across the complete published
+generation range, so its lightest and heaviest candidates reach the minimum
+and maximum respectively. Extinction clears a zone early; otherwise the
+schedule ends with surviving cells becoming lethal white Conway cells.
 
 ## Complexity and variety
 

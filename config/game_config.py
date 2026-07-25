@@ -27,7 +27,6 @@ class GameConfig:
 
     # 子弹设置 | Bullet settings
     BULLET_CREATE_INTERVAL = 9
-    BULLET_SPEED = CELL_SIZE
 
     # 奖励系统设置 | Reward system settings
     REWARD_SYSTEM_ENABLED = True  # 新增：奖励系统开关 | Added: reward system switch

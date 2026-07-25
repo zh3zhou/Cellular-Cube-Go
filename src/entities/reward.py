@@ -77,6 +77,7 @@ class RewardManager:
         self.rng = rng or random.Random()
         self.catalog = catalog or PatternCatalog.load_default()
         self.selector = PatternSelector(self.catalog, rng=self.rng)
+        self._incubation_signal_ranges = self._build_incubation_signal_ranges()
         self.rewards: list[RewardInstance] = []
         self.contacted_rewards: set[tuple[int, int]] = set()
         self.evolution_zones: list[EvolutionZone] = []
@@ -341,6 +342,10 @@ class RewardManager:
                     getattr(definition, "complexity_score", 0.0)
                 ),
                 bounding_area=pattern_height * pattern_width,
+                signal_range=self._incubation_signal_ranges.get(
+                    rule.id,
+                    (0.0, 1.0),
+                ),
             )
             zone = EvolutionZone(
                 pattern,
@@ -436,20 +441,65 @@ class RewardManager:
             raise RuntimeError("RewardManager.update must receive a state first")
         return self._current_state
 
+    def _build_incubation_signal_ranges(
+        self,
+    ) -> dict[str, tuple[float, float]]:
+        if not hasattr(self.catalog, "patterns_for"):
+            return {}
+        ranges = {}
+        for reward_type in REWARD_TYPES:
+            definitions = self.catalog.patterns_for(
+                reward_type.rule_id,
+                max_width=max(1, GameConfig.WORLD_WIDTH - 2),
+                max_height=max(1, GameConfig.WORLD_HEIGHT - 2),
+            )
+            signals = tuple(
+                incubation_signal(
+                    complexity_score=definition.complexity_score,
+                    bounding_area=definition.width * definition.height,
+                )
+                for definition in definitions
+            )
+            if len(signals) >= 2 and max(signals) > min(signals):
+                ranges[reward_type.rule_id] = (min(signals), max(signals))
+        return ranges
+
 
 def calculate_incubation_generations(
     rule: RuleSpec,
     *,
     complexity_score: float,
     bounding_area: int,
+    signal_range: tuple[float, float] = (0.0, 1.0),
 ) -> int:
     """Map Pattern complexity and size onto the rule's incubation range."""
-    normalized_complexity = min(100.0, max(0.0, float(complexity_score)))
-    normalized_area = min(1.0, max(0, int(bounding_area)) / 400.0)
-    incubation_ratio = min(
-        0.30,
-        0.20 * normalized_complexity / 100.0 + 0.10 * normalized_area,
+    signal = incubation_signal(
+        complexity_score=complexity_score,
+        bounding_area=bounding_area,
     )
+    signal_min, signal_max = signal_range
+    if signal_max <= signal_min:
+        incubation_ratio = 0.0
+    else:
+        incubation_ratio = min(
+            1.0,
+            max(0.0, (signal - signal_min) / (signal_max - signal_min)),
+        )
     return rule.min_generations + round(
         (rule.max_generations - rule.min_generations) * incubation_ratio
+    )
+
+
+def incubation_signal(
+    *,
+    complexity_score: float,
+    bounding_area: int,
+) -> float:
+    """Return the catalog-normalizable 2:1 complexity/size signal."""
+    normalized_complexity = min(100.0, max(0.0, float(complexity_score)))
+    normalized_area = min(1.0, max(0, int(bounding_area)) / 400.0)
+    return min(
+        1.0,
+        (2.0 / 3.0) * normalized_complexity / 100.0
+        + (1.0 / 3.0) * normalized_area,
     )
