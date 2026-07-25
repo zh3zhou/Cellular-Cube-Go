@@ -1,212 +1,220 @@
-"""
-子弹系统
-Bullet system
-"""
+"""Off-screen Conway gliders that enter and join the visible world."""
+from __future__ import annotations
+
+from dataclasses import dataclass
 import random
+from typing import Iterator
+
 import numpy as np
 import pygame
-from typing import List, Tuple
-from config.game_config import GameConfig
 
-class Bullet:
-    """
-    子弹实体
-    Bullet entity
-    """
-    
-    def __init__(self, x: int, y: int, direction: Tuple[int, int]):
-        self.x = x
-        self.y = y
-        self.direction = direction  # (dx, dy)
-        self.speed = GameConfig.BULLET_SPEED
-        self.size = GameConfig.CELL_SIZE
-    
-    def update(self) -> None:
-        """
-        更新子弹位置
-        Update bullet position
-        """
-        self.x += self.direction[0] * self.speed
-        self.y += self.direction[1] * self.speed
-    
-    def is_out_of_bounds(self, screen_width: int, screen_height: int) -> bool:
-        """
-        检查子弹是否超出边界
-        Check whether bullet is out of bounds
-        """
-        return (self.x < 0 or self.x > screen_width or 
-                self.y < 0 or self.y > screen_height)
-    
-    def get_rect(self) -> pygame.Rect:
-        """
-        获取子弹的矩形
-        Get bullet rect
-        """
-        return pygame.Rect(self.x, self.y, self.size, self.size)
+from config.game_config import GameConfig
+from src.core.rules import CONWAY_LIFE
+
+
+# Direction numbers preserve the historical random routing:
+# 1 NE outward / SW inward, 2 NW / SE, 3 SW / NE, 4 SE / NW.
+_OUTWARD_VECTORS = {
+    1: (-1, 1),
+    2: (-1, -1),
+    3: (1, -1),
+    4: (1, 1),
+}
+_CANONICAL_GLIDER = np.array(
+    [[0, 1, 0], [0, 0, 1], [1, 1, 1]],
+    dtype=np.uint8,
+)
+_INWARD_GLIDERS = {
+    1: np.rot90(_CANONICAL_GLIDER, 3).copy(),  # down-left
+    2: _CANONICAL_GLIDER.copy(),               # down-right
+    3: np.rot90(_CANONICAL_GLIDER, 1).copy(),  # up-right
+    4: np.rot90(_CANONICAL_GLIDER, 2).copy(),  # up-left
+}
+
+
+@dataclass
+class InboundGlider:
+    """A Conway glider evolving on an unbounded local grid."""
+
+    pattern: np.ndarray
+    start_row: int
+    start_col: int
+    visible_generations: int = 0
+
+    def __post_init__(self) -> None:
+        cells = np.asarray(self.pattern, dtype=np.uint8)
+        if cells.ndim != 2 or not cells.size or np.any(cells > 1):
+            raise ValueError("glider pattern must be a non-empty binary grid")
+        self.pattern = cells.copy()
+
+    def step(self, world_shape: tuple[int, int]) -> bool:
+        """Evolve once; return False only if the local structure dies."""
+        padded = np.pad(self.pattern, 1, mode="constant")
+        evolved = CONWAY_LIFE.evolve(padded)
+        live = np.argwhere(evolved == 1)
+        if not live.size:
+            self.pattern = np.zeros((0, 0), dtype=np.uint8)
+            return False
+
+        top, left = live.min(axis=0)
+        bottom, right = live.max(axis=0) + 1
+        self.start_row += int(top) - 1
+        self.start_col += int(left) - 1
+        self.pattern = np.ascontiguousarray(
+            evolved[top:bottom, left:right]
+        )
+        if any(self.iter_visible_cells(world_shape)):
+            self.visible_generations += 1
+        return True
+
+    def iter_world_cells(self) -> Iterator[tuple[int, int]]:
+        for row, col in np.argwhere(self.pattern == 1):
+            yield self.start_row + int(row), self.start_col + int(col)
+
+    def iter_visible_cells(
+        self,
+        world_shape: tuple[int, int],
+    ) -> Iterator[tuple[int, int]]:
+        height, width = world_shape
+        for row, col in self.iter_world_cells():
+            if 0 <= row < height and 0 <= col < width:
+                yield row, col
+
+    def is_fully_inside(self, world_shape: tuple[int, int]) -> bool:
+        cells = tuple(self.iter_world_cells())
+        if not cells:
+            return False
+        height, width = world_shape
+        return all(
+            0 <= row < height and 0 <= col < width
+            for row, col in cells
+        )
+
+    def commit(self, state: np.ndarray) -> None:
+        for row, col in self.iter_world_cells():
+            if 0 <= row < state.shape[0] and 0 <= col < state.shape[1]:
+                state[row, col] = 1
+
 
 class BulletManager:
-    """
-    子弹管理器
-    Bullet manager
-    """
-    
-    def __init__(self):
-        self.bullets: List[Bullet] = []
+    """Launch valid Conway gliders from beyond the visible hard boundary."""
+
+    def __init__(self, *, rng: random.Random | None = None) -> None:
+        self.rng = rng or random.Random()
+        self.bullets: list[InboundGlider] = []
         self.creation_counter = 0
         self.last_direction = 1
-    
-    def update(self, state: List[List[int]], player_pos: Tuple[int, int]) -> None:
-        """
-        更新子弹系统
-        Update bullet system
-        """
-        # 更新现有子弹 | Update existing bullets
-        for bullet in self.bullets[:]:
-            bullet.update()
-            if bullet.is_out_of_bounds(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT):
-                self.bullets.remove(bullet)
-        
-        # 尝试创建新子弹 | Try to create new bullet
-        self._try_create_bullet(state, player_pos)
-    
-    def _try_create_bullet(self, state: List[List[int]], player_pos: Tuple[int, int]) -> None:
-        """
-        尝试创建新子弹
-        Try to create a new bullet
-        """
-        self.creation_counter += 1
-        
-        if self.creation_counter >= GameConfig.BULLET_CREATE_INTERVAL:
-            self._create_bullet_pattern(state, player_pos)
-            self.creation_counter = 0
-    
-    def _create_bullet_pattern(self, state: List[List[int]], player_pos: Tuple[int, int]) -> None:
-        """
-        在边界创建子弹pattern
-        Create bullet pattern at boundaries
-        """
-        # 转换玩家位置到像素坐标 | Convert player position to pixel coordinates
-        p_center_x = (player_pos[1] + 0.5) * GameConfig.CELL_SIZE
-        p_center_y = (player_pos[0] + 0.5) * GameConfig.CELL_SIZE
-        
-        # 随机选择方向，确保与上次不同 | Randomly choose direction, ensure different from last
-        while True:
-            direction_num = random.randint(1, 4)  # 1: pi/4 2: 3pi/4 3: 5pi/4 4: 7pi/4
-            if direction_num != self.last_direction:
-                self.last_direction = direction_num
-                break
-        
-        # 检测边界并生成子弹pattern | Detect boundary and generate bullet pattern
-        for i in range(len(state)):
-            # 计算投射位置 | Compute projection position
-            l_distance_x = round(np.sqrt(2) * i * np.cos((2 * (direction_num - 1) + 1) * np.pi/4))
-            l_distance_y = -round(np.sqrt(2) * i * np.sin((2 * (direction_num - 1) + 1) * np.pi/4))
-            
-            # 将像素转换为格子坐标，适配可变CELL_SIZE | Convert pixels to grid coords using CELL_SIZE
-            cell_x = round(p_center_x / GameConfig.CELL_SIZE)
-            cell_y = round(p_center_y / GameConfig.CELL_SIZE)
+        self.world_shape = (
+            GameConfig.WORLD_HEIGHT,
+            GameConfig.WORLD_WIDTH,
+        )
 
-            l_x = cell_x + l_distance_x
-            l_y = cell_y + l_distance_y
-            
-            # 检查边界条件并生成相应的3x3 pattern | Check boundary and create 3x3 pattern accordingly
-            if self._check_boundary_and_create_pattern(state, l_x, l_y, direction_num):
-                break
-    
-    def _check_boundary_and_create_pattern(self, state: List[List[int]], l_x: int, l_y: int, direction_num: int) -> bool:
-        """
-        检查边界并创建对应的pattern
-        Check boundary and create corresponding pattern
-        """
-        width = len(state[0])
-        height = len(state)
-        
-        # 左边界 | Left boundary
-        if l_x == 4:
-            if direction_num == 2:
-                return self._create_3x3_pattern(state, l_x - 1, l_y - 1, [
-                    [0, 0, 1],
-                    [1, 0, 1],
-                    [0, 1, 1]
-                ])
-        
-        # 右边界 | Right boundary
-        elif l_x == width - 4:
-            if direction_num == 1:
-                return self._create_3x3_pattern(state, l_x + 1, l_y - 1, [
-                    [0, 1, 0],
-                    [1, 0, 0],
-                    [1, 1, 1]
-                ])
-            elif direction_num == 4:
-                return self._create_3x3_pattern(state, l_x + 1, l_y + 1, [
-                    [1, 1, 1],
-                    [1, 0, 0],
-                    [1, 0, 0]
-                ])
-        
-        # 上边界 | Top boundary
-        elif l_y == 4:
-            if direction_num == 1:
-                return self._create_3x3_pattern(state, l_x + 1, l_y - 1, [
-                    [0, 1, 0],
-                    [1, 0, 0],
-                    [1, 1, 1]
-                ])
-            elif direction_num == 2:
-                return self._create_3x3_pattern(state, l_x - 1, l_y - 1, [
-                    [0, 0, 1],
-                    [1, 0, 1],
-                    [0, 1, 1]
-                ])
-        
-        # 下边界 | Bottom boundary
-        elif l_y == height - 4:
-            if direction_num == 3:
-                return self._create_3x3_pattern(state, l_x - 1, l_y + 1, [
-                    [1, 1, 1],
-                    [1, 0, 1],
-                    [0, 0, 0]
-                ])
-            elif direction_num == 4:
-                return self._create_3x3_pattern(state, l_x + 1, l_y + 1, [
-                    [1, 1, 1],
-                    [1, 0, 0],
-                    [1, 0, 0]
-                ])
-        
-        return False
-    
-    def _create_3x3_pattern(self, state: List[List[int]], center_x: int, center_y: int, pattern: List[List[int]]) -> bool:
-        """
-        在指定位置创建3x3 pattern
-        Create a 3x3 pattern at the specified position
-        """
-        try:
-            for i in range(3):
-                for j in range(3):
-                    if pattern[i][j] == 1:
-                        target_row = center_y - 1 + i
-                        target_col = center_x - 1 + j
-                        
-                        if (0 <= target_row < len(state) and 
-                            0 <= target_col < len(state[0])):
-                            state[target_row][target_col] = 1
-            return True
-        except (IndexError, ValueError):
-            return False
-    
-    def get_bullet_rects(self) -> List[pygame.Rect]:
-        """
-        获取所有子弹的矩形
-        Get rects of all bullets
-        """
-        return [bullet.get_rect() for bullet in self.bullets]
-    
+    def update(self, state, player_pos: tuple[int, int]) -> None:
+        cells = np.asarray(state)
+        world_shape = cells.shape
+        self.world_shape = world_shape
+        for glider in tuple(self.bullets):
+            if not glider.step(world_shape):
+                self.bullets.remove(glider)
+                continue
+            if glider.is_fully_inside(world_shape):
+                glider.commit(cells)
+                self.bullets.remove(glider)
+
+        self.creation_counter += 1
+        if self.creation_counter >= GameConfig.BULLET_CREATE_INTERVAL:
+            self._create_bullet_pattern(cells, player_pos)
+            self.creation_counter = 0
+
+    def _create_bullet_pattern(
+        self,
+        state: np.ndarray,
+        player_pos: tuple[int, int],
+    ) -> None:
+        self.world_shape = state.shape
+        direction_num = self._choose_direction()
+        start_row, start_col = self._offscreen_start(
+            state.shape,
+            player_pos,
+            direction_num,
+        )
+        self.bullets.append(
+            InboundGlider(
+                _INWARD_GLIDERS[direction_num],
+                start_row,
+                start_col,
+            )
+        )
+
+    def _choose_direction(self) -> int:
+        choices = tuple(
+            direction for direction in _OUTWARD_VECTORS
+            if direction != self.last_direction
+        )
+        direction = self.rng.choice(choices)
+        self.last_direction = direction
+        return direction
+
+    @staticmethod
+    def _offscreen_start(
+        world_shape: tuple[int, int],
+        player_pos: tuple[int, int],
+        direction_num: int,
+    ) -> tuple[int, int]:
+        """Project through the player, then place the full seed outside."""
+        height, width = world_shape
+        player_row, player_col = player_pos
+        row_direction, col_direction = _OUTWARD_VECTORS[direction_num]
+        row_steps = (
+            player_row + 1
+            if row_direction < 0
+            else height - player_row
+        )
+        col_steps = (
+            player_col + 1
+            if col_direction < 0
+            else width - player_col
+        )
+
+        if row_steps <= col_steps:
+            hit_col = player_col + col_direction * row_steps
+            start_row = -3 if row_direction < 0 else height
+            start_col = max(0, min(hit_col - 1, width - 3))
+        else:
+            hit_row = player_row + row_direction * col_steps
+            start_row = max(0, min(hit_row - 1, height - 3))
+            start_col = -3 if col_direction < 0 else width
+        return start_row, start_col
+
+    def get_bullet_rects(self) -> list[pygame.Rect]:
+        """Return every currently visible inbound cell for rendering."""
+        cell_size = GameConfig.CELL_SIZE
+        return [
+            pygame.Rect(
+                col * cell_size,
+                row * cell_size,
+                cell_size,
+                cell_size,
+            )
+            for glider in self.bullets
+            for row, col in glider.iter_visible_cells(self.world_shape)
+        ]
+
+    def get_dangerous_bullet_rects(self) -> list[pygame.Rect]:
+        """Give each entering structure one visible frame before it is lethal."""
+        cell_size = GameConfig.CELL_SIZE
+        return [
+            pygame.Rect(
+                col * cell_size,
+                row * cell_size,
+                cell_size,
+                cell_size,
+            )
+            for glider in self.bullets
+            if glider.visible_generations > 1
+            for row, col in glider.iter_visible_cells(self.world_shape)
+        ]
+
     def clear(self) -> None:
-        """
-        清空所有子弹
-        Clear all bullets
-        """
         self.bullets.clear()
         self.creation_counter = 0

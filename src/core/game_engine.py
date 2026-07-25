@@ -168,6 +168,12 @@ class GameEngine:
         ):
             self.game_over = True
             return
+        if any(
+            player_rect.colliderect(bullet_rect)
+            for bullet_rect in self.bullet_manager.get_dangerous_bullet_rects()
+        ):
+            self.game_over = True
+            return
     
     def _render(self):
         """

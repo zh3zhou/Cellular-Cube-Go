@@ -8,7 +8,7 @@ import pytest
 from src.core.cellular_automaton import CellularAutomaton
 from src.core.collision_detection import CollisionDetector
 from src.core.game_engine import GameEngine
-from src.core.rules import CONWAY_LIFE
+from src.core.rules import CONWAY_LIFE, RULES
 from src.entities.reward import (
     REWARD_TYPES,
     RewardInstance,
@@ -136,15 +136,40 @@ def test_large_seed_bounding_box_stays_behind_player():
 
 
 def test_incubation_duration_increases_with_pattern_size_and_complexity():
-    small_simple = calculate_incubation_generations(
-        CONWAY_LIFE, complexity_score=0, bounding_area=4
-    )
-    large_complex = calculate_incubation_generations(
-        CONWAY_LIFE, complexity_score=100, bounding_area=400
-    )
-    assert small_simple >= CONWAY_LIFE.min_generations
-    assert large_complex > small_simple
-    assert large_complex <= CONWAY_LIFE.max_generations
+    for rule in RULES.values():
+        minimum = calculate_incubation_generations(
+            rule, complexity_score=0, bounding_area=1
+        )
+        middle = calculate_incubation_generations(
+            rule, complexity_score=50, bounding_area=200
+        )
+        maximum = calculate_incubation_generations(
+            rule, complexity_score=100, bounding_area=400
+        )
+        assert minimum == rule.min_generations
+        assert minimum < middle < maximum
+        assert maximum == rule.max_generations
+
+
+def test_each_playable_rule_library_uses_its_complete_incubation_range():
+    manager = RewardManager(rng=random.Random(11))
+    for rule in RULES.values():
+        definitions = manager.catalog.patterns_for(
+            rule.id,
+            max_width=108,
+            max_height=58,
+        )
+        durations = [
+            calculate_incubation_generations(
+                rule,
+                complexity_score=definition.complexity_score,
+                bounding_area=definition.width * definition.height,
+                signal_range=manager._incubation_signal_ranges[rule.id],
+            )
+            for definition in definitions
+        ]
+        assert min(durations) == rule.min_generations
+        assert max(durations) == rule.max_generations
 
 
 def test_contact_leave_creates_nonlethal_zone_then_commits():
