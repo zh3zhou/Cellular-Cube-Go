@@ -6,7 +6,7 @@ from typing import Iterable, Iterator, Optional, Tuple, Union
 
 import numpy as np
 
-from src.core.rules import RuleSpec, get_rule
+from src.core.rules import RuleSpec, binary_grid, get_rule
 
 
 class ZoneStatus(str, Enum):
@@ -37,11 +37,9 @@ class EvolutionZone:
         max_generations: Optional[int] = None,
         stable_period_max: Optional[int] = None,
     ) -> None:
-        seed = np.asarray(pattern, dtype=np.uint8)
+        seed = binary_grid(pattern)
         if seed.ndim != 2 or not seed.shape[0] or not seed.shape[1]:
             raise ValueError("pattern must be a non-empty two-dimensional array")
-        if np.any(seed > 1):
-            raise ValueError("pattern must contain only 0 and 1")
         if start_row < 0 or start_col < 0 or padding < 0:
             raise ValueError("coordinates and padding must be non-negative")
 
@@ -101,8 +99,8 @@ class EvolutionZone:
 
     @pattern.setter
     def pattern(self, value: Iterable[Iterable[int]]) -> None:
-        cells = np.asarray(value, dtype=np.uint8)
-        if cells.ndim != 2 or cells.shape != self._grid.shape or np.any(cells > 1):
+        cells = binary_grid(value)
+        if cells.shape != self._grid.shape:
             raise ValueError("replacement pattern must be binary and preserve arena shape")
         self._grid = cells.copy()
 

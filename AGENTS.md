@@ -79,3 +79,9 @@ Before claiming a change works:
    then repeat the browser start/input smoke test against GitHub Pages.
 
 Never describe an unrun manual or live-browser check as passed.
+
+## Project memory and completion decision check
+
+- Begin substantive work with `docs/DECISIONS.md` and `PROJECT_CONTEXT.md`; follow current source/evidence and the existing project truth hierarchy when prose conflicts. Check superseding records before reusing a historical approval.
+- Keep major design reasons, rejected alternatives, sources, dates, status and confidence in that existing mechanism. Assistant suggestions remain Proposed unless accepted or independently supported by implementation evidence; keep unknown history explicit. Preserve frozen records and append supersession.
+- At completion, check whether architecture, interfaces, scientific assumptions, gates or durable workflow changed. If yes, update the decision/log entry and link validation and unresolved actions; if no, state that no new decision was needed in the normal closeout. Do not log routine edits as ADRs or copy private conversations wholesale.

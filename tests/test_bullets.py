@@ -85,3 +85,49 @@ def test_entering_glider_has_a_visible_warning_then_commits(monkeypatch):
 
     assert state.sum() == 5
     assert not manager.bullets
+
+
+@pytest.mark.parametrize("finishing_pattern", [[[1]], [[1, 1], [1, 1]]])
+def test_nonfirst_glider_can_die_or_commit_without_array_comparison(finishing_pattern):
+    state = np.zeros((60, 110), dtype=np.uint8)
+    manager = BulletManager()
+    incoming = InboundGlider(_INWARD_GLIDERS[2], -30, 20)
+    finishing = InboundGlider(finishing_pattern, 20, 50)
+    manager.bullets = [incoming, finishing]
+
+    manager.update(state, (30, 55))
+
+    assert len(manager.bullets) == 1
+    assert manager.bullets[0] is incoming
+    assert state.sum() == (4 if len(finishing_pattern) == 2 else 0)
+
+
+def test_corner_glider_is_retired_after_crossing_and_leaving_viewport(monkeypatch):
+    state = np.zeros((60, 110), dtype=np.uint8)
+    manager = BulletManager()
+    monkeypatch.setattr(manager, "_choose_direction", lambda: 3)
+    manager._create_bullet_pattern(state, (58, 109))
+    manager.creation_counter = -100
+    seen = False
+    for _ in range(20):
+        manager.update(state, (58, 109))
+        seen |= bool(manager.get_bullet_rects())
+    assert seen
+    assert not manager.bullets
+    assert not state.any()
+
+
+def test_corner_glider_survives_a_phase_with_no_visible_live_cells():
+    state = np.zeros((60, 110), dtype=np.uint8)
+    manager = BulletManager()
+    manager.bullets = [InboundGlider(_INWARD_GLIDERS[3], 60, 107)]
+    manager.creation_counter = -100
+    for _ in range(7):
+        manager.update(state, (58, 109))
+    assert len(manager.bullets) == 1
+    assert not manager.get_bullet_rects()
+    manager.update(state, (58, 109))
+    assert manager.get_bullet_rects()
+    for _ in range(12):
+        manager.update(state, (58, 109))
+    assert not manager.bullets

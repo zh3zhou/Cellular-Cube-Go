@@ -37,13 +37,9 @@ class InputHandler:
         """
         keys = pygame.key.get_pressed()
         
-        if keys[GameConfig.KEY_UP]:
-            player.move(0, -GameConfig.PLAYER_SPEED)
-        if keys[GameConfig.KEY_DOWN]:
-            player.move(0, GameConfig.PLAYER_SPEED)
-        if keys[GameConfig.KEY_LEFT]:
-            player.move(-GameConfig.PLAYER_SPEED, 0)
-        if keys[GameConfig.KEY_RIGHT]:
-            player.move(GameConfig.PLAYER_SPEED, 0)
+        dx = int(keys[GameConfig.KEY_RIGHT]) - int(keys[GameConfig.KEY_LEFT])
+        dy = int(keys[GameConfig.KEY_DOWN]) - int(keys[GameConfig.KEY_UP])
+        if dx or dy:
+            player.move(dx * GameConfig.PLAYER_SPEED, dy * GameConfig.PLAYER_SPEED)
     def handle_settings_input(self, engine):
         pass

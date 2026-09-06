@@ -69,13 +69,17 @@ class GameEngine:
         tick_interval = 1.0 / max(1, GameConfig.FPS)
         while self._time_accumulator + 1e-9 >= tick_interval:
             self._time_accumulator -= tick_interval
-            if not self.game_over and not self.paused:
+            if not self.game_over and not self.paused and not self.show_settings:
                 self._handle_continuous_input()
                 self._update_game_logic()
                 self._check_collisions()
-                if self.reward_manager.committed_this_update:
-                    # A newly white pattern must be rendered once before a
-                    # catch-up tick can evolve it as ordinary Conway cells.
+                if (
+                    self.reward_manager.committed_this_update
+                    or self.reward_manager.created_this_update
+                    or self.bullet_manager.entered_this_update
+                ):
+                    # Show new seeds, mature zones, and incoming warnings
+                    # before a catch-up tick can change their visible state.
                     break
 
     def render(self) -> None:

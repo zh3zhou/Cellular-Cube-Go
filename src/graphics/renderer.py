@@ -2,6 +2,7 @@
 渲染引擎
 """
 import pygame
+import numpy as np
 from typing import List, Tuple, Optional
 from config.game_config import GameConfig
 
@@ -71,15 +72,14 @@ class Renderer:
             start_row = zone.start_row
             start_col = zone.start_col
             
-            for i, row in enumerate(pattern):
-                for j, cell in enumerate(row):
-                    if cell == 1:
-                        rect = pygame.Rect(
-                            (start_col + j) * self.cell_size,
-                            (start_row + i) * self.cell_size,
-                            self.cell_size, self.cell_size
-                        )
-                        pygame.draw.rect(self.screen, color, rect)
+            rows, cols = np.nonzero(pattern == 1)
+            for row, col in zip(rows.tolist(), cols.tolist()):
+                rect = pygame.Rect(
+                    (start_col + col) * self.cell_size,
+                    (start_row + row) * self.cell_size,
+                    self.cell_size, self.cell_size,
+                )
+                pygame.draw.rect(self.screen, color, rect)
     
     def render_player(self, player) -> None:
         """渲染玩家"""

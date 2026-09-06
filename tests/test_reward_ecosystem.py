@@ -255,3 +255,30 @@ def test_engine_stops_catchup_after_zone_commit(monkeypatch):
         assert len(updates) == 1
     finally:
         engine.shutdown()
+
+
+def test_engine_renders_new_zone_before_catchup_evolves_it():
+    engine = GameEngine()
+    try:
+        engine.cellular_automaton.state.fill(0)
+        manager = RewardManager(rng=random.Random(7), catalog=_BlockCatalog())
+        engine.reward_manager = manager
+        manager.creation_counter = -100
+        manager.rewards = [RewardInstance(30, 55, "life")]
+        manager.contacted_rewards.add((30, 55))
+        engine.player.x, engine.player.y = 800, 300
+        engine.player.last_direction = "right"
+
+        engine.step([], 0.25)
+
+        zone = manager.evolution_zones[0]
+        assert engine.iteration == 1
+        assert zone.current_step == 0
+        assert zone.get_color() == zone.base_color
+        engine.render()
+        row, col = next(zone.iter_world_cells())
+        assert engine.screen.get_at((col * 10, row * 10))[:3] == zone.base_color
+        engine.step([], 0)
+        assert zone.current_step > 0
+    finally:
+        engine.shutdown()

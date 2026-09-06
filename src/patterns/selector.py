@@ -55,7 +55,7 @@ class PatternSelector:
             lambda: deque(maxlen=window_size)
         )
         self._pool_cache: dict[
-            tuple[str, float, int, int], tuple[PatternRecord, ...]
+            tuple[str, int, int], tuple[PatternRecord, ...]
         ] = {}
 
     def recent_ids(self, rule_id: str) -> tuple[str, ...]:
@@ -81,17 +81,16 @@ class PatternSelector:
         candidates: dict[str, tuple[PatternRecord, ...]] = {}
         fresh: dict[str, tuple[PatternRecord, ...]] = {}
         for rule_id in selected_rules:
-            cache_key = (rule_id, progress, max_width, max_height)
-            pool = self._pool_cache.get(cache_key)
-            if pool is None:
-                pool = tuple(
-                    item
-                    for item in self.catalog.patterns_for(
-                        rule_id, max_width=max_width, max_height=max_height
-                    )
-                    if item.complexity_score <= ceiling
+            # Cache only the fixed geometry filter. Continuous progress must
+            # not retain a nearly identical candidate tuple for every tick.
+            cache_key = (rule_id, max_width, max_height)
+            geometry_pool = self._pool_cache.get(cache_key)
+            if geometry_pool is None:
+                geometry_pool = self.catalog.patterns_for(
+                    rule_id, max_width=max_width, max_height=max_height
                 )
-                self._pool_cache[cache_key] = pool
+                self._pool_cache[cache_key] = geometry_pool
+            pool = tuple(item for item in geometry_pool if item.complexity_score <= ceiling)
             recent = set(self._recent[rule_id])
             candidates[rule_id] = pool
             fresh[rule_id] = tuple(item for item in pool if item.id not in recent)

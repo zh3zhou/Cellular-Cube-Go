@@ -84,6 +84,7 @@ class RewardManager:
         self.creation_counter = 0
         self._current_state: np.ndarray | None = None
         self.committed_this_update = False
+        self.created_this_update = False
         self.successful_rewards = 0
         self.survival_seconds = 0.0
         self._context_cache_key = None
@@ -125,6 +126,7 @@ class RewardManager:
     ) -> Optional[tuple[int, int]]:
         """Update rewards, then advance zones and commit mature cells."""
         self.committed_this_update = False
+        self.created_this_update = False
         if survival_seconds is not None:
             self.survival_seconds = max(0.0, float(survival_seconds))
         if not GameConfig.REWARD_SYSTEM_ENABLED:
@@ -137,6 +139,7 @@ class RewardManager:
         self._cleanup_occupied_rewards()
         self._try_create_reward()
         converted = self._check_player_contact(player)
+        self.created_this_update = converted is not None
         # Keep a newly created greenhouse at its exact reward color for its
         # first rendered frame; older zones continue evolving normally.
         created_zone = (

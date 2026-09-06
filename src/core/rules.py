@@ -11,6 +11,16 @@ import numpy as np
 Color = Tuple[int, int, int]
 
 
+def binary_grid(state: Iterable[Iterable[int]]) -> np.ndarray:
+    """Validate before narrowing, so fractions and overflow cannot become cells."""
+    cells = np.asarray(state)
+    if cells.ndim != 2:
+        raise ValueError("Cell state must be a two-dimensional array")
+    if not np.all((cells == 0) | (cells == 1)):
+        raise ValueError("Cell state must contain only 0 and 1")
+    return cells.astype(np.uint8, copy=False)
+
+
 @dataclass(frozen=True)
 class NeighborhoodSpec:
     """A finite, translation-invariant neighborhood around one cell."""
@@ -111,13 +121,9 @@ class RuleSpec:
 
     def evolve(self, state: Iterable[Iterable[int]]) -> np.ndarray:
         """Return one generation using zero-filled, non-wrapping boundaries."""
-        cells = np.asarray(state, dtype=np.uint8)
-        if cells.ndim != 2:
-            raise ValueError("Cell state must be a two-dimensional array")
+        cells = binary_grid(state)
         if cells.size == 0:
             return cells.copy()
-        if np.any(cells > 1):
-            raise ValueError("Cell state must contain only 0 and 1")
         pad = max(
             max(abs(row), abs(col))
             for row, col in self.neighborhood.offsets

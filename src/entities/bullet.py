@@ -9,7 +9,7 @@ import numpy as np
 import pygame
 
 from config.game_config import GameConfig
-from src.core.rules import CONWAY_LIFE
+from src.core.rules import CONWAY_LIFE, binary_grid
 
 
 # Direction numbers preserve the historical random routing:
@@ -42,8 +42,8 @@ class InboundGlider:
     visible_generations: int = 0
 
     def __post_init__(self) -> None:
-        cells = np.asarray(self.pattern, dtype=np.uint8)
-        if cells.ndim != 2 or not cells.size or np.any(cells > 1):
+        cells = binary_grid(self.pattern)
+        if not cells.size:
             raise ValueError("glider pattern must be a non-empty binary grid")
         self.pattern = cells.copy()
 
@@ -103,6 +103,7 @@ class BulletManager:
         self.rng = rng or random.Random()
         self.bullets: list[InboundGlider] = []
         self.creation_counter = 0
+        self.entered_this_update = False
         self.last_direction = 1
         self.world_shape = (
             GameConfig.WORLD_HEIGHT,
@@ -113,13 +114,30 @@ class BulletManager:
         cells = np.asarray(state)
         world_shape = cells.shape
         self.world_shape = world_shape
-        for glider in tuple(self.bullets):
+        self.entered_this_update = False
+        retained = []
+        for glider in self.bullets:
+            was_visible = glider.visible_generations > 0
             if not glider.step(world_shape):
-                self.bullets.remove(glider)
                 continue
+            # Corner trajectories can cross the viewport without ever fitting
+            # wholly inside it. Once they leave, their one-way motion cannot
+            # bring them back; retaining them would grow the update workload.
+            pattern_height, pattern_width = glider.pattern.shape
+            if was_visible and (
+                glider.start_row >= world_shape[0]
+                or glider.start_col >= world_shape[1]
+                or glider.start_row + pattern_height <= 0
+                or glider.start_col + pattern_width <= 0
+            ):
+                continue
+            if not was_visible and glider.visible_generations:
+                self.entered_this_update = True
             if glider.is_fully_inside(world_shape):
                 glider.commit(cells)
-                self.bullets.remove(glider)
+            else:
+                retained.append(glider)
+        self.bullets = retained
 
         self.creation_counter += 1
         if self.creation_counter >= GameConfig.BULLET_CREATE_INTERVAL:
@@ -218,3 +236,4 @@ class BulletManager:
     def clear(self) -> None:
         self.bullets.clear()
         self.creation_counter = 0
+        self.entered_this_update = False

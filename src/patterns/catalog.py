@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import random
 import re
 from dataclasses import dataclass
@@ -208,6 +209,15 @@ def _text(value: Any, label: str, errors: list[str]) -> str:
     return value.strip()
 
 
+def _finite_number(value: Any) -> bool:
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:
+        return False
+
+
 def validate_catalog_data(data: Any) -> tuple[str, ...]:
     """Return all catalog errors without mutating or partially accepting data."""
     errors: list[str] = []
@@ -216,6 +226,7 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
     if data.get("schema_version") != CATALOG_SCHEMA_VERSION:
         errors.append(f"schema_version must be {CATALOG_SCHEMA_VERSION}")
     rules = data.get("rules")
+    normalized_rules: dict[str, str] = {}
     if not isinstance(rules, dict) or not rules:
         errors.append("rules must be a non-empty object")
         rules = {}
@@ -225,8 +236,10 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
                 errors.append(f"rules.{rule_id} must be an object")
                 continue
             _text(rule.get("name"), f"rules.{rule_id}.name", errors)
+            rulestring = _text(rule.get("rulestring"), f"rules.{rule_id}.rulestring", errors)
             try:
-                normalize_rule(rule.get("rulestring"))
+                if rulestring:
+                    normalized_rules[rule_id] = normalize_rule(rulestring)
             except RLEError as exc:
                 errors.append(f"rules.{rule_id}.rulestring: {exc}")
             neighborhood_id = _text(
@@ -272,6 +285,13 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
         if not isinstance(rule_ids, list) or not rule_ids:
             errors.append(f"{label}.rule_ids must be a non-empty array")
             rule_ids = []
+        valid_rule_ids = []
+        for rule_id in rule_ids:
+            if not isinstance(rule_id, str) or not rule_id:
+                errors.append(f"{label}.rule_ids must contain non-empty strings")
+                continue
+            valid_rule_ids.append(rule_id)
+        rule_ids = valid_rule_ids
         for rule_id in rule_ids:
             if rule_id not in rules:
                 errors.append(f"{label}.rule_ids references unknown rule {rule_id!r}")
@@ -282,21 +302,22 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
                     f"{item['name']!r}"
                 )
             names.add(name_key)
-        if item["tier"] not in {"standard", "large"}:
+        if item["tier"] not in ("standard", "large"):
             errors.append(f"{label}.tier must be standard or large")
         score = item["complexity_score"]
-        if (
-            not isinstance(score, (int, float))
-            or isinstance(score, bool)
-            or not 0 <= score <= 100
-        ):
+        valid_score = (
+            isinstance(score, (int, float))
+            and not isinstance(score, bool)
+            and 0 <= score <= 100
+        )
+        if not valid_score:
             errors.append(f"{label}.complexity_score must be between 0 and 100")
         tier_value = item["complexity_tier"]
         if not isinstance(tier_value, int) or isinstance(tier_value, bool):
             errors.append(f"{label}.complexity_tier must be an integer from 1 to 5")
         elif not 1 <= tier_value <= 5:
             errors.append(f"{label}.complexity_tier must be an integer from 1 to 5")
-        elif isinstance(score, (int, float)) and not isinstance(score, bool):
+        elif valid_score:
             if tier_value != complexity_tier(float(score)):
                 errors.append(
                     f"{label}.complexity_tier does not match complexity_score"
@@ -309,12 +330,12 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
         if (
             not isinstance(behavior_tags, list)
             or not behavior_tags
-            or any(tag not in BEHAVIOR_TAGS for tag in behavior_tags)
+            or any(not isinstance(tag, str) or tag not in BEHAVIOR_TAGS for tag in behavior_tags)
         ):
             errors.append(
                 f"{label}.behavior_tags must use the controlled behavior vocabulary"
             )
-        if item["affinity"] not in {"rule-native", "polyglot"}:
+        if item["affinity"] not in ("rule-native", "polyglot"):
             errors.append(f"{label}.affinity must be rule-native or polyglot")
         elif len(rule_ids) > 1 and item["affinity"] != "polyglot":
             errors.append(
@@ -377,15 +398,18 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
                 )
             growth_rate = analysis.get("growth_rate")
             if (
-                not isinstance(growth_rate, (int, float))
-                or isinstance(growth_rate, bool)
+                not _finite_number(growth_rate)
                 or growth_rate < 0
             ):
                 errors.append(
                     f"{label}.analysis.growth_rate must be non-negative"
                 )
-        if not isinstance(item["weight"], (int, float)) or item["weight"] <= 0:
-            errors.append(f"{label}.weight must be positive")
+        weight = item["weight"]
+        if (
+            not _finite_number(weight)
+            or weight <= 0
+        ):
+            errors.append(f"{label}.weight must be positive and finite")
         source = item["source"]
         if not isinstance(source, dict):
             errors.append(f"{label}.source must be an object")
@@ -414,15 +438,18 @@ def validate_catalog_data(data: Any) -> tuple[str, ...]:
                 errors.append(
                     f"{label}.source.license must identify a redistributable license"
                 )
+        if not isinstance(item["rle"], str):
+            errors.append(f"{label}.rle must be a string")
+            continue
         try:
             parsed = parse_rle(item["rle"])
         except (RLEError, TypeError) as exc:
             errors.append(f"{label}.rle: {exc}")
             continue
         assigned_rulestrings = {
-            normalize_rule(rules[rule_id]["rulestring"])
+            normalized_rules[rule_id]
             for rule_id in rule_ids
-            if rule_id in rules
+            if rule_id in normalized_rules
         }
         if parsed.rule and parsed.rule not in assigned_rulestrings:
             errors.append(
